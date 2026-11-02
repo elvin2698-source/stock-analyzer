@@ -5,12 +5,12 @@ from datetime import date, timedelta
 import pandas as pd
 import yfinance as yf
 
-from config import HISTORY_DAYS
+from config import HISTORY_DAYS, read_csv
 
 
 def update_prices(path, symbols: dict, label: str) -> pd.DataFrame:
     """symbols: {저장할 종목코드: 야후 심볼}  예) {"005930": "005930.KS"}, {"AAPL": "AAPL"}"""
-    old = pd.read_csv(path, dtype={"ticker": str}) if path.exists() else pd.DataFrame()
+    old = read_csv(path) if path.exists() else pd.DataFrame()
     if old.empty:
         start = date.today() - timedelta(days=int(HISTORY_DAYS * 1.5))   # 거래일 260일 ≈ 달력 390일
     else:

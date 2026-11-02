@@ -21,3 +21,9 @@ MIN_TRADING_VALUE = {"KR": 100_000_000,   # 1억 원
 # 하루에 이만큼씩 갱신하고, 7일이 지난 것부터 새로 받습니다.
 US_FUNDAMENTAL_PER_RUN = 1500
 US_FUNDAMENTAL_MAX_AGE_DAYS = 7
+
+
+def read_csv(path, **kw):
+    """CSV 읽기. 'NA'(미국 종목코드) 같은 글자를 빈 값으로 착각하지 않도록 빈 칸만 빈 값으로 봅니다."""
+    import pandas as pd
+    return pd.read_csv(path, dtype={"ticker": str}, keep_default_na=False, na_values=[""], **kw)

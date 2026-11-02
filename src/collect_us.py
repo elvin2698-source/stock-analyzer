@@ -9,7 +9,7 @@ import requests
 import yfinance as yf
 
 from yahoo_prices import update_prices
-from config import DATA_DIR, US_FUNDAMENTAL_PER_RUN, US_FUNDAMENTAL_MAX_AGE_DAYS
+from config import read_csv, DATA_DIR, US_FUNDAMENTAL_PER_RUN, US_FUNDAMENTAL_MAX_AGE_DAYS
 
 PRICES = DATA_DIR / "prices_us.csv"
 COMPANIES = DATA_DIR / "companies_us.csv"
@@ -47,7 +47,7 @@ def _fundamentals(ticker):
 
 def update_companies() -> pd.DataFrame:
     listing = fetch_listing()
-    old = pd.read_csv(COMPANIES) if COMPANIES.exists() else pd.DataFrame(columns=["ticker"])
+    old = read_csv(COMPANIES) if COMPANIES.exists() else pd.DataFrame(columns=["ticker"])
     fund_cols = ["per", "pbr", "roe", "div_yield", "fund_updated"]
     comp = listing.merge(old[["ticker", *[c for c in fund_cols if c in old]]], on="ticker", how="left")
 

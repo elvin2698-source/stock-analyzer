@@ -19,6 +19,7 @@ from config import BUY_SCORE, SELL_SCORE, MIN_TRADING_VALUE
 
 
 def _wide(prices: pd.DataFrame, col: str) -> pd.DataFrame:
+    prices = prices.drop_duplicates(["date", "ticker"], keep="last")   # 혹시 겹친 줄이 있어도 멈추지 않게
     return prices.pivot(index="date", columns="ticker", values=col).sort_index()
 
 
