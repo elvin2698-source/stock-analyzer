@@ -6,17 +6,15 @@ jobs:
     steps:
       - run: |
           python3 - <<'PY'
-          import requests, re
-          UA={"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
-          for url in ["https://finance.naver.com/sise/sise_market_sum.naver?sosok=0&page=1",
-                      "https://kind.krx.co.kr/corpgeneral/corpList.do?method=download&searchType=13",
-                      "https://m.stock.naver.com/api/stocks/marketValue/KOSPI?page=1&pageSize=5"]:
-              try:
-                  r=requests.get(url,headers=UA,timeout=30); r.encoding=r.apparent_encoding if "kind" in url else ("euc-kr" if "finance.naver" in url else None)
-                  t=r.text
-                  print("=====",url,r.status_code,len(t), r.headers.get("content-type"))
-                  print("TABLE TAGS:", re.findall(r"<table[^>]*>",t)[:8])
-                  i=t.find("code=005930"); print("AROUND 005930:", t[max(0,i-1500):i+1500] if i>=0 else t[:3000])
-              except Exception as e:
-                  print("=====",url,"ERR",type(e).__name__,e)
+          import requests, json
+          UA={"User-Agent":"Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X)"}
+          def g(u):
+              r=requests.get(u,headers=UA,timeout=30); print("=====",u,r.status_code); return r
+          j=g("https://m.stock.naver.com/api/stocks/marketValue/KOSPI?page=1&pageSize=100").json()
+          print({k:v for k,v in j.items() if k!="stocks"}, len(j["stocks"])); print(json.dumps(j["stocks"][0],ensure_ascii=False))
+          j=g("https://m.stock.naver.com/api/stocks/marketValue/KOSDAQ?page=1&pageSize=100").json(); print({k:v for k,v in j.items() if k!="stocks"})
+          for u in ["https://m.stock.naver.com/api/stock/005930/integration","https://m.stock.naver.com/api/stock/005930/basic",
+                    "https://m.stock.naver.com/api/stock/005930/finance/annual"]:
+              try: print(json.dumps(g(u).json(),ensure_ascii=False)[:3500])
+              except Exception as e: print("ERR",e)
           PY
