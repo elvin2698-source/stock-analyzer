@@ -28,7 +28,8 @@
 기준은 `src/config.py`에서 바꿀 수 있습니다.
 
 ## 데이터 출처
-- 한국: KRX 정보데이터시스템 (`pykrx`). **무료 회원가입이 필요**합니다 (data.krx.co.kr)
+- 한국: 종목 목록·PER·ROE는 네이버 금융, 업종은 KRX 상장공시시스템(KIND), 주가는 Yahoo Finance
+  (로그인 필요 없음. PBR은 PER × ROE로 계산, 배당 정보는 없어서 중립 처리)
 - 미국: 종목 목록은 Nasdaq 스크리너, 주가와 재무지표는 Yahoo Finance (`yfinance`)
 - 미국 재무지표는 종목마다 따로 받아야 해서, 하루 1,500종목씩 돌아가며 갱신합니다 (약 4~5일이면 전체 갱신)
 
@@ -37,15 +38,14 @@
 - 한국시간 17:43 (한국장 마감 후)
 - 한국시간 07:13 (미국장 마감 후)
 
-설정할 것: 저장소 **Settings → Secrets and variables → Actions**에 `KRX_ID`, `KRX_PW` 등록
+따로 설정할 것은 없습니다. **Actions** 탭 → **매일 주식 분석** → **Run workflow**로 바로 실행할 수도 있습니다.
 
 ## 직접 실행
 ```bash
 pip install -r requirements.txt
-export KRX_ID=아이디 KRX_PW=비밀번호
 python src/main.py              # 한국 + 미국
 python src/main.py --only KR    # 한국만
 python src/main.py --no-collect # 이미 받은 데이터로 분석만
 ```
-처음 실행할 때는 1년치 주가를 받느라 오래 걸립니다 (한국 약 5분, 미국 약 10~20분).
+처음 실행할 때는 1년치 주가를 받느라 오래 걸립니다 (한국·미국 합쳐 약 20~40분).
 이후에는 새로 생긴 날짜만 받습니다.

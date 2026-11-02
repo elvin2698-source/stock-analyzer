@@ -1,15 +1,15 @@
 """미국 주식(나스닥·뉴욕·아멕스) 전 종목 데이터 수집.
 종목 목록: Nasdaq 스크리너 / 주가·재무: Yahoo Finance (yfinance)
 """
-import time
 from concurrent.futures import ThreadPoolExecutor
-from datetime import date, timedelta
+from datetime import date
 
 import pandas as pd
 import requests
 import yfinance as yf
 
-from config import DATA_DIR, HISTORY_DAYS, US_FUNDAMENTAL_PER_RUN, US_FUNDAMENTAL_MAX_AGE_DAYS
+from yahoo_prices import update_prices
+from config import DATA_DIR, US_FUNDAMENTAL_PER_RUN, US_FUNDAMENTAL_MAX_AGE_DAYS
 
 PRICES = DATA_DIR / "prices_us.csv"
 COMPANIES = DATA_DIR / "companies_us.csv"
@@ -27,36 +27,6 @@ def fetch_listing() -> pd.DataFrame:
     df["market_cap"] = pd.to_numeric(df["market_cap"], errors="coerce")
     df = df[df["market_cap"] > 0]
     return df[["ticker", "name", "sector", "industry", "country", "market_cap"]]
-
-
-def update_prices(tickers) -> pd.DataFrame:
-    old = pd.read_csv(PRICES) if PRICES.exists() else pd.DataFrame()
-    start = (date.today() - timedelta(days=int(HISTORY_DAYS * 1.5))) if old.empty \
-        else date.fromisoformat(old["date"].max()) - timedelta(days=5)   # 며칠 겹치게 받아 수정주가 반영
-
-    frames, tickers = [], list(tickers)
-    for i in range(0, len(tickers), 200):
-        batch = tickers[i:i + 200]
-        raw = yf.download(batch, start=start.isoformat(), auto_adjust=True,
-                          group_by="column", progress=False, threads=True)
-        if raw.empty:
-            continue
-        long = raw.stack(level=1, future_stack=True).reset_index()
-        long.columns = [str(c).lower() for c in long.columns]
-        long = long.rename(columns={"price": "date", "level_1": "ticker"})
-        long = long.dropna(subset=["close"])
-        long["date"] = pd.to_datetime(long["date"]).dt.date.astype(str)
-        frames.append(long[["date", "ticker", "close", "volume"]])
-        print(f"  [US] 주가 {min(i + 200, len(tickers))}/{len(tickers)}")
-        time.sleep(1)
-
-    new = pd.concat([old, *frames], ignore_index=True) if frames else old
-    new = new.drop_duplicates(["date", "ticker"], keep="last")
-    keep = sorted(new["date"].unique())[-HISTORY_DAYS:]
-    new = new[new["date"].isin(keep)].sort_values(["date", "ticker"])
-    new["volume"] = new["volume"].fillna(0).astype("int64")
-    new.to_csv(PRICES, index=False, float_format="%.4f")
-    return new
 
 
 def _fundamentals(ticker):
@@ -107,7 +77,7 @@ def update_companies() -> pd.DataFrame:
 def run():
     comp = update_companies()
     print(f"[US] 기업 정보 {len(comp)}개")
-    prices = update_prices(comp["ticker"])
+    prices = update_prices(PRICES, {t: t.replace(".", "-") for t in comp["ticker"]}, "US")
     print(f"[US] 주가 {prices['date'].nunique()}거래일 보관")
 
 

@@ -36,9 +36,6 @@ jobs:
           restore-keys: prices-
 
       - name: 분석 실행
-        env:
-          KRX_ID: ${{ secrets.KRX_ID }}
-          KRX_PW: ${{ secrets.KRX_PW }}
         run: python src/main.py
 
       - name: 주가 기록 저장

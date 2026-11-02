@@ -1,96 +1,110 @@
-"""한국 주식(코스피·코스닥) 전 종목 데이터 수집. 출처: KRX 정보데이터시스템 (pykrx)
+"""한국 주식(코스피·코스닥) 전 종목 데이터 수집. 로그인이 필요 없는 공개 자료만 씁니다.
 
-KRX는 무료 회원 로그인이 필요합니다. 환경변수 KRX_ID, KRX_PW 를 설정하세요.
+- 종목 목록·현재가·시가총액·PER·ROE : 네이버 금융 시가총액 순위 페이지
+- 업종                               : KRX 상장공시시스템(KIND) 상장법인 목록
+- 일별 주가                          : Yahoo Finance (005930.KS / 035720.KQ 형식)
 """
+import re
 import time
-from datetime import datetime, timedelta
+from datetime import date
+from io import StringIO
 
 import pandas as pd
-from pykrx import stock
+import requests
 
-from config import DATA_DIR, HISTORY_DAYS
+from config import DATA_DIR
+from yahoo_prices import update_prices
 
 PRICES = DATA_DIR / "prices_kr.csv"
 COMPANIES = DATA_DIR / "companies_kr.csv"
-
-# 분석에 필요한 열만 저장 (파일 크기 절약)
-OHLCV_COLS = {"종가": "close", "거래량": "volume", "등락률": "change_pct"}
-
-
-def _ymd(d):
-    return d.strftime("%Y%m%d")
+UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
+NAVER = "https://finance.naver.com/sise/sise_market_sum.naver?sosok={sosok}&page={page}"
+MARKETS = {"KOSPI": (0, "KS"), "KOSDAQ": (1, "KQ")}
 
 
-def _fetch_day(day: str) -> pd.DataFrame:
-    df = stock.get_market_ohlcv_by_ticker(day, market="ALL")
-    if df is None or df.empty or df["거래량"].sum() == 0:
-        return pd.DataFrame()           # 휴장일
-    df = df.rename(columns=OHLCV_COLS)
-    df = df[[c for c in OHLCV_COLS.values() if c in df.columns]]
-    df.index.name = "ticker"
-    df = df.reset_index()
-    df.insert(0, "date", pd.Timestamp(day).date().isoformat())
-    return df
+def _clean(html: str) -> str:
+    return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", html)).strip()
 
 
-def update_prices(today: str) -> pd.DataFrame:
-    old = pd.read_csv(PRICES, dtype={"ticker": str}) if PRICES.exists() else pd.DataFrame()
-    end = datetime.strptime(today, "%Y%m%d")
-    if old.empty:
-        start = end - timedelta(days=int(HISTORY_DAYS * 1.5))   # 거래일 260일 ≈ 달력 390일
-    else:
-        start = datetime.strptime(old["date"].max(), "%Y-%m-%d") + timedelta(days=1)
-
-    frames, d = [], start
-    while d <= end:
-        if d.weekday() < 5:
-            day = _fetch_day(_ymd(d))
-            if not day.empty:
-                frames.append(day)
-                print(f"  [KR] {d.date()} {len(day)}종목")
-            time.sleep(0.3)
-        d += timedelta(days=1)
-
-    new = pd.concat([old, *frames], ignore_index=True) if frames else old
-    new = new.drop_duplicates(["date", "ticker"], keep="last")
-    keep = sorted(new["date"].unique())[-HISTORY_DAYS:]
-    new = new[new["date"].isin(keep)].sort_values(["date", "ticker"])
-    new.to_csv(PRICES, index=False)
-    return new
+def _num(s):
+    s = str(s).replace(",", "").replace("%", "").strip()
+    try:
+        return float(s)
+    except ValueError:
+        return float("nan")
 
 
-def update_companies(today: str) -> pd.DataFrame:
+def _naver_page(sosok: int, page: int):
+    r = requests.get(NAVER.format(sosok=sosok, page=page), headers=UA, timeout=30)
+    r.encoding = "euc-kr"
+    html = r.text
+    table = re.search(r'<table[^>]*class="type_2".*?</table>', html, re.S).group(0)
+    headers = [_clean(h) for h in re.findall(r"<th[^>]*>(.*?)</th>", table, re.S)]
     rows = []
-    for market in ("KOSPI", "KOSDAQ"):
-        sec = stock.get_market_sector_classifications(today, market)
-        sec = sec.rename(columns={"종목명": "name", "업종명": "sector"})[["name", "sector"]]
-        sec["market"] = market
-        rows.append(sec)
-    comp = pd.concat(rows)
-    comp.index.name = "ticker"
+    for tr in re.findall(r"<tr[^>]*>(.*?)</tr>", table, re.S):
+        m = re.search(r'code=([0-9A-Z]{6})"[^>]*>(.*?)</a>', tr)
+        if not m:
+            continue
+        cells = [_clean(td) for td in re.findall(r"<td[^>]*>(.*?)</td>", tr, re.S)]
+        row = dict(zip(headers, cells))
+        row["ticker"], row["name"] = m.group(1), _clean(m.group(2))
+        rows.append(row)
+    last = re.search(r'class="pgRR".*?page=(\d+)', html, re.S)
+    return rows, int(last.group(1)) if last else page
 
-    fund = stock.get_market_fundamental_by_ticker(today, market="ALL")
-    fund = fund.rename(columns={"PER": "per", "PBR": "pbr", "EPS": "eps",
-                                "BPS": "bps", "DIV": "div_yield", "DPS": "dps"})
-    cap = stock.get_market_cap_by_ticker(today, market="ALL")[["시가총액"]].rename(columns={"시가총액": "market_cap"})
 
-    comp = comp.join(fund[["per", "pbr", "eps", "bps", "div_yield"]], how="left").join(cap, how="left")
-    # 0은 'PER 계산 불가(적자 등)'라는 뜻 → 빈 값으로
-    for c in ("per", "pbr"):
-        comp.loc[comp[c] <= 0, c] = float("nan")
-    comp["roe"] = (comp["eps"] / comp["bps"] * 100).where(comp["bps"] > 0)   # ROE ≈ EPS / BPS
-    comp["updated"] = pd.Timestamp(today).date().isoformat()
-    comp = comp.reset_index()
+def fetch_naver(market: str) -> pd.DataFrame:
+    sosok = MARKETS[market][0]
+    rows, last = _naver_page(sosok, 1)
+    for p in range(2, last + 1):
+        more, _ = _naver_page(sosok, p)
+        rows += more
+        time.sleep(0.2)
+    df = pd.DataFrame(rows)
+    out = pd.DataFrame({
+        "ticker": df["ticker"], "name": df["name"], "market": market,
+        "price_naver": df["현재가"].map(_num),
+        "market_cap": df["시가총액"].map(_num) * 1e8,     # 단위: 억원 → 원
+        "per": df["PER"].map(_num),
+        "roe": df["ROE"].map(_num),
+    })
+    print(f"  [KR] 네이버 {market} {len(out)}종목")
+    return out
+
+
+def fetch_sectors() -> pd.DataFrame:
+    """KIND 상장법인 목록 (종목코드 → 업종). 실패해도 분석은 계속합니다."""
+    try:
+        r = requests.get("https://kind.krx.co.kr/corpgeneral/corpList.do?method=download&searchType=13",
+                         headers=UA, timeout=60)
+        r.encoding = "euc-kr"
+        t = pd.read_html(StringIO(r.text), header=0)[0]
+        t["ticker"] = t["종목코드"].astype(str).str.zfill(6)
+        return t[["ticker", "업종"]].rename(columns={"업종": "sector"})
+    except Exception as e:
+        print(f"  [KR] 업종 정보 받기 실패 ({type(e).__name__}) → 시장 전체 기준으로 비교")
+        return pd.DataFrame(columns=["ticker", "sector"])
+
+
+def update_companies() -> pd.DataFrame:
+    comp = pd.concat([fetch_naver(m) for m in MARKETS], ignore_index=True)
+    comp = comp.drop_duplicates("ticker")
+    comp = comp.merge(fetch_sectors(), on="ticker", how="left")
+    comp["sector"] = comp["sector"].fillna(comp["market"])
+    comp.loc[comp["per"] <= 0, "per"] = float("nan")
+    # PBR = 주가/순자산 = (주가/이익) × (이익/순자산) = PER × ROE
+    comp["pbr"] = (comp["per"] * comp["roe"] / 100).where((comp["per"] > 0) & (comp["roe"] > 0))
+    comp["div_yield"] = float("nan")      # 무료 공개 자료로는 전 종목 배당을 받기 어려움 → 중립 처리
+    comp["yahoo"] = comp["ticker"] + "." + comp["market"].map({m: s for m, (_, s) in MARKETS.items()})
+    comp["updated"] = date.today().isoformat()
     comp.to_csv(COMPANIES, index=False)
     return comp
 
 
 def run():
-    today = stock.get_nearest_business_day_in_a_week()
-    print(f"[KR] 기준일 {today}")
-    comp = update_companies(today)
+    comp = update_companies()
     print(f"[KR] 기업 정보 {len(comp)}개")
-    prices = update_prices(today)
+    prices = update_prices(PRICES, dict(zip(comp["ticker"], comp["yahoo"])), "KR")
     print(f"[KR] 주가 {prices['date'].nunique()}거래일 보관")
 
 

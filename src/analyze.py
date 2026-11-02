@@ -22,15 +22,6 @@ def _wide(prices: pd.DataFrame, col: str) -> pd.DataFrame:
     return prices.pivot(index="date", columns="ticker", values=col).sort_index()
 
 
-def adjusted_close_kr(prices: pd.DataFrame) -> pd.DataFrame:
-    """KRX 등락률(액면분할·증자 반영)을 이어 붙여 수정주가를 만듭니다."""
-    close = _wide(prices, "close")
-    chg = _wide(prices, "change_pct").fillna(0) / 100
-    growth = (1 + chg).cumprod()
-    adj = growth.div(growth.iloc[-1]).mul(close.ffill().iloc[-1])
-    return adj.where(close.notna())          # 상장 전·거래정지일은 빈 값 유지
-
-
 def rsi(close: pd.DataFrame, n=14) -> pd.Series:
     d = close.diff()
     up = d.clip(lower=0).ewm(alpha=1 / n, adjust=False).mean()
@@ -103,7 +94,7 @@ def score(df: pd.DataFrame, market: str) -> pd.DataFrame:
 
     # ── 가치 분석 ───────────────────────────────
     per_pts = (_rank(df["per"], sector, ascending=False) * 15)
-    per_pts = per_pts.where(df["per"].notna(), np.where(df["eps"].lt(0) if "eps" in df else False, 0, 7.5))
+    per_pts = per_pts.where(df["per"].notna(), np.where(df["roe"] <= 0, 0, 7.5))   # PER 없음: 적자면 0, 모르면 중립
     note(per_pts >= 12, "업종 대비 PER 낮음(저평가)")
     note(df["per"].notna() & (per_pts <= 3), "업종 대비 PER 높음(고평가)")
 
@@ -138,13 +129,13 @@ def score(df: pd.DataFrame, market: str) -> pd.DataFrame:
 
 
 def analyze(prices: pd.DataFrame, companies: pd.DataFrame, market: str) -> pd.DataFrame:
-    close = adjusted_close_kr(prices) if market == "KR" else _wide(prices, "close")
+    close = _wide(prices, "close")
     volume = _wide(prices, "volume").reindex_like(close)
     tech = technicals(close, volume)
     comp = companies.set_index("ticker")
     comp = comp.drop(columns=[c for c in tech.columns if c in comp.columns])
     df = comp.join(tech, how="inner")
-    for c in ("per", "pbr", "roe", "div_yield", "eps"):
+    for c in ("per", "pbr", "roe", "div_yield"):
         if c not in df:
             df[c] = np.nan
         df[c] = pd.to_numeric(df[c], errors="coerce")
