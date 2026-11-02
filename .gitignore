@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+.env
+# 주가 기록은 용량이 커서 저장소에 올리지 않음 (GitHub Actions 캐시에 보관)
+data/prices_*.csv

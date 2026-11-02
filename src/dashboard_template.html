@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>주식 추천 대시보드</title>
+<style>
+:root{
+  --bg:#f6f7f9; --card:#ffffff; --text:#16181d; --muted:#626a77; --line:#e3e6eb;
+  --accent:#2f5bd3; --buy:#0f8a5f; --buy-bg:#e3f5ec; --sell:#c43d3d; --sell-bg:#fbe8e8;
+  --hold:#7a6a20; --hold-bg:#f6f0d6; --up:#d23c3c; --down:#2a62d6;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#111317; --card:#1a1d23; --text:#e8eaee; --muted:#9aa2ae; --line:#2b3039;
+    --accent:#7b9cff; --buy:#4fd19c; --buy-bg:#16332a; --sell:#ff7b7b; --sell-bg:#3a1d1f;
+    --hold:#e2cd72; --hold-bg:#33301c; --up:#ff7b7b; --down:#7ba4ff;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#111317; --card:#1a1d23; --text:#e8eaee; --muted:#9aa2ae; --line:#2b3039;
+  --accent:#7b9cff; --buy:#4fd19c; --buy-bg:#16332a; --sell:#ff7b7b; --sell-bg:#3a1d1f;
+  --hold:#e2cd72; --hold-bg:#33301c; --up:#ff7b7b; --down:#7ba4ff;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif}
+.wrap{max-width:1200px;margin:0 auto;padding:24px 16px 48px}
+h1{font-size:22px;margin:0 0 4px}
+.sub{color:var(--muted);font-size:13px;margin:0 0 20px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:20px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.stat b{display:block;font-size:22px;font-variant-numeric:tabular-nums}
+.stat span{color:var(--muted);font-size:12px}
+.controls{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;align-items:center}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--card)}
+.seg button{border:0;background:none;color:var(--text);padding:7px 12px;font:inherit;font-size:13px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--accent);color:#fff}
+input[type=search]{flex:1;min-width:180px;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--text);font:inherit}
+.tablebox{background:var(--card);border:1px solid var(--line);border-radius:10px;overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+th{position:sticky;top:0;background:var(--card);color:var(--muted);font-weight:600;cursor:pointer;user-select:none}
+th:nth-child(-n+3),td:nth-child(-n+3){text-align:left}
+tbody tr{cursor:pointer}
+tbody tr:hover{background:color-mix(in srgb,var(--accent) 6%,transparent)}
+td{font-variant-numeric:tabular-nums}
+.name{font-weight:600}.code{color:var(--muted);font-size:12px;margin-left:6px}
+.badge{display:inline-block;padding:2px 8px;border-radius:99px;font-size:12px;font-weight:600}
+.g-추천{background:var(--buy-bg);color:var(--buy)}.g-비추천{background:var(--sell-bg);color:var(--sell)}.g-중립{background:var(--hold-bg);color:var(--hold)}
+.bar{display:inline-block;width:56px;height:6px;border-radius:3px;background:var(--line);vertical-align:middle;margin-left:6px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent)}
+.up{color:var(--up)}.down{color:var(--down)}
+.detail td{white-space:normal;text-align:left;color:var(--muted);background:var(--bg);font-size:13px;cursor:default}
+.more{text-align:center;padding:12px}
+.more button{border:1px solid var(--line);background:var(--card);color:var(--text);padding:8px 16px;border-radius:8px;font:inherit;cursor:pointer}
+.note{color:var(--muted);font-size:12px;margin-top:16px}
+@media (max-width:640px){.hide-m,.bar{display:none}.detail td{position:sticky;left:0;max-width:calc(100vw - 34px)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>주식 추천 대시보드</h1>
+  <p class="sub">기준일 __AS_OF__ · 종합점수 __BUY__점 이상 추천, __SELL__점 이하 비추천 · 행을 누르면 판단 근거가 보여요</p>
+
+  <div class="stats" id="stats"></div>
+
+  <div class="controls">
+    <div class="seg" id="country">
+      <button aria-pressed="true" data-v="">전체</button><button data-v="KR" aria-pressed="false">한국</button><button data-v="US" aria-pressed="false">미국</button>
+    </div>
+    <div class="seg" id="grade">
+      <button aria-pressed="true" data-v="">모든 등급</button><button data-v="추천" aria-pressed="false">추천</button><button data-v="중립" aria-pressed="false">중립</button><button data-v="비추천" aria-pressed="false">비추천</button>
+    </div>
+    <input type="search" id="q" placeholder="기업명, 종목코드, 업종 검색">
+  </div>
+
+  <div class="tablebox">
+    <table>
+      <thead><tr id="head"></tr></thead>
+      <tbody id="body"></tbody>
+    </table>
+    <div class="more" id="more"></div>
+  </div>
+  <p class="note">정해진 규칙(이동평균 추세, 모멘텀, RSI, 거래량, 업종 대비 PER·PBR·ROE·배당)으로 계산한 참고 자료이며 투자 권유가 아닙니다. 거래가 적거나 상장한 지 얼마 안 된 종목은 제외했습니다.</p>
+</div>
+<script>
+const F=["ticker","name","country","sector","grade","score","tech_score","value_score","price","ret_1w","ret_3m","rsi","per","pbr","roe","div_yield","reasons"];
+const DATA=__DATA__.map(r=>Object.fromEntries(F.map((k,i)=>[k,r[i]])));
+const COLS=[
+  {k:"name",t:"기업"},{k:"grade",t:"등급"},{k:"sector",t:"업종",m:1},
+  {k:"score",t:"종합"},{k:"tech_score",t:"기술",m:1},{k:"value_score",t:"가치",m:1},
+  {k:"price",t:"현재가"},{k:"ret_3m",t:"3개월"},{k:"rsi",t:"RSI",m:1},
+  {k:"per",t:"PER",m:1},{k:"pbr",t:"PBR",m:1},{k:"roe",t:"ROE",m:1}];
+let st={country:"",grade:"",q:"",sort:"score",dir:-1,limit:100,open:null};
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const num=(v,d=1)=>v==null?"–":Number(v).toLocaleString("ko-KR",{maximumFractionDigits:d});
+const price=r=>r.price==null?"–":(r.country==="US"?"$"+num(r.price,2):num(r.price,0)+"원");
+
+function stats(){
+  const c=g=>DATA.filter(r=>r.grade===g&&(!st.country||r.country===st.country)).length;
+  const n=DATA.filter(r=>!st.country||r.country===st.country).length;
+  $("stats").innerHTML=[["분석 종목",n],["추천",c("추천")],["중립",c("중립")],["비추천",c("비추천")]]
+    .map(([t,v])=>`<div class="stat"><span>${t}</span><b>${v.toLocaleString()}</b></div>`).join("");
+}
+function rows(){
+  const q=st.q.trim().toLowerCase();
+  return DATA.filter(r=>(!st.country||r.country===st.country)&&(!st.grade||r.grade===st.grade)&&
+    (!q||[r.name,r.ticker,r.sector].some(x=>String(x??"").toLowerCase().includes(q))))
+    .sort((a,b)=>{const x=a[st.sort],y=b[st.sort];if(x==null)return 1;if(y==null)return -1;
+      return (typeof x==="string"?x.localeCompare(y,"ko"):x-y)*st.dir;});
+}
+function render(){
+  stats();
+  $("head").innerHTML=COLS.map(c=>`<th data-k="${c.k}" class="${c.m?"hide-m":""}">${c.t}${st.sort===c.k?(st.dir<0?" ▼":" ▲"):""}</th>`).join("");
+  const all=rows(), list=all.slice(0,st.limit);
+  $("body").innerHTML=list.map(r=>{
+    const ret=r.ret_3m==null?"–":`<span class="${r.ret_3m>=0?"up":"down"}">${r.ret_3m>0?"+":""}${num(r.ret_3m)}%</span>`;
+    const row=`<tr data-id="${esc(r.country+r.ticker)}">
+      <td><span class="name">${esc(r.name)}</span><span class="code">${esc(r.ticker)}</span></td>
+      <td><span class="badge g-${esc(r.grade)}">${esc(r.grade)}</span></td>
+      <td class="hide-m">${esc(r.sector)}</td>
+      <td><b>${num(r.score)}</b><span class="bar"><i style="width:${r.score}%"></i></span></td>
+      <td class="hide-m">${num(r.tech_score)}</td><td class="hide-m">${num(r.value_score)}</td>
+      <td>${price(r)}</td><td>${ret}</td><td class="hide-m">${num(r.rsi,0)}</td>
+      <td class="hide-m">${num(r.per)}</td><td class="hide-m">${num(r.pbr,2)}</td><td class="hide-m">${r.roe==null?"–":num(r.roe)+"%"}</td></tr>`;
+    const open=st.open===r.country+r.ticker?`<tr class="detail"><td colspan="${COLS.length}">
+      <b>${esc(r.name)}</b> · 기술 ${num(r.tech_score)}/50 · 가치 ${num(r.value_score)}/50 · 배당 ${r.div_yield==null?"–":num(r.div_yield,2)+"%"}<br>${esc(r.reasons)||"특이사항 없음"}</td></tr>`:"";
+    return row+open;}).join("") || `<tr><td colspan="${COLS.length}" style="text-align:center;color:var(--muted)">조건에 맞는 종목이 없어요</td></tr>`;
+  $("more").innerHTML=all.length>st.limit?`<button id="mb">더 보기 (${(all.length-st.limit).toLocaleString()}개 남음)</button>`:"";
+}
+function seg(id,key){$(id).addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;
+  st[key]=b.dataset.v;st.limit=100;[...$(id).children].forEach(x=>x.setAttribute("aria-pressed",x===b));render();});}
+seg("country","country");seg("grade","grade");
+$("q").addEventListener("input",e=>{st.q=e.target.value;st.limit=100;render();});
+$("head").addEventListener("click",e=>{const k=e.target.closest("th")?.dataset.k;if(!k)return;
+  st.dir=st.sort===k?-st.dir:(["name","grade","sector"].includes(k)?1:-1);st.sort=k;render();});
+$("body").addEventListener("click",e=>{const tr=e.target.closest("tr[data-id]");if(!tr)return;
+  st.open=st.open===tr.dataset.id?null:tr.dataset.id;render();});
+$("more").addEventListener("click",e=>{if(e.target.id==="mb"){st.limit+=200;render();}});
+render();
+</script>
+</body>
+</html>
