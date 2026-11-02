@@ -58,8 +58,9 @@ def update_companies() -> pd.DataFrame:
     todo = comp[age >= US_FUNDAMENTAL_MAX_AGE_DAYS].sort_values("market_cap", ascending=False)
     todo = todo["ticker"].head(US_FUNDAMENTAL_PER_RUN).tolist()
     print(f"[US] 재무지표 갱신 {len(todo)}종목")
-    with ThreadPoolExecutor(max_workers=8) as ex:
+    with ThreadPoolExecutor(max_workers=4) as ex:      # 너무 빠르면 야후가 요청을 막음
         got = [r for r in ex.map(_fundamentals, todo) if r]
+    print(f"[US] 재무지표 성공 {len(got)}/{len(todo)}")
     if got:
         upd = pd.DataFrame(got).set_index("ticker")
         comp = comp.set_index("ticker")
