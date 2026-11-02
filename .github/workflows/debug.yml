@@ -1,0 +1,22 @@
+name: 점검용 (네이버 페이지 확인)
+on: workflow_dispatch
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          python3 - <<'PY'
+          import requests, re
+          UA={"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
+          for url in ["https://finance.naver.com/sise/sise_market_sum.naver?sosok=0&page=1",
+                      "https://kind.krx.co.kr/corpgeneral/corpList.do?method=download&searchType=13",
+                      "https://m.stock.naver.com/api/stocks/marketValue/KOSPI?page=1&pageSize=5"]:
+              try:
+                  r=requests.get(url,headers=UA,timeout=30); r.encoding=r.apparent_encoding if "kind" in url else ("euc-kr" if "finance.naver" in url else None)
+                  t=r.text
+                  print("=====",url,r.status_code,len(t), r.headers.get("content-type"))
+                  print("TABLE TAGS:", re.findall(r"<table[^>]*>",t)[:8])
+                  i=t.find("code=005930"); print("AROUND 005930:", t[max(0,i-1500):i+1500] if i>=0 else t[:3000])
+              except Exception as e:
+                  print("=====",url,"ERR",type(e).__name__,e)
+          PY
