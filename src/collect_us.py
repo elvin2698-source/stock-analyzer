@@ -1,6 +1,7 @@
 """미국 주식(나스닥·뉴욕·아멕스) 전 종목 데이터 수집.
 종목 목록: Nasdaq 스크리너 / 주가·재무: Yahoo Finance (yfinance)
 """
+import time
 from concurrent.futures import ThreadPoolExecutor
 from datetime import date
 
@@ -16,17 +17,33 @@ COMPANIES = DATA_DIR / "companies_us.csv"
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
 
 
-def fetch_listing() -> pd.DataFrame:
+def _screener(exchange=None):
     url = "https://api.nasdaq.com/api/screener/stocks?tableonly=true&download=true"
-    rows = requests.get(url, headers=UA, timeout=60).json()["data"]["rows"]
-    df = pd.DataFrame(rows)
+    if exchange:
+        url += f"&exchange={exchange}"
+    return pd.DataFrame(requests.get(url, headers=UA, timeout=60).json()["data"]["rows"])
+
+
+def fetch_listing() -> pd.DataFrame:
+    try:   # 거래소별로 받아 나스닥/뉴욕/아멕스 구분
+        parts = []
+        for ex, label in (("nasdaq", "NASDAQ"), ("nyse", "NYSE"), ("amex", "AMEX")):
+            part = _screener(ex)
+            part["market"] = label
+            parts.append(part)
+            time.sleep(1)
+        df = pd.concat(parts, ignore_index=True).drop_duplicates("symbol")
+    except Exception as e:
+        print(f"  [US] 거래소별 목록 실패 ({type(e).__name__}) → 전체 목록 사용")
+        df = _screener()
+        df["market"] = "US"
     df = df.rename(columns={"symbol": "ticker", "marketCap": "market_cap"})
     df["ticker"] = df["ticker"].str.strip()
     # 우선주·워런트·유닛 등 제외 (기호가 들어간 티커)
     df = df[df["ticker"].str.fullmatch(r"[A-Z]{1,5}")]
     df["market_cap"] = pd.to_numeric(df["market_cap"], errors="coerce")
     df = df[df["market_cap"] > 0]
-    return df[["ticker", "name", "sector", "industry", "country", "market_cap"]]
+    return df[["ticker", "name", "market", "sector", "industry", "country", "market_cap"]]
 
 
 def _fundamentals(ticker):
@@ -70,7 +87,6 @@ def update_companies() -> pd.DataFrame:
         comp.update(upd)
         comp = comp.reset_index()
 
-    comp["market"] = "US"
     comp.to_csv(COMPANIES, index=False)
     return comp
 

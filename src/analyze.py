@@ -16,6 +16,7 @@ import numpy as np
 import pandas as pd
 
 from config import BUY_SCORE, SELL_SCORE, MIN_TRADING_VALUE
+import categorize
 
 
 def _wide(prices: pd.DataFrame, col: str) -> pd.DataFrame:
@@ -113,6 +114,7 @@ def score(df: pd.DataFrame, market: str) -> pd.DataFrame:
 
     note(df["per"].isna() & df["pbr"].isna() & df["roe"].isna(), "재무 데이터 없음(가치 점수 중립 처리)")
     df["value_score"] = per_pts + pbr_pts + roe_pts + div_pts
+    df["styles"] = categorize.styles(df, per_pts)
 
     df["score"] = (df["tech_score"] + df["value_score"]).round(1)
     df["tech_score"] = df["tech_score"].round(1)
@@ -140,6 +142,8 @@ def analyze(prices: pd.DataFrame, companies: pd.DataFrame, market: str) -> pd.Da
         if c not in df:
             df[c] = np.nan
         df[c] = pd.to_numeric(df[c], errors="coerce")
+    df["group"] = categorize.sector_group(df, market)
+    df["size"] = categorize.size_class(df, market)
     df = score(df, market)
     df["country"] = market
     df["as_of"] = close.index[-1]

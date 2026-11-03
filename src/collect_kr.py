@@ -94,6 +94,8 @@ def update_companies() -> pd.DataFrame:
     comp = comp.merge(pd.DataFrame(fund), on="ticker", how="left")
 
     comp = comp.merge(fetch_sectors(), on="ticker", how="left")
+    common = comp["ticker"].str[:5] + "0"                      # 우선주(005935) → 보통주(005930) 업종 사용
+    comp["sector"] = comp["sector"].fillna(common.map(comp.set_index("ticker")["sector"]))
     comp["sector"] = comp["sector"].fillna(comp["market"])
     for c in ("per", "pbr"):
         comp.loc[comp[c] <= 0, c] = float("nan")
