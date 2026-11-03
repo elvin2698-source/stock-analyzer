@@ -39,6 +39,10 @@ def fetch_listing() -> pd.DataFrame:
         df["market"] = "US"
     df = df.rename(columns={"symbol": "ticker", "marketCap": "market_cap"})
     df["ticker"] = df["ticker"].str.strip()
+    # "Apple Inc. Common Stock" → "Apple Inc." (주식 종류 꼬리표 제거)
+    df["name"] = df["name"].str.replace(
+        r"\s+(Class [A-Z] )?(Common Stock|Common Shares|Ordinary Shares|American Depositary Shares|ADS|Subordinate Voting Shares)\b.*$",
+        "", regex=True).str.strip()
     # 우선주·워런트·유닛 등 제외 (기호가 들어간 티커)
     df = df[df["ticker"].str.fullmatch(r"[A-Z]{1,5}")]
     df["market_cap"] = pd.to_numeric(df["market_cap"], errors="coerce")
