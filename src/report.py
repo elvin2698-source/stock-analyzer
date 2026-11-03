@@ -126,7 +126,19 @@ def write_dashboard(res: pd.DataFrame, as_of: str):
     # GitHub 웹페이지용 완전한 HTML 문서 (한글 깨짐·화면 배율 문제 방지)
     html = ('<!doctype html>\n<html lang="ko">\n<head>\n<meta charset="utf-8">\n'
             '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
-            '</head>\n<body>\n' + body + '\n</body>\n</html>\n')
+            # 휴대폰 홈 화면에 추가하면 앱처럼 열리게
+            '<link rel="manifest" href="manifest.webmanifest">\n'
+            '<link rel="apple-touch-icon" href="apple-touch-icon.png">\n'
+            '<link rel="icon" href="icon-192.png">\n'
+            '<meta name="theme-color" content="#2448c7">\n'
+            '<meta name="apple-mobile-web-app-capable" content="yes">\n'
+            '<meta name="mobile-web-app-capable" content="yes">\n'
+            '<meta name="apple-mobile-web-app-title" content="주식추천">\n'
+            '<meta name="apple-mobile-web-app-status-bar-style" content="default">\n'
+            '</head>\n<body>\n' + body +
+            '\n<script>if("serviceWorker" in navigator&&location.protocol==="https:")'
+            'navigator.serviceWorker.register("sw.js").catch(()=>{});</script>'
+            '\n</body>\n</html>\n')
     path = DOCS_DIR / "index.html"
     path.write_text(html, encoding="utf-8")
     return path

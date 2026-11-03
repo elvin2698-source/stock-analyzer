@@ -1,0 +1,16 @@
+{
+  "name": "주식 추천 대시보드",
+  "short_name": "주식추천",
+  "description": "한국·미국 전 종목 추천·비추천 점수 (매일 자동 갱신)",
+  "lang": "ko",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f3f5f8",
+  "theme_color": "#2448c7",
+  "icons": [
+    {"src": "icon-192.png", "sizes": "192x192", "type": "image/png"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png"},
+    {"src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ]
+}
