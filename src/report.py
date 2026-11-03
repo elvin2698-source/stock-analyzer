@@ -122,7 +122,11 @@ def dashboard_payload(res: pd.DataFrame, as_of: str) -> str:
 def write_dashboard(res: pd.DataFrame, as_of: str):
     DOCS_DIR.mkdir(exist_ok=True)
     tpl = Path(__file__).with_name("dashboard_template.html").read_text(encoding="utf-8")
-    html = tpl.replace("__PAYLOAD__", dashboard_payload(res, as_of).replace("</", "<\\/"))
+    body = tpl.replace("__PAYLOAD__", dashboard_payload(res, as_of).replace("</", "<\\/"))
+    # GitHub 웹페이지용 완전한 HTML 문서 (한글 깨짐·화면 배율 문제 방지)
+    html = ('<!doctype html>\n<html lang="ko">\n<head>\n<meta charset="utf-8">\n'
+            '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
+            '</head>\n<body>\n' + body + '\n</body>\n</html>\n')
     path = DOCS_DIR / "index.html"
     path.write_text(html, encoding="utf-8")
     return path
