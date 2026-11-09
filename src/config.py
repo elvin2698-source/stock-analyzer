@@ -27,3 +27,18 @@ def read_csv(path, **kw):
     """CSV 읽기. 'NA'(미국 종목코드) 같은 글자를 빈 값으로 착각하지 않도록 빈 칸만 빈 값으로 봅니다."""
     import pandas as pd
     return pd.read_csv(path, dtype={"ticker": str}, keep_default_na=False, na_values=[""], **kw)
+
+
+# ── 모의투자 (균형형) ─────────────────────────────────────────
+PAPER_DIR = ROOT / "paper"
+PAPER_START_KRW = 50_000_000         # 시장별 가상 자금 (미국은 시작일 환율로 달러 환산)
+PAPER_HOLDINGS = 20                  # 보유 종목 수
+PAPER_SECTOR_CAP = 4                 # 업종 대분류당 최대 종목 수
+PAPER_STOP_LOSS = -0.15              # 매수가 대비 -15%면 손절
+PAPER_KEEP_RANK = 40                 # 주간 교체 때 종합점수 상위 40위 안이면 계속 보유
+PAPER_SLIPPAGE = 0.001               # 체결 가격 불리하게 0.1% 반영
+PAPER_COSTS = {                      # 수수료·세금 (대략적인 2026년 온라인 증권사 기준)
+    "KR": {"buy": 0.00015, "sell": 0.00015 + 0.0020},   # 매도 시 증권거래세 0.20%
+    "US": {"buy": 0.0025, "sell": 0.0025},               # 해외주식 수수료 0.25%
+}
+PAPER_BENCHMARK = {"KR": ("^KS11", "코스피"), "US": ("^GSPC", "S&P500")}

@@ -84,7 +84,7 @@ def write_csv(res: pd.DataFrame, as_of: str):
     return path
 
 
-def _usdkrw():
+def usdkrw():
     try:
         import yfinance as yf
         v = float(yf.Ticker("KRW=X").history(period="5d")["Close"].dropna().iloc[-1])
@@ -93,10 +93,10 @@ def _usdkrw():
         return 1400.0
 
 
-def dashboard_payload(res: pd.DataFrame, as_of: str) -> str:
+def dashboard_payload(res: pd.DataFrame, as_of: str, paper_data=None, rate=None) -> str:
     """대시보드용 데이터. 반복되는 글자(업종 등)는 번호로 바꿔 파일 크기를 줄입니다."""
     d = res[res["grade"] != "제외"].copy()
-    rate = _usdkrw()
+    rate = rate or usdkrw()
     d["cap_usd"] = (d["market_cap"] / rate).where(d["country"] == "KR", d["market_cap"]) / 1e6   # 백만 달러
     dicts = {"market": sorted(d["market"].dropna().unique()), "sector": sorted(d["sector"].fillna("").unique()),
              "group": GROUPS, "size": ["대형주", "중형주", "소형주"], "grade": ["추천", "중립", "비추천"]}
@@ -114,15 +114,15 @@ def dashboard_payload(res: pd.DataFrame, as_of: str) -> str:
     out["cap_usd"] = out["cap_usd"].round(0)
     out["styles"] = out["styles"].fillna("").map(lambda s: [STYLES.index(x) for x in s.split("·") if x])
     payload = {"asOf": as_of, "buy": BUY_SCORE, "sell": SELL_SCORE, "usdkrw": round(rate, 1),
-               "cols": cols, "dict": dicts, "styles": STYLES, "marketKo": MARKET_KO,
+               "paper": paper_data or {}, "cols": cols, "dict": dicts, "styles": STYLES, "marketKo": MARKET_KO,
                "rows": json.loads(out.to_json(orient="values", force_ascii=False))}
     return json.dumps(payload, ensure_ascii=False, separators=(",", ":"))
 
 
-def write_dashboard(res: pd.DataFrame, as_of: str):
+def write_dashboard(res: pd.DataFrame, as_of: str, paper_data=None, rate=None):
     DOCS_DIR.mkdir(exist_ok=True)
     tpl = Path(__file__).with_name("dashboard_template.html").read_text(encoding="utf-8")
-    body = tpl.replace("__PAYLOAD__", dashboard_payload(res, as_of).replace("</", "<\\/"))
+    body = tpl.replace("__PAYLOAD__", dashboard_payload(res, as_of, paper_data, rate).replace("</", "<\\/"))
     # GitHub 웹페이지용 완전한 HTML 문서 (한글 깨짐·화면 배율 문제 방지)
     html = ('<!doctype html>\n<html lang="ko">\n<head>\n<meta charset="utf-8">\n'
             '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'

@@ -9,7 +9,7 @@
   --bg:#f3f5f8; --surface:#ffffff; --sunken:#eaeef3; --ink:#121721; --muted:#5a6475; --line:#dde2ea;
   --accent:#2448c7; --accent-ink:#ffffff; --accent-soft:#e6ebfb;
   --buy:#0b7350; --buy-bg:#dff3ea; --hold:#7d6510; --hold-bg:#f5eed3; --sell:#bd2f37; --sell-bg:#fae4e5;
-  --up:#cf2e36; --down:#1f58cc; --mid:#b8c0cd;
+  --up:#cf2e36; --down:#1f58cc; --mid:#b8c0cd; --s-port:#2a78d6; --s-bench:#eb6834;
   --font-body:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
   --font-num:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
   --r:8px;
@@ -18,12 +18,12 @@
   --bg:#0f131a; --surface:#171c25; --sunken:#1e2430; --ink:#e7ebf2; --muted:#98a2b3; --line:#2a3240;
   --accent:#7d9bff; --accent-ink:#0f131a; --accent-soft:#232d48;
   --buy:#4fd3a0; --buy-bg:#16342a; --hold:#e3c968; --hold-bg:#342e18; --sell:#ff8087; --sell-bg:#3c1d21;
-  --up:#ff7a80; --down:#7aa6ff; --mid:#4a5568; color-scheme:dark}}
+  --up:#ff7a80; --down:#7aa6ff; --mid:#4a5568; --s-port:#3987e5; --s-bench:#d95926; color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#0f131a; --surface:#171c25; --sunken:#1e2430; --ink:#e7ebf2; --muted:#98a2b3; --line:#2a3240;
   --accent:#7d9bff; --accent-ink:#0f131a; --accent-soft:#232d48;
   --buy:#4fd3a0; --buy-bg:#16342a; --hold:#e3c968; --hold-bg:#342e18; --sell:#ff8087; --sell-bg:#3c1d21;
-  --up:#ff7a80; --down:#7aa6ff; --mid:#4a5568; color-scheme:dark}
+  --up:#ff7a80; --down:#7aa6ff; --mid:#4a5568; --s-port:#3987e5; --s-bench:#d95926; color-scheme:dark}
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font:14px/1.5 var(--font-body)}
 .wrap{max-width:1240px;margin:0 auto;padding-block:20px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:16px}
@@ -117,6 +117,40 @@ tbody tr.row:hover td{background:var(--accent-soft)}
 .more button{border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:6px 14px;border-radius:7px;font:inherit;font-size:13px;cursor:pointer}
 .empty{background:var(--surface);border:1px dashed var(--line);border-radius:var(--r);padding:28px 16px;text-align:center;color:var(--muted)}
 .note{color:var(--muted);font-size:12px;margin:0;max-width:72ch}
+/* 탭 */
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line)}
+.tabs a{padding:9px 14px;color:var(--muted);text-decoration:none;font-weight:600;border-bottom:2px solid transparent;margin-bottom:-1px}
+.tabs a[aria-current="page"]{color:var(--ink);border-bottom-color:var(--accent)}
+.tabs a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.view{display:grid;gap:16px;min-width:0}
+.view>*,.acct>*,.acct details{min-width:0}
+/* 모의투자 */
+.rules{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 16px;color:var(--muted);font-size:13px;display:grid;gap:4px}
+.rules b{color:var(--ink)}
+.acct{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);display:grid;min-width:0}
+.acct>header{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 12px;padding:14px 16px 0}
+.acct>header h2{margin:0;font-size:17px}
+.acct>header p{margin:0;color:var(--muted);font-size:12.5px;overflow-wrap:anywhere}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px 18px;padding:14px 16px}
+.kpi>span{display:block;color:var(--muted);font-size:12px}
+.kpi b{font-size:19px;font-weight:600}
+.kpi small{color:var(--muted);font-size:12px;margin-left:4px}
+.chartbox{padding:0 16px 8px;position:relative;min-width:0}
+.legend{display:flex;gap:14px;font-size:12.5px;color:var(--muted);padding:0 0 6px}
+.legend i{display:inline-block;width:14px;height:2px;vertical-align:middle;margin-right:6px;border-radius:1px}
+svg.chart{display:block;width:100%;height:220px;overflow:visible}
+svg.chart text{fill:var(--muted);font:11px var(--font-num)}
+svg.chart .grid{stroke:var(--line);stroke-width:1}
+svg.chart .zero{stroke:var(--mid);stroke-width:1}
+svg.chart .hair{stroke:var(--muted);stroke-width:1;stroke-dasharray:3 3}
+.tip{position:absolute;pointer-events:none;background:var(--surface);border:1px solid var(--line);border-radius:7px;padding:7px 10px;font-size:12px;box-shadow:0 4px 14px rgba(0,0,0,.12);white-space:nowrap;display:grid;gap:2px}
+.tip .k{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px}
+.chartnote{color:var(--muted);font-size:12.5px;padding:18px 0;text-align:center;border:1px dashed var(--line);border-radius:7px}
+.acct details{border-top:1px solid var(--line)}
+.acct details>summary{cursor:pointer;padding:11px 16px;font-weight:600;font-size:14px}
+.acct details>summary span{color:var(--muted);font-weight:400;font-size:12.5px;margin-left:6px}
+.acct .tbox td:first-child,.acct .tbox th:first-child{position:sticky;left:0}
+.side-매수{color:var(--up);font-weight:600}.side-매도{color:var(--down);font-weight:600}
 @media (max-width:720px){
   .prow{grid-template-columns:1fr;gap:6px}
   .prow>.label{padding-top:0}
@@ -133,6 +167,14 @@ tbody tr.row:hover td{background:var(--accent-soft)}
     <p id="asof"></p>
   </header>
 
+  <nav class="tabs" aria-label="화면">
+    <a href="#stocks" id="tab-stocks">종목 분석</a>
+    <a href="#paper" id="tab-paper">모의투자</a>
+  </nav>
+
+  <div class="view" id="view-paper" hidden></div>
+
+  <div class="view" id="view-stocks">
   <section class="summary" aria-label="현재 보기 요약">
     <div class="sumrow" id="sum"></div>
     <div class="dist" id="sumdist" aria-hidden="true"></div>
@@ -166,6 +208,7 @@ tbody tr.row:hover td{background:var(--accent-soft)}
   <div class="groups" id="out"></div>
 
   <p class="note" id="note"></p>
+  </div>
 </div>
 
 <script id="payload" type="application/json">__PAYLOAD__</script>
@@ -323,5 +366,89 @@ $("collapse").onclick=()=>{document.querySelectorAll("details.grp").forEach(d=>{
 $("panel").open=matchMedia("(min-width:721px)").matches;
 $("q").value=st.q;
 $("note").textContent=`점수는 이동평균 추세, 3개월 모멘텀, RSI, 거래량(기술 50점)과 같은 업종 안에서 비교한 PER·PBR·ROE·배당(가치 50점)으로 계산한 참고 자료이며 투자 권유가 아닙니다. 거래가 적거나 상장 60거래일 미만인 종목은 뺐습니다. 미국 시가총액은 달러, 한국은 원(환율 ${P.usdkrw}원 기준 비교).`;
+
+/* ───── 모의투자 ───── */
+const PA=P.paper||{};
+const money=(v,cur)=>v==null?"–":cur==="USD"?"$"+f(v,0):f(v,0)+"원";
+const signed=(v,d=2)=>v==null?'<span class="dim">–</span>':`<span class="${v>0?"up":v<0?"down":""}">${v>0?"+":""}${f(v,d)}%</span>`;
+function chart(el,hist,benchName){
+  const pts=hist.filter(h=>h.return_pct!=null);
+  if(pts.length<2){el.innerHTML=`<div class="chartnote">수익률 그래프는 기록이 이틀 이상 쌓이면 보여요. (지금 ${pts.length}일)</div>`;return;}
+  const W=Math.max(280,el.clientWidth),H=220,L=44,R=86,T=12,B=26;
+  const ys=pts.flatMap(p=>[p.return_pct,p.bench_return_pct]).filter(v=>v!=null);
+  let lo=Math.min(0,...ys),hi=Math.max(0,...ys);const pad=Math.max(0.5,(hi-lo)*0.12);lo-=pad;hi+=pad;
+  const step=[0.5,1,2,5,10,20,50].find(s=>(hi-lo)/s<=5)||100;lo=Math.floor(lo/step)*step;hi=Math.ceil(hi/step)*step;
+  const x=i=>L+(W-L-R)*i/(pts.length-1),y=v=>T+(H-T-B)*(hi-v)/(hi-lo);
+  const line=k=>pts.map((p,i)=>p[k]==null?null:`${x(i).toFixed(1)},${y(p[k]).toFixed(1)}`).filter(Boolean).join(" ");
+  let g="";for(let v=lo;v<=hi+1e-9;v+=step){g+=`<line class="${Math.abs(v)<1e-9?"zero":"grid"}" x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}"/><text x="${L-6}" y="${y(v)+4}" text-anchor="end">${v>0?"+":""}${+v.toFixed(1)}%</text>`;}
+  const last=pts[pts.length-1],lx=x(pts.length-1);
+  const ends=[["return_pct","포트폴리오","--s-port"],["bench_return_pct",benchName,"--s-bench"]].filter(([k])=>last[k]!=null)
+    .map(([k,t,c])=>({k,t,c,y:y(last[k]),v:last[k]})).sort((a,b)=>a.y-b.y);
+  if(ends.length===2&&ends[1].y-ends[0].y<26){const m=(ends[0].y+ends[1].y)/2;ends[0].ly=m-13;ends[1].ly=m+13;}
+  const endSvg=ends.map(e=>`<circle cx="${lx}" cy="${e.y}" r="4" fill="var(${e.c})" stroke="var(--surface)" stroke-width="2"/>
+    <text x="${lx+8}" y="${(e.ly??e.y)+4}" style="fill:var(--ink)">${e.v>0?"+":""}${f(e.v,1)}%</text>`).join("");
+  el.innerHTML=`<div class="legend"><span><i style="background:var(--s-port)"></i>포트폴리오</span><span><i style="background:var(--s-bench)"></i>${esc(benchName)}</span></div>
+  <svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="시작일 대비 누적 수익률: 포트폴리오 ${f(last.return_pct,1)}%, ${esc(benchName)} ${last.bench_return_pct==null?"-":f(last.bench_return_pct,1)+"%"}">
+    ${g}<text x="${L}" y="${H-6}">${pts[0].date}</text><text x="${W-R}" y="${H-6}" text-anchor="end">${last.date}</text>
+    <polyline points="${line("bench_return_pct")}" fill="none" stroke="var(--s-bench)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+    <polyline points="${line("return_pct")}" fill="none" stroke="var(--s-port)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+    ${endSvg}<line class="hair" y1="${T}" y2="${H-B}" x1="-10" x2="-10"/>
+    <rect x="${L}" y="${T}" width="${W-L-R}" height="${H-T-B}" fill="transparent" tabindex="0" aria-label="그래프 위를 움직이면 날짜별 수익률이 보여요"/></svg>
+  <div class="tip" hidden></div>`;
+  const svg=el.querySelector("svg"),hair=svg.querySelector(".hair"),tip=el.querySelector(".tip"),hit=svg.querySelector("rect");
+  const show=i=>{const p=pts[i],px=x(i);hair.setAttribute("x1",px);hair.setAttribute("x2",px);tip.hidden=false;tip.replaceChildren();
+    const d=document.createElement("div");d.textContent=p.date;d.style.fontWeight="600";tip.append(d);
+    [["포트폴리오",p.return_pct,"--s-port"],[benchName,p.bench_return_pct,"--s-bench"]].forEach(([t,v,c])=>{const r=document.createElement("div");
+      const k=document.createElement("span");k.className="k";k.style.background=`var(${c})`;r.append(k,`${t} ${v==null?"–":(v>0?"+":"")+f(v,2)+"%"}`);tip.append(r);});
+    const sx=svg.getBoundingClientRect().width/W;tip.style.left=Math.min(Math.max(0,px*sx+16-60),el.clientWidth-170)+"px";tip.style.top="40px";};
+  const near=e=>{const r=svg.getBoundingClientRect();const vx=(e.clientX-r.left)*W/r.width;return Math.max(0,Math.min(pts.length-1,Math.round((vx-L)/(W-L-R)*(pts.length-1))));};
+  let cur=pts.length-1;
+  hit.addEventListener("pointermove",e=>{cur=near(e);show(cur);});
+  hit.addEventListener("pointerleave",()=>{tip.hidden=true;hair.setAttribute("x1",-10);hair.setAttribute("x2",-10);});
+  hit.addEventListener("focus",()=>show(cur));hit.addEventListener("blur",()=>{tip.hidden=true;});
+  hit.addEventListener("keydown",e=>{if(e.key==="ArrowLeft"){cur=Math.max(0,cur-1);show(cur);}if(e.key==="ArrowRight"){cur=Math.min(pts.length-1,cur+1);show(cur);}});
+}
+function renderPaper(){
+  const v=$("view-paper");const accts=["KR","US"].filter(m=>PA[m]);
+  const rules=`<div class="rules"><div><b>운영 규칙 (균형형)</b> · 시장별 가상 자금 5천만원 · 종합점수 '추천' 종목 중 점수 높은 순으로 20종목, 업종당 최대 4종목, 같은 금액씩</div>
+    <div>매일: 매수가 대비 -15%면 손절, 등급이 비추천이 되면 매도 · 매주 첫 분석: 상위 40위 밖으로 밀린 종목을 팔고 빈자리를 채움 · 종가에 0.1% 불리하게 체결, 수수료·세금 반영</div></div>`;
+  if(!accts.length){v.innerHTML=rules+'<div class="empty">모의투자는 다음 자동 분석 때 시작돼요. 첫 매수 내역과 보유 종목이 여기에 표시돼요.</div>';return;}
+  v.innerHTML=rules+accts.map(m=>{const a=PA[m],h=a.history,last=h[h.length-1]||{},cur=a.currency;
+    const nav=last.nav??a.start_cash,ex=last.return_pct!=null&&last.bench_return_pct!=null?last.return_pct-last.bench_return_pct:null;
+    const krw=cur==="USD"?` <small>≈ ${f(nav*P.usdkrw/1e4,0)}만원</small>`:"";
+    return `<section class="acct" aria-label="${m==="KR"?"한국":"미국"} 계좌">
+    <header><h2>${m==="KR"?"한국 계좌":"미국 계좌"}</h2><p>${a.start_date} 시작 · ${money(a.start_cash,cur)}로 시작 · 비교 지수 ${esc(a.bench_name)}</p></header>
+    <div class="kpis">
+      <div class="kpi"><span>평가금액</span><b class="num">${money(nav,cur)}</b>${krw}</div>
+      <div class="kpi"><span>누적 수익률</span><b class="num">${signed(last.return_pct)}</b></div>
+      <div class="kpi"><span>${esc(a.bench_name)} 같은 기간</span><b class="num">${signed(last.bench_return_pct)}</b></div>
+      <div class="kpi"><span>지수 대비</span><b class="num">${ex==null?"–":`<span class="${ex>0?"up":ex<0?"down":""}">${ex>0?"+":""}${f(ex,2)}%p</span>`}</b></div>
+      <div class="kpi"><span>보유 · 현금</span><b class="num">${a.holdings.length}종목</b><small>현금 ${f(a.cash/nav*100,1)}%</small></div>
+      <div class="kpi"><span>끝난 매매 승률</span><b class="num">${a.closed?f(a.wins/a.closed*100,0)+"%":"–"}</b><small>${a.closed}건</small></div>
+    </div>
+    <div class="chartbox" data-chart="${m}"></div>
+    <details open><summary>보유 종목<span>${a.holdings.length}개 · 평가금액 큰 순</span></summary>
+      <div class="tbox"><table><thead><tr><th class="l">기업</th><th class="l">업종</th><th>수량</th><th>매수가</th><th>현재가</th><th>수익률</th><th class="hide-m">비중</th><th class="l hide-m">지금 등급</th><th class="hide-m">매수일</th></tr></thead><tbody>
+      ${a.holdings.map(r=>`<tr><td class="l"><span class="nm" title="${esc(r.name)}">${esc(r.name)}</span><span class="code num">${esc(r.ticker)}</span></td>
+        <td class="l">${esc(r.group)}</td><td class="num">${f(r.shares,0)}</td><td class="num">${money(r.avg_cost,cur).replace(/\.0+$/,"")}</td>
+        <td class="num">${cur==="USD"?"$"+f(r.price,2):f(r.price,0)+"원"}</td><td class="num">${signed(r.pnl_pct)}</td>
+        <td class="num hide-m">${f(r.value/nav*100,1)}%</td><td class="l hide-m">${r.grade?`<span class="badge g-${r.grade}">${r.grade}</span> <span class="num dim">${f(r.score)}</span>`:"–"}</td>
+        <td class="num hide-m">${r.buy_date}</td></tr>`).join("")||`<tr><td colspan="9" class="dim">보유 종목 없음</td></tr>`}
+      </tbody></table></div></details>
+    <details><summary>최근 매매<span>${a.trades.length}건</span></summary>
+      <div class="tbox"><table><thead><tr><th class="l">날짜</th><th class="l">구분</th><th class="l">기업</th><th>수량</th><th>가격</th><th>손익</th><th class="l">이유</th></tr></thead><tbody>
+      ${a.trades.map(t=>`<tr><td class="l num">${t.date}</td><td class="l side-${t.side}">${t.side}</td><td class="l"><span class="nm">${esc(t.name)}</span></td>
+        <td class="num">${f(t.shares,0)}</td><td class="num">${cur==="USD"?"$"+f(t.price,2):f(t.price,0)+"원"}</td><td class="num">${t.pnl_pct==null?'<span class="dim">–</span>':signed(t.pnl_pct)}</td>
+        <td class="l">${esc(t.reason)}</td></tr>`).join("")||`<tr><td colspan="7" class="dim">매매 없음</td></tr>`}
+      </tbody></table></div></details>
+    </section>`;}).join("");
+  accts.forEach(m=>chart(v.querySelector(`[data-chart="${m}"]`),PA[m].history,PA[m].bench_name));
+}
+function route(){const paper=location.hash==="#paper";$("view-paper").hidden=!paper;$("view-stocks").hidden=paper;
+  $("tab-paper").toggleAttribute("aria-current",paper);$("tab-stocks").toggleAttribute("aria-current",!paper);
+  if(paper){$("tab-paper").setAttribute("aria-current","page");renderPaper();}else $("tab-stocks").setAttribute("aria-current","page");}
+addEventListener("hashchange",route);
+let rz;addEventListener("resize",()=>{clearTimeout(rz);rz=setTimeout(()=>{if(location.hash==="#paper")renderPaper();},150);});
 render();
+route();
 </script>
