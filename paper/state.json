@@ -1,0 +1,22 @@
+{
+  "KR": {
+    "start_date": "2026-11-09",
+    "start_cash": 50000000,
+    "cash": 157125.08,
+    "start_usdkrw": 1350.0699462890625,
+    "currency": "KRW",
+    "last_date": "2026-11-09",
+    "last_rebalance_week": "2026-W46",
+    "bench_start": 5018.85009765625
+  },
+  "US": {
+    "start_date": "2026-11-06",
+    "start_cash": 37035.12,
+    "cash": 1406.05,
+    "start_usdkrw": 1350.0699462890625,
+    "currency": "USD",
+    "last_date": "2026-11-06",
+    "last_rebalance_week": "2026-W45",
+    "bench_start": 7376.85986328125
+  }
+}
