@@ -54,8 +54,9 @@ PAPER_BENCHMARKS = {
 PAPER_STRATEGIES = {
     "balanced":   {"name": "균형형", "n": 20, "sector_cap": 4, "stop": -0.15, "keep_rank": 40,
                    "rebalance": "weekly", "sizes": None, "pick": "top", "regime": False},
-    "stable":     {"name": "안정형", "n": 30, "sector_cap": 5, "stop": -0.10, "keep_rank": 60,
-                   "rebalance": "monthly", "sizes": ["대형주", "중형주"], "pick": "top", "regime": False},
+    "stable":     {"name": "안정형", "n": 20, "sector_cap": 4, "stop": -0.10, "keep_rank": 40,
+                   "rebalance": "monthly", "sizes": ["대형주", "중형주"], "pick": "top", "regime": False,
+                   "min_score": 60},       # 대·중형주는 70점(추천)을 넘는 종목이 드물어 60점 이상에서 고름
     "aggressive": {"name": "공격형", "n": 10, "sector_cap": 3, "stop": -0.20, "keep_rank": 20,
                    "rebalance": "daily", "sizes": None, "pick": "top", "regime": False},
     "defensive":  {"name": "균형형+하락장 방어", "n": 20, "sector_cap": 4, "stop": -0.15, "keep_rank": 40,

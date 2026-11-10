@@ -21,6 +21,8 @@ import warnings
 import numpy as np
 import pandas as pd
 
+from analyze import JUMP
+
 from config import (PAPER_DIR, PAPER_START_KRW, PAPER_SLIPPAGE, PAPER_MAX_ADV, PAPER_LIMIT_KR, PAPER_FX_COST,
                     PAPER_COSTS, PAPER_DIV_TAX, PAPER_US_CGT, PAPER_RF, PAPER_REGIME_INDEX, PAPER_BENCHMARKS,
                     PAPER_STRATEGIES, PAPER_RULES_VERSION, read_csv)
@@ -342,10 +344,19 @@ def process_account(acc, a, market, d, res, px, bench, files, log):
                   amount=round(gross, 2), cost=round(fee, 2), reason=o["reason"] + note)
     files["orders"] = _concat(orders[~orders.index.isin(mine_orders.index)], pd.DataFrame(keep_orders), cols=ORDER_COLS)
 
-    # 3) 평가
+    # 3) 평가 (기록되지 않은 액면분할·병합으로 보이는 급변은 수량을 보정)
     stale = 0
     for i, r in mine.iterrows():
         p, pd_ = px.close_on(r["ticker"], d)
+        if p is not None and r["last_price"] and pd_ > r["last_price_date"]:
+            k = p / float(r["last_price"])
+            if k >= JUMP or k <= 1 / JUMP:
+                new_sh = mine.at[i, "shares"] / k
+                whole = max(1, round(new_sh))
+                mine.at[i, "avg_cost"] = mine.at[i, "avg_cost"] * mine.at[i, "shares"] / whole
+                trade(date=pd_, side="분할", ticker=r["ticker"], name=r["name"], shares=whole, price=0, amount=0, cost=0,
+                      reason=f"가격이 하루에 {k:.2f}배로 바뀜 → 기록되지 않은 액면분할·병합으로 보고 수량 {int(r['shares'])}→{whole} 보정")
+                mine.at[i, "shares"] = whole
         if p is not None:
             mine.at[i, "last_price"], mine.at[i, "last_price_date"] = p, pd_
         if mine.at[i, "last_price_date"] < d:
@@ -404,11 +415,15 @@ def process_account(acc, a, market, d, res, px, bench, files, log):
                 order("매도", h, f"하락장 방어: 지수가 200일선 아래 → {target_n}종목으로 축소")
                 selling.add(h["ticker"])
             log.append(f"{acc}: 하락장 판단 → 목표 {target_n}종목")
-        cand = ranked[(ranked["grade"] == "추천") & ~ranked["ticker"].isin(set(mine["ticker"]))]
+        if st.get("min_score") is not None:
+            good = (ranked["score"] >= st["min_score"]) & (ranked["grade"] != "비추천")
+        else:
+            good = ranked["grade"] == "추천"
+        cand = ranked[good & ~ranked["ticker"].isin(set(mine["ticker"]))]
         if st["pick"] == "random":
             cand = cand.sample(frac=1, random_state=random.Random(f"{acc}{d}").randrange(1 << 30))
         for rank, (_, c) in enumerate(cand.head(st["n"] * 3).iterrows(), 1):
-            why = f"추천 · 종합 {c['score']:.1f}점 · {c['group']}" + (" · 무작위 선택" if st["pick"] == "random" else "")
+            why = f"{c['grade']} · 종합 {c['score']:.1f}점 · {c['group']}" + (" · 무작위 선택" if st["pick"] == "random" else "")
             order("매수", c, why, score=c["score"], rank=rank, target_n=target_n)
         a["last_rebalance"] = key
 

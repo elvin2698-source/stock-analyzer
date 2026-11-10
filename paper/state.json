@@ -41,7 +41,7 @@
       "cash": 50000000,
       "start_usdkrw": 1338.7099609375,
       "last_date": "2026-11-10",
-      "last_rebalance": "2026-11",
+      "last_rebalance": null,
       "rules_since": {
         "v2": "2026-11-10"
       },
@@ -105,7 +105,7 @@
       "cash": 37256.25,
       "start_usdkrw": 1338.7099609375,
       "last_date": "2026-11-09",
-      "last_rebalance": "2026-11",
+      "last_rebalance": null,
       "rules_since": {
         "v2": "2026-11-09"
       },

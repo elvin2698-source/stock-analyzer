@@ -24,10 +24,44 @@ def _wide(prices: pd.DataFrame, col: str) -> pd.DataFrame:
     return prices.pivot(index="date", columns="ticker", values=col).sort_index()
 
 
+JUMP = 3.0          # 하루에 3배 이상 오르거나 1/3 이하로 떨어지면 데이터 이상으로 의심
+
+
+def clean_close(close: pd.DataFrame, splits: pd.DataFrame = None) -> pd.DataFrame:
+    """Yahoo 데이터에 섞인 두 가지 오류를 고칩니다.
+    - 기록되지 않은 액면병합·분할: 하루에 3배↑ 또는 1/3↓로 바뀐 뒤 그 수준이 유지되면, 그 이전 가격을 같은 비율로 맞춤
+    - 하루짜리 잘못된 가격: 튀었다가 바로 원래 수준으로 돌아오면 그날 가격을 지움
+    기록된 액면분할이 있는 날은 건드리지 않습니다."""
+    c = close.copy()
+    prev = c.ffill().shift(1)
+    ratio = c / prev
+    sus = (ratio >= JUMP) | (ratio <= 1 / JUMP)
+    if splits is not None:
+        sus &= ~(splits.reindex_like(c).fillna(0) > 0)
+    for t in sus.columns[sus.any()]:
+        col = c[t]
+        for d in sus.index[sus[t]]:
+            i = c.index.get_loc(d)
+            before = col.iloc[:i].dropna()
+            after = col.iloc[i + 1:i + 4].dropna()
+            if before.empty or pd.isna(col.iloc[i]):
+                continue
+            level = col.iloc[i]
+            if len(after) and (after / before.iloc[-1]).between(1 / 1.6, 1.6).all():
+                col.iloc[i] = np.nan                                   # 하루만 튄 값 → 지움
+            else:
+                col.iloc[:i] = col.iloc[:i] * (level / before.iloc[-1])  # 기록 안 된 분할·병합 → 과거 가격 보정
+        c[t] = col
+    return c
+
+
 def adjusted_close(prices: pd.DataFrame) -> pd.DataFrame:
     """배당까지 반영한 수정주가 (날짜 × 종목). 저장된 가격은 액면분할만 반영돼 있으므로
-    배당락일마다 (1 - 배당금/전날 종가)를 그 이전 가격 전체에 곱해 줍니다."""
+    배당락일마다 (1 - 배당금/전날 종가)를 그 이전 가격 전체에 곱해 줍니다.
+    먼저 clean_close()로 기록되지 않은 분할·병합과 하루짜리 오류 가격을 정리합니다."""
     close = _wide(prices, "close")
+    if "split" in prices:
+        close = clean_close(close, _wide(prices, "split").reindex_like(close))
     if "dividend" not in prices:
         return close
     div = _wide(prices, "dividend").reindex_like(close).fillna(0)
