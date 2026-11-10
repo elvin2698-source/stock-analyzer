@@ -118,3 +118,29 @@ def styles(df: pd.DataFrame, per_pts: pd.Series) -> pd.Series:
     }
     flags = pd.DataFrame({k: v.fillna(False).astype(bool) for k, v in rules.items()})
     return flags.apply(lambda r: "·".join(k for k in STYLES if r[k]), axis=1)
+
+
+FUND_INDUSTRIES = {"Trusts Except Educational Religious and Charitable", "Blank Checks"}
+FUNDISH_INDUSTRIES = {"Investment Managers", "Finance/Investors Services", "Finance Companies",
+                      "Investment Bankers/Brokers/Service", ""}
+FUND_WORDS = r"\b(?:Fund|ETF|ETN|Municipal|STRATS)\b|Term Trust|Income Trust|Bond Trust"
+NOT_COMMON = r"Preferred|\bNotes? Due\b|Senior Notes|Subordinated|Debentures|\bWarrants?\b|\bRights?\b|\bUnits?\b|Depositary Shares, Each"
+
+
+def instrument_kind(df: pd.DataFrame, market: str) -> pd.Series:
+    """일반 기업 주식이 아니면 그 종류를, 맞으면 빈 글자를 돌려줍니다."""
+    name = df["name"].fillna("")
+    out = pd.Series("", index=df.index)
+    if market == "KR":
+        tick = pd.Series(df.index if "ticker" not in df else df["ticker"], index=df.index).astype(str)
+        out[tick.str[-1] != "0"] = "우선주"
+        out[name.str.contains("스팩|기업인수목적", regex=True)] = "스팩"
+        if "halted" in df:
+            out[df["halted"].fillna(False).astype(bool)] = "거래정지"
+        return out
+    ind = df.get("industry", pd.Series("", index=df.index)).fillna("")
+    trust = name.str.contains(r"\bTrust\b|Beneficial Interest", regex=True) & ind.isin(FUNDISH_INDUSTRIES)
+    out[ind.isin(FUND_INDUSTRIES) | name.str.contains(FUND_WORDS, regex=True) | trust] = "펀드·신탁"
+    out[name.str.contains(NOT_COMMON, regex=True)] = "우선주·채권"
+    out[name.str.contains(r"\bAcquisition Corp|\bAcquisition Co\b|Blank Check", regex=True) | (ind == "Blank Checks")] = "스팩"
+    return out

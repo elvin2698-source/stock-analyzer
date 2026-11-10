@@ -24,11 +24,44 @@ def _wide(prices: pd.DataFrame, col: str) -> pd.DataFrame:
     return prices.pivot(index="date", columns="ticker", values=col).sort_index()
 
 
-def rsi(close: pd.DataFrame, n=14) -> pd.Series:
+def adjusted_close(prices: pd.DataFrame) -> pd.DataFrame:
+    """배당까지 반영한 수정주가 (날짜 × 종목). 저장된 가격은 액면분할만 반영돼 있으므로
+    배당락일마다 (1 - 배당금/전날 종가)를 그 이전 가격 전체에 곱해 줍니다."""
+    close = _wide(prices, "close")
+    if "dividend" not in prices:
+        return close
+    div = _wide(prices, "dividend").reindex_like(close).fillna(0)
+    prev = close.ffill().shift(1)
+    ratio = (1 - div / prev).where(div > 0, 1.0).clip(lower=0.5).fillna(1.0)   # 비정상 값 방어
+    factor = ratio.iloc[::-1].cumprod().iloc[::-1].shift(-1).fillna(1.0)
+    return close * factor
+
+
+def rsi_frame(close: pd.DataFrame, n=14) -> pd.DataFrame:
     d = close.diff()
     up = d.clip(lower=0).ewm(alpha=1 / n, adjust=False).mean()
     dn = (-d.clip(upper=0)).ewm(alpha=1 / n, adjust=False).mean()
-    return (100 - 100 / (1 + up / dn.replace(0, np.nan))).iloc[-1]
+    return 100 - 100 / (1 + up / dn.replace(0, np.nan))
+
+
+def rsi(close: pd.DataFrame, n=14) -> pd.Series:
+    return rsi_frame(close, n).iloc[-1]
+
+
+def tech_components(df: pd.DataFrame):
+    """기술점수 4요소. 오늘 분석과 백테스트가 같은 계산을 쓰도록 한 곳에 둡니다.
+    df 열: price, ma20, ma60, ma200, ret_3m, rsi, vol_ratio, ret_1w"""
+    above200 = df["price"] > df["ma200"]
+    golden = df["ma20"] > df["ma60"]
+    above20 = df["price"] > df["ma20"]
+    trend = above200 * 8 + golden * 7 + above20 * 5
+    trend = trend.where(df["ma200"].notna(), golden * 10 + above20 * 5)   # 상장 200일 미만
+    mom = df["ret_3m"].rank(pct=True).fillna(0.5) * 15
+    r = df["rsi"]
+    rsi_pts = pd.Series(np.select([r.between(40, 60), r.between(30, 70), r < 30, r > 70], [10, 7, 5, 2], 5), index=df.index)
+    surge = df["vol_ratio"] > 1.5
+    vol_pts = pd.Series(np.select([surge & (df["ret_1w"] > 0), surge & (df["ret_1w"] <= 0)], [5, 0], 2.5), index=df.index)
+    return trend, mom, rsi_pts, vol_pts
 
 
 def technicals(close: pd.DataFrame, volume: pd.DataFrame) -> pd.DataFrame:
@@ -68,27 +101,22 @@ def score(df: pd.DataFrame, market: str) -> pd.DataFrame:
             reasons[i].append(text)
 
     # ── 기술적 분석 ─────────────────────────────
+    trend, mom, rsi_pts, vol_pts = tech_components(df)
     above200 = df["price"] > df["ma200"]
     golden = df["ma20"] > df["ma60"]
-    above20 = df["price"] > df["ma20"]
-    trend = above200 * 8 + golden * 7 + above20 * 5
-    trend = trend.where(df["ma200"].notna(), golden * 10 + above20 * 5)   # 상장 200일 미만
     note(above200, "200일선 위(장기 상승추세)")
     note(df["ma200"].notna() & ~above200, "200일선 아래(장기 하락추세)")
     note(golden, "20일선>60일선(단기 상승)")
     note(~golden & df["ma60"].notna(), "20일선<60일선(단기 하락)")
 
-    mom = df["ret_3m"].rank(pct=True).fillna(0.5) * 15
     note(mom >= 12, "3개월 수익률 상위 20%")
     note(mom <= 3, "3개월 수익률 하위 20%")
 
     r = df["rsi"]
-    rsi_pts = np.select([r.between(40, 60), r.between(30, 70), r < 30, r > 70], [10, 7, 5, 2], 5)
     note(r < 30, "RSI 과매도(반등 가능)")
     note(r > 70, "RSI 과열(단기 조정 주의)")
 
     surge = df["vol_ratio"] > 1.5
-    vol_pts = np.select([surge & (df["ret_1w"] > 0), surge & (df["ret_1w"] <= 0)], [5, 0], 2.5)
     note(surge & (df["ret_1w"] > 0), "거래량 급증 + 상승")
     note(surge & (df["ret_1w"] <= 0), "거래량 급증 + 하락")
 
@@ -123,16 +151,20 @@ def score(df: pd.DataFrame, market: str) -> pd.DataFrame:
     grade = np.select([df["score"] >= BUY_SCORE, df["score"] <= SELL_SCORE], ["추천", "비추천"], "중립")
     illiquid = df["trading_value"].fillna(0) < MIN_TRADING_VALUE[market]
     short = df["days"] < 60
-    grade = np.where(illiquid, "제외", np.where(short, "제외", grade))
-    note(illiquid, "거래대금 부족으로 제외")
-    note(short & ~illiquid, "상장 60거래일 미만으로 제외")
+    kind = df.get("instrument", pd.Series("", index=df.index)).fillna("")
+    not_stock = kind != ""
+    grade = np.where(not_stock | illiquid | short, "제외", grade)
+    for k in sorted(set(kind) - {""}):
+        note(kind == k, f"{k}(일반 기업 아님)으로 제외")
+    note(illiquid & ~not_stock, "거래대금 부족으로 제외")
+    note(short & ~illiquid & ~not_stock, "상장 60거래일 미만으로 제외")
     df["grade"] = grade
     df["reasons"] = [" · ".join(x) for x in reasons]
     return df
 
 
 def analyze(prices: pd.DataFrame, companies: pd.DataFrame, market: str) -> pd.DataFrame:
-    close = _wide(prices, "close")
+    close = adjusted_close(prices)
     volume = _wide(prices, "volume").reindex_like(close)
     tech = technicals(close, volume)
     comp = companies.set_index("ticker")
@@ -144,6 +176,7 @@ def analyze(prices: pd.DataFrame, companies: pd.DataFrame, market: str) -> pd.Da
         df[c] = pd.to_numeric(df[c], errors="coerce")
     df["group"] = categorize.sector_group(df, market)
     df["size"] = categorize.size_class(df, market)
+    df["instrument"] = categorize.instrument_kind(df, market)
     df = score(df, market)
     df["country"] = market
     df["as_of"] = close.index[-1]

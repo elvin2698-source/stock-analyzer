@@ -17,7 +17,7 @@ import requests
 from config import DATA_DIR
 from yahoo_prices import update_prices
 
-PRICES = DATA_DIR / "prices_kr.csv"
+PRICES = DATA_DIR / "prices_kr.v2.csv.gz"
 COMPANIES = DATA_DIR / "companies_kr.csv"
 UA = {"User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X)"}
 API = "https://m.stock.naver.com/api"
@@ -56,6 +56,7 @@ def fetch_listing(market: str) -> pd.DataFrame:
     out = pd.DataFrame({
         "ticker": df["itemCode"], "name": df["stockName"], "market": market,
         "market_cap": pd.to_numeric(df["marketValueRaw"], errors="coerce"),
+        "halted": df["tradeStopType"].map(lambda x: (x or {}).get("name", "TRADING") != "TRADING"),
     })
     print(f"  [KR] {market} 종목 {len(out)}개")
     return out

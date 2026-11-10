@@ -6,8 +6,8 @@ DATA_DIR = ROOT / "data"
 RESULTS_DIR = ROOT / "results"
 DOCS_DIR = ROOT / "docs"          # 웹 대시보드 (GitHub Pages로 공개 가능)
 
-# 주가 기록을 몇 거래일치 보관할지 (200일 이동평균 + 여유분)
-HISTORY_DAYS = 260
+# 주가 기록을 몇 거래일치 보관할지 (약 2년: 200일 이동평균 + 백테스트용)
+HISTORY_DAYS = 520
 
 # 등급 기준 (종합점수 0~100)
 BUY_SCORE = 70     # 이 점수 이상 → 추천
@@ -29,16 +29,37 @@ def read_csv(path, **kw):
     return pd.read_csv(path, dtype={"ticker": str}, keep_default_na=False, na_values=[""], **kw)
 
 
-# ── 모의투자 (균형형) ─────────────────────────────────────────
+# ── 모의투자 ──────────────────────────────────────────────
+# 규칙을 바꾸면 PAPER_RULES_VERSION 을 올리고 paper/RULES.md 에 바뀐 내용을 적습니다.
+PAPER_RULES_VERSION = "v2"
 PAPER_DIR = ROOT / "paper"
-PAPER_START_KRW = 50_000_000         # 시장별 가상 자금 (미국은 시작일 환율로 달러 환산)
-PAPER_HOLDINGS = 20                  # 보유 종목 수
-PAPER_SECTOR_CAP = 4                 # 업종 대분류당 최대 종목 수
-PAPER_STOP_LOSS = -0.15              # 매수가 대비 -15%면 손절
-PAPER_KEEP_RANK = 40                 # 주간 교체 때 종합점수 상위 40위 안이면 계속 보유
-PAPER_SLIPPAGE = 0.001               # 체결 가격 불리하게 0.1% 반영
+PAPER_START_KRW = 50_000_000         # 계좌별 가상 자금 (미국 계좌는 시작일 환율로 달러 환전)
+PAPER_SLIPPAGE = 0.001               # 체결 가격 불리하게 0.1%
+PAPER_MAX_ADV = 0.01                 # 한 번에 살 수 있는 금액: 최근 20일 평균 거래대금의 1%까지
+PAPER_LIMIT_KR = 0.295               # 한국 상·하한가(±30%) 근처면 체결 안 됨
+PAPER_FX_COST = 0.0025               # 원→달러 환전 수수료 0.25% (계좌 개설 때 한 번)
 PAPER_COSTS = {                      # 수수료·세금 (대략적인 2026년 온라인 증권사 기준)
     "KR": {"buy": 0.00015, "sell": 0.00015 + 0.0020},   # 매도 시 증권거래세 0.20%
     "US": {"buy": 0.0025, "sell": 0.0025},               # 해외주식 수수료 0.25%
 }
-PAPER_BENCHMARK = {"KR": ("^KS11", "코스피"), "US": ("^GSPC", "S&P500")}
+PAPER_DIV_TAX = {"KR": 0.154, "US": 0.15}            # 배당소득세 원천징수
+PAPER_US_CGT = (0.22, 2_500_000)     # 해외주식 양도소득세 22%, 연 250만원 공제 (추정치로만 표시)
+PAPER_RF = 0.03                      # 샤프지수용 무위험 수익률 (연 3%)
+PAPER_REGIME_INDEX = {"KR": "^KS11", "US": "^GSPC"}  # 하락장 판단 지수 (200일선 아래면 하락장)
+PAPER_BENCHMARKS = {
+    "KR": [("^KS11", "코스피"), ("^KQ11", "코스닥")],
+    "US": [("^GSPC", "S&P500"), ("^SP500TR", "S&P500 배당포함"), ("^RUT", "러셀2000(소형주)")],
+}
+# 전략 계좌. rebalance: weekly(매주 첫 분석) / monthly(매달 첫 분석) / daily
+PAPER_STRATEGIES = {
+    "balanced":   {"name": "균형형", "n": 20, "sector_cap": 4, "stop": -0.15, "keep_rank": 40,
+                   "rebalance": "weekly", "sizes": None, "pick": "top", "regime": False},
+    "stable":     {"name": "안정형", "n": 30, "sector_cap": 5, "stop": -0.10, "keep_rank": 60,
+                   "rebalance": "monthly", "sizes": ["대형주", "중형주"], "pick": "top", "regime": False},
+    "aggressive": {"name": "공격형", "n": 10, "sector_cap": 3, "stop": -0.20, "keep_rank": 20,
+                   "rebalance": "daily", "sizes": None, "pick": "top", "regime": False},
+    "defensive":  {"name": "균형형+하락장 방어", "n": 20, "sector_cap": 4, "stop": -0.15, "keep_rank": 40,
+                   "rebalance": "weekly", "sizes": None, "pick": "top", "regime": True},
+    "random":     {"name": "무작위 대조군", "n": 20, "sector_cap": 4, "stop": -0.15, "keep_rank": 40,
+                   "rebalance": "weekly", "sizes": None, "pick": "random", "regime": False},
+}

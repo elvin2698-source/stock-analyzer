@@ -12,7 +12,7 @@ import yfinance as yf
 from yahoo_prices import update_prices
 from config import read_csv, DATA_DIR, US_FUNDAMENTAL_PER_RUN, US_FUNDAMENTAL_MAX_AGE_DAYS
 
-PRICES = DATA_DIR / "prices_us.csv"
+PRICES = DATA_DIR / "prices_us.v2.csv.gz"
 COMPANIES = DATA_DIR / "companies_us.csv"
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
 

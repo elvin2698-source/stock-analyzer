@@ -8,6 +8,7 @@ on:
 
 permissions:
   contents: write
+  issues: write
 
 concurrency: daily-analysis
 
@@ -23,17 +24,20 @@ jobs:
           python-version: "3.12"
           cache: pip
 
-      - run: pip install -r requirements.txt
+      - run: pip install -r requirements.txt pytest
+
+      - name: 계산 검사 (모의투자·검증 테스트)
+        run: python -m pytest -q tests
 
       # 주가 기록(용량이 커서 저장소에 올리지 않음)은 캐시로 이어 붙입니다
       - name: 주가 기록 불러오기
         uses: actions/cache/restore@v4
         with:
           path: |
-            data/prices_kr.csv
-            data/prices_us.csv
-          key: prices-${{ github.run_id }}
-          restore-keys: prices-
+            data/prices_kr.v2.csv.gz
+            data/prices_us.v2.csv.gz
+          key: prices-v2-${{ github.run_id }}
+          restore-keys: prices-v2-
 
       - name: 분석 실행
         run: python src/main.py
@@ -43,9 +47,9 @@ jobs:
         uses: actions/cache/save@v4
         with:
           path: |
-            data/prices_kr.csv
-            data/prices_us.csv
-          key: prices-${{ github.run_id }}
+            data/prices_kr.v2.csv.gz
+            data/prices_us.v2.csv.gz
+          key: prices-v2-${{ github.run_id }}
 
       - name: 결과 올리기
         if: always()
@@ -56,3 +60,12 @@ jobs:
           git diff --cached --quiet || git commit -m "분석 결과 $(date -u +%F)"
           git pull --rebase origin main
           git push
+
+      - name: 실패하면 알림 이슈 만들기
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create --title "자동 분석 실패 $(date -u +%F)" \
+            --body "매일 주식 분석이 실패했어요. 실행 기록: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" \
+            || echo "이슈 만들기 실패"
