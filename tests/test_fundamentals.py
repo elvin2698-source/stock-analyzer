@@ -59,3 +59,11 @@ def test_compare_scores_includes_value_and_total():
     assert out["value_coverage"] > 50
     t = out["versions"]["total"]
     assert len(t["curve"]) == len(out["dates"])
+
+
+def test_naver_without_finance_info_is_skipped(monkeypatch):
+    class R:
+        def json(self):
+            return {"financeInfo": None}
+    monkeypatch.setattr(fundamentals.requests, "get", lambda *a, **k: R())
+    assert fundamentals.fetch_kr_one("123450") == []

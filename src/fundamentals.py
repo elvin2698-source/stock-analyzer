@@ -51,9 +51,11 @@ def fetch_kr_one(code: str):
     for kind, path in (("A", "annual"), ("Q", "quarter")):
         try:
             r = requests.get(f"https://m.stock.naver.com/api/stock/{code}/finance/{path}", headers=UA, timeout=15)
-            fi = r.json()["financeInfo"]
+            fi = (r.json() or {}).get("financeInfo") or {}
         except Exception:
             continue
+        if not isinstance(fi, dict):
+            continue                                        # 실적 자료가 없는 종목
         rows = {x["title"]: x["columns"] for x in fi.get("rowList", [])}
         for t in fi.get("trTitleList", []):
             if t.get("isConsensus") != "N":
@@ -106,7 +108,13 @@ def update(market: str, tickers: list):
     if not todo:
         print(f"  [재무 이력] {market} 새로 받을 종목 없음 ({len(last)}종목 보유)")
         return old
-    fn = fetch_kr_one if market == "KR" else fetch_us_one
+    one = fetch_kr_one if market == "KR" else fetch_us_one
+
+    def fn(t):
+        try:
+            return one(t)
+        except Exception:                                   # 한 종목 오류로 전체가 멈추지 않게
+            return []
     t0 = time.time()
     with ThreadPoolExecutor(max_workers=8 if market == "KR" else 4) as ex:
         got = [r for rows in ex.map(fn, todo) for r in rows]
