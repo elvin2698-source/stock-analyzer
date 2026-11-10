@@ -1,22 +1,163 @@
 {
-  "KR": {
-    "start_date": "2026-11-09",
-    "start_cash": 50000000,
-    "cash": 157125.08,
-    "start_usdkrw": 1350.0699462890625,
-    "currency": "KRW",
-    "last_date": "2026-11-10",
-    "last_rebalance_week": "2026-W46",
-    "bench_start": 5018.85009765625
-  },
-  "US": {
-    "start_date": "2026-11-06",
-    "start_cash": 37035.12,
-    "cash": 1699.41,
-    "start_usdkrw": 1350.0699462890625,
-    "currency": "USD",
-    "last_date": "2026-11-09",
-    "last_rebalance_week": "2026-W46",
-    "bench_start": 7376.85986328125
+  "version": 2,
+  "accounts": {
+    "KR-balanced": {
+      "market": "KR",
+      "strategy": "balanced",
+      "name": "균형형",
+      "start_date": "2026-11-09",
+      "start_cash": 50000000,
+      "currency": "KRW",
+      "cash": 157125.08,
+      "start_usdkrw": 1350.0699462890625,
+      "last_date": "2026-11-10",
+      "last_rebalance": "2026-W46",
+      "rules_since": {
+        "v1": "2026-11-09"
+      }
+    },
+    "US-balanced": {
+      "market": "US",
+      "strategy": "balanced",
+      "name": "균형형",
+      "start_date": "2026-11-06",
+      "start_cash": 37035.12,
+      "currency": "USD",
+      "cash": 1606.82,
+      "start_usdkrw": 1350.0699462890625,
+      "last_date": "2026-11-09",
+      "last_rebalance": "2026-W46",
+      "rules_since": {
+        "v1": "2026-11-06"
+      }
+    },
+    "KR-stable": {
+      "market": "KR",
+      "strategy": "stable",
+      "name": "안정형",
+      "start_date": "2026-11-10",
+      "start_cash": 50000000,
+      "currency": "KRW",
+      "cash": 50000000,
+      "start_usdkrw": 1338.7099609375,
+      "last_date": "2026-11-10",
+      "last_rebalance": "2026-11",
+      "rules_since": {
+        "v2": "2026-11-10"
+      },
+      "usdkrw_now": 1338.7099609375
+    },
+    "KR-aggressive": {
+      "market": "KR",
+      "strategy": "aggressive",
+      "name": "공격형",
+      "start_date": "2026-11-10",
+      "start_cash": 50000000,
+      "currency": "KRW",
+      "cash": 50000000,
+      "start_usdkrw": 1338.7099609375,
+      "last_date": "2026-11-10",
+      "last_rebalance": "2026-11-10",
+      "rules_since": {
+        "v2": "2026-11-10"
+      },
+      "usdkrw_now": 1338.7099609375
+    },
+    "KR-defensive": {
+      "market": "KR",
+      "strategy": "defensive",
+      "name": "균형형+하락장 방어",
+      "start_date": "2026-11-10",
+      "start_cash": 50000000,
+      "currency": "KRW",
+      "cash": 50000000,
+      "start_usdkrw": 1338.7099609375,
+      "last_date": "2026-11-10",
+      "last_rebalance": "2026-W46",
+      "rules_since": {
+        "v2": "2026-11-10"
+      },
+      "usdkrw_now": 1338.7099609375
+    },
+    "KR-random": {
+      "market": "KR",
+      "strategy": "random",
+      "name": "무작위 대조군",
+      "start_date": "2026-11-10",
+      "start_cash": 50000000,
+      "currency": "KRW",
+      "cash": 50000000,
+      "start_usdkrw": 1338.7099609375,
+      "last_date": "2026-11-10",
+      "last_rebalance": "2026-W46",
+      "rules_since": {
+        "v2": "2026-11-10"
+      },
+      "usdkrw_now": 1338.7099609375
+    },
+    "US-stable": {
+      "market": "US",
+      "strategy": "stable",
+      "name": "안정형",
+      "start_date": "2026-11-09",
+      "start_cash": 37256.25,
+      "currency": "USD",
+      "cash": 37256.25,
+      "start_usdkrw": 1338.7099609375,
+      "last_date": "2026-11-09",
+      "last_rebalance": "2026-11",
+      "rules_since": {
+        "v2": "2026-11-09"
+      },
+      "usdkrw_now": 1338.7099609375
+    },
+    "US-aggressive": {
+      "market": "US",
+      "strategy": "aggressive",
+      "name": "공격형",
+      "start_date": "2026-11-09",
+      "start_cash": 37256.25,
+      "currency": "USD",
+      "cash": 37256.25,
+      "start_usdkrw": 1338.7099609375,
+      "last_date": "2026-11-09",
+      "last_rebalance": "2026-11-09",
+      "rules_since": {
+        "v2": "2026-11-09"
+      },
+      "usdkrw_now": 1338.7099609375
+    },
+    "US-defensive": {
+      "market": "US",
+      "strategy": "defensive",
+      "name": "균형형+하락장 방어",
+      "start_date": "2026-11-09",
+      "start_cash": 37256.25,
+      "currency": "USD",
+      "cash": 37256.25,
+      "start_usdkrw": 1338.7099609375,
+      "last_date": "2026-11-09",
+      "last_rebalance": "2026-W46",
+      "rules_since": {
+        "v2": "2026-11-09"
+      },
+      "usdkrw_now": 1338.7099609375
+    },
+    "US-random": {
+      "market": "US",
+      "strategy": "random",
+      "name": "무작위 대조군",
+      "start_date": "2026-11-09",
+      "start_cash": 37256.25,
+      "currency": "USD",
+      "cash": 37256.25,
+      "start_usdkrw": 1338.7099609375,
+      "last_date": "2026-11-09",
+      "last_rebalance": "2026-W46",
+      "rules_since": {
+        "v2": "2026-11-09"
+      },
+      "usdkrw_now": 1338.7099609375
+    }
   }
 }
