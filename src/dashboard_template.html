@@ -34,6 +34,7 @@
   --c1:#3987e5; --c2:#d95926; --c3:#199e70; --c4:#c98500; --c5:#d55181; --c6:#008300; --c7:#9085e9; --cN:#8a93a5;
   color-scheme:dark}
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 body{background:var(--bg);color:var(--ink);font:14px/1.55 var(--font-body);-webkit-font-smoothing:antialiased}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bar)}
 .num{font-family:var(--font-num);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
@@ -503,7 +504,7 @@ function barChart(el,labels,values,{unit="%",height=170,color="--c1",note=""}={}
 
 /* ───────────────── 모의투자 ───────────────── */
 const PA=P.paper||{};
-const SCOL={balanced:"--c1",stable:"--c3",aggressive:"--c5",defensive:"--c7",random:"--cN"};
+const SCOL={balanced:"--c1",stable:"--c3",aggressive:"--c4",defensive:"--c7",legacy:"--c5",random:"--cN"};
 const BCOL=["--c2","--c4","--c6"];
 let pst={market:"KR",acct:null,hz:"20",hidden:{},...store.get("paper-ui",{})};
 const psave=()=>store.set("paper-ui",pst);
@@ -615,25 +616,29 @@ function drawValidation(){
     ${H?`<dl class="stats"><div><dt>평균 IC</dt><dd>${f(H.ic_mean,3)}</dd></div><div><dt>IC가 양수인 날</dt><dd>${f(H.ic_hit,0)}%</dd></div><div><dt>t값</dt><dd>${H.ic_t==null?"–":f(H.ic_t,2)}</dd></div><div><dt>검증 날짜 · 종목</dt><dd>${H.n_dates} · ${H.n_obs.toLocaleString()}</dd></div></dl>
       <div><div class="label">점수 5분위별 이후 평균 수익률</div><div class="chartbox" id="vq"></div></div>
       <div class="callout">${H.ic_mean>0.02&&(H.ic_t??0)>2?"점수가 높은 종목이 실제로 더 오르는 경향이 통계적으로 보여요.":H.ic_mean>0?"방향은 맞지만 아직 확신하기엔 데이터가 부족해요.":"지금까지는 점수와 실제 수익률의 관계가 보이지 않아요."}
-        기술점수 IC ${f(H.ic_tech,3)} · 가치점수 IC ${f(H.ic_value,3)} · 등급별: ${Object.entries(H.grades||{}).map(([g,v])=>`${g} ${v>0?"+":""}${f(v,2)}%`).join(" · ")}</div>`
+        기술점수 IC ${f(H.ic_tech,3)} · 가치점수 IC ${f(H.ic_value,3)}${H.ic_legacy==null?"":` · 예전 점수 IC ${f(H.ic_legacy,3)}`} · 등급별: ${Object.entries(H.grades||{}).map(([g,v])=>`${g} ${v>0?"+":""}${f(v,2)}%`).join(" · ")}</div>`
      :`<div class="chartnote">점수를 매긴 날부터 ${labels[pst.hz]} 수익률이 나와야 검증할 수 있어요.<br>첫 결과는 거래일 ${need}일 뒤에 보여요. 지금 쌓인 점수 기록 ${V.snapshots||0}일.</div>`}
     <p class="note">IC는 그날 점수 순위와 이후 수익률 순위가 얼마나 같은 방향인지(-1~1)예요. 0.03~0.05만 꾸준해도 쓸모 있는 수준이고, t값이 2를 넘으면 우연일 가능성이 낮아요.</p>
   </div>`;
   if(H)barChart($("vq"),["1분위\n(낮음)","2","3","4","5분위\n(높음)"].map(s=>s.split("\n")[0]),H.quintiles,{color:"--c1"});
   $("hz").onclick=e=>{const b=e.target.closest("button");if(!b)return;pst.hz=b.dataset.h;psave();drawValidation();};
 
-  const S=B.stats;
-  $("btcard").innerHTML=`<div class="card-h"><h2>과거 2년 백테스트</h2><p>${B.period?`${B.period[0]} ~ ${B.period[1]} · `:""}기술점수 상위 ${B.n||20}종목, ${B.every||5}거래일마다 교체</p></div>
+  const V3=(B.versions||{}).v3,V2=(B.versions||{}).v2;
+  $("btcard").innerHTML=`<div class="card-h"><h2>과거 백테스트: 새 점수 vs 예전 점수</h2><p>${B.period?`${B.period[0]} ~ ${B.period[1]} · `:""}기술점수 상위 ${B.n||20}종목, ${B.every||5}거래일마다 교체</p></div>
   <div class="card-b" style="display:grid;gap:12px">
-    ${S?`<dl class="stats"><div><dt>전략 누적</dt><dd>${signed(S.strategy.total,1)}</dd></div><div><dt>동일가중 누적</dt><dd>${signed(S.ew.total,1)}</dd></div>
-      <div><dt>최대 낙폭 (전략 · 동일)</dt><dd>${f(S.strategy.mdd,1)}% · ${f(S.ew.mdd,1)}%</dd></div><div><dt>샤프 (전략 · 동일)</dt><dd>${f(S.strategy.sharpe,2)} · ${f(S.ew.sharpe,2)}</dd></div></dl>
+    ${V3?`<div class="tbox" style="border:1px solid var(--line);border-radius:8px"><table><thead><tr><th class="l">기술점수</th><th>상위 20 누적</th><th>동일가중</th><th class="hide-m">최대 낙폭</th><th>평균 IC</th><th class="hide-m">IC t값</th></tr></thead><tbody>
+      ${[["새 점수 (지금 사용)",V3,"--c1"],["예전 점수",V2,"--c5"]].map(([nm,x,c])=>`<tr><td class="l"><span class="strat-dot" style="background:var(${c})"></span>${nm}</td><td class="num">${signed(x.top,1)}</td><td class="num">${signed(x.ew,1)}</td><td class="num hide-m">${f(x.mdd,1)}%</td><td class="num">${f(x.ic,3)}</td><td class="num hide-m">${f(x.ic_t,2)}</td></tr>`).join("")}
+      </tbody></table></div>
       <div class="chartbox" id="btc"></div>
-      <div><div class="label">기술점수 5분위별 20일 뒤 평균 수익률 · IC ${f(B.ic_20d,3)}</div><div class="chartbox" id="btq"></div></div>`
+      <div><div class="label">새 점수 5분위별 20일 뒤 평균 수익률</div><div class="chartbox" id="btq"></div></div>
+      <div class="callout">기간을 반으로 나눠 본 IC: 앞 절반 새 ${f(V3.halves.A.ic,3)} · 예전 ${f(V2.halves.A.ic,3)}, 뒤 절반 새 ${f(V3.halves.B.ic,3)} · 예전 ${f(V2.halves.B.ic,3)}.
+        ${V3.halves.A.ic>V2.halves.A.ic&&V3.halves.B.ic>V2.halves.B.ic?"두 기간 모두 새 점수가 더 잘 맞았어요.":"두 기간 중 한쪽에서는 예전 점수가 더 나았어요."}
+        ${V3.top<V3.ew?" 다만 상위 20종목만 골라 담는 방식은 이 기간 동일가중보다 낮았어요. 점수는 나쁜 종목을 피하는 데 더 확실하게 쓸모가 있다는 뜻이에요.":" 상위 20종목 전략이 동일가중보다 나았어요."}</div>`
      :'<div class="chartnote">주가 기록이 충분히 쌓이면 계산돼요.</div>'}
     <p class="note">과거 PER·PBR 기록은 무료로 구할 수 없어 기술점수만 검증해요. 지금 상장된 종목만으로 계산해 상장폐지 종목이 빠져 있어(생존자 편향) 실제보다 좋게 나올 수 있어요. 수수료와 체결 불리함은 반영했어요.</p>
   </div>`;
-  if(S){lineChart($("btc"),B.dates,[{name:"기술점수 상위",values:B.strategy,color:"--c1",bold:true},{name:"동일가중(전 종목)",values:B.ew,color:"--cN",dash:"2 3"}],{height:200});
-    barChart($("btq"),["1분위","2","3","4","5분위"],B.quintiles_20d,{color:"--c1"});}
+  if(V3){lineChart($("btc"),B.dates,[{name:"새 점수 상위 20",values:V3.curve,color:"--c1",bold:true},{name:"예전 점수 상위 20",values:V2.curve,color:"--c5"},{name:"동일가중(전 종목)",values:B.ew_curve,color:"--cN",dash:"2 3"}],{height:210});
+    barChart($("btq"),["1분위","2","3","4","5분위"],V3.quintiles,{color:"--c1"});}
 }
 
 /* ───────────────── 화면 전환 ───────────────── */

@@ -111,7 +111,7 @@ def styles(df: pd.DataFrame, per_pts: pd.Series) -> pd.Series:
         "고배당": df["div_yield"] >= 4,
         "상승추세": (df["price"] > df["ma200"]) & (df["ma20"] > df["ma60"]),
         "하락추세": (df["price"] < df["ma200"]) & (df["ma20"] < df["ma60"]),
-        "모멘텀 강세": df["ret_3m"].rank(pct=True) >= 0.8,
+        "모멘텀 강세": df["ret_12_1"].rank(pct=True) >= 0.8 if "ret_12_1" in df else df["ret_3m"].rank(pct=True) >= 0.8,
         "과매도": df["rsi"] < 30,
         "과열": df["rsi"] > 70,
         "적자": df["roe"] <= 0,

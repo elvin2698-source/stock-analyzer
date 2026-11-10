@@ -29,7 +29,7 @@ def save_signals(market: str, res: pd.DataFrame):
     d = str(res["as_of"].iloc[0])
     out = SIG_DIR / market / f"{d}.csv.gz"
     out.parent.mkdir(parents=True, exist_ok=True)
-    cols = ["ticker", "score", "tech_score", "value_score", "grade"]
+    cols = [c for c in ["ticker", "score", "tech_score", "value_score", "grade", "score_legacy", "tech_score_v2"] if c in res]
     res.loc[res["grade"] != "제외", cols].to_csv(out, index=False, compression="gzip")
 
 
@@ -60,7 +60,7 @@ def validate(market: str, adj: pd.DataFrame) -> dict:
     out = {"snapshots": len(files), "first": files[0].name[:10] if files else None, "horizons": {}}
     for h, label in HORIZONS.items():
         fwd = adj.shift(-h) / adj - 1
-        ics, ics_t, ics_v, qrows, grows, n_obs = [], [], [], [], [], 0
+        ics, ics_t, ics_v, ics_l, qrows, grows, n_obs = [], [], [], [], [], [], 0
         for f in files:
             d = f.name[:10]
             if d not in idx or idx[d] + h >= len(adj.index):
@@ -75,6 +75,8 @@ def validate(market: str, adj: pd.DataFrame) -> dict:
             ics.append(_spearman(s["score"], r))
             ics_t.append(_spearman(s["tech_score"], r))
             ics_v.append(_spearman(s["value_score"], r))
+            if "score_legacy" in s:
+                ics_l.append(_spearman(s["score_legacy"], r))
             q = pd.qcut(s["score"].rank(method="first"), 5, labels=[1, 2, 3, 4, 5])
             qrows.append(r.groupby(q, observed=True).mean().to_dict())
             grows.append(r.groupby(s["grade"]).mean().to_dict())
@@ -83,6 +85,8 @@ def validate(market: str, adj: pd.DataFrame) -> dict:
             t, v = [x for x in ics_t if x is not None], [x for x in ics_v if x is not None]
             summ["ic_tech"] = round(float(np.mean(t)), 4) if t else None
             summ["ic_value"] = round(float(np.mean(v)), 4) if v else None
+            lg = [x for x in ics_l if x is not None]
+            summ["ic_legacy"] = round(float(np.mean(lg)), 4) if lg else None
             summ["label"] = label
             out["horizons"][str(h)] = summ
     return out
@@ -173,10 +177,10 @@ def run_all(prices_by_market: dict, results: dict):
         try:
             adj = analyze.adjusted_close(prices)
             val[m] = validate(m, adj)
-            bt[m] = backtest(m, prices, results[m])
-            s = bt[m].get("stats", {})
-            if s:
-                print(f"  [검증] {m} 백테스트(기술점수 상위 20): {s['strategy']['total']:+.1f}% vs 동일가중 {s['ew']['total']:+.1f}%")
+            bt[m] = compare_scores(m, prices, results[m])
+            v = bt[m]["versions"]
+            print(f"  [검증] {m} 백테스트 상위 20: 새 점수 {v['v3']['top']:+.1f}% · 예전 점수 {v['v2']['top']:+.1f}% · "
+                  f"동일가중 {v['v3']['ew']:+.1f}% / IC 새 {v['v3']['ic']:.3f} · 예전 {v['v2']['ic']:.3f}")
         except Exception as e:
             print(f"  [검증] {m} 실패: {type(e).__name__}: {e}")
     VALID.write_text(json.dumps(val, ensure_ascii=False), encoding="utf-8")
@@ -219,7 +223,11 @@ def compare_scores(market, prices, res, n=20, every=5, h=20):
     start = 260 if len(dates) > 400 else 70                    # 12개월 모멘텀이 계산되는 때부터
     rebal = list(range(start, len(dates) - 1, every))
     mid = dates[rebal[len(rebal) // 2]] if rebal else None
-    out = {"period": [dates[start], dates[-1]], "mid": mid, "versions": {}}
+    out = {"period": [dates[start], dates[-1]], "mid": mid, "versions": {}, "n": n, "every": every}
+    curve_d = [dates[start]] + [dates[i + 1] for i in range(start, len(dates) - 1)]
+    step = max(1, len(curve_d) // 150)
+    pick = sorted(set(list(range(0, len(curve_d), step)) + [len(curve_d) - 1]))
+    out["dates"] = [curve_d[j] for j in pick]
     for ver in ("v2", "v3"):
         eq, ew, prev, held, ics, quint = [1.0], [1.0], set(), [], [], []
         half = {"A": {"ic": [], "eq": 1.0, "ew": 1.0}, "B": {"ic": [], "eq": 1.0, "ew": 1.0}}
@@ -249,7 +257,12 @@ def compare_scores(market, prices, res, n=20, every=5, h=20):
             half[part]["eq"] *= 1 + rs; half[part]["ew"] *= 1 + re
         qm = pd.DataFrame(quint).mean()
         icv = [x for x in ics if x is not None]
+        r = pd.Series(eq).pct_change().dropna()
+        vol_ = float(r.std() * np.sqrt(252)) if len(r) > 1 else None
+        out["ew_curve"] = [round((ew[j] - 1) * 100, 2) for j in pick]
         out["versions"][ver] = {
+            "curve": [round((eq[j] - 1) * 100, 2) for j in pick],
+            "sharpe": round((float(r.mean()) * 252 - 0.03) / vol_, 2) if vol_ else None,
             "ic": round(float(np.mean(icv)), 4), "ic_t": round(float(np.mean(icv) / np.std(icv, ddof=1) * np.sqrt(len(icv))), 2),
             "quintiles": [round(float(qm[k]) * 100, 3) for k in range(1, 6)],
             "top": round((eq[-1] - 1) * 100, 2), "ew": round((ew[-1] - 1) * 100, 2),

@@ -132,3 +132,23 @@ def test_v1_records_are_migrated(paper_dir):
     assert (files["trades"]["account"] == "KR-balanced").all()
     assert (files["trades"]["rules"] == "v1").all()
     assert files["hold"]["last_price"].iloc[0] == 5000
+
+
+def test_v3_switch_keeps_old_balanced_as_legacy(paper_dir):
+    import json
+    comp, prices, dates = make_market()
+    run_days(comp, prices, dates, 230, 233)
+    st = json.loads((paper_dir / "state.json").read_text())
+    # 예전(v3 전환 전) 상태를 흉내: 표시를 지우고 균형형을 balanced로 되돌림
+    st.pop("score_v3")
+    st["accounts"].pop("KR-legacy")
+    json.dump(st, open(paper_dir / "state.json", "w"))
+    before = pd.read_csv(paper.TRADES)
+    n_bal = int((before["account"] == "KR-balanced").sum())
+    run_days(comp, prices, dates, 233, 235)
+    state, files = paper.load()
+    acc = state["accounts"]
+    assert acc["KR-balanced"]["strategy"] == "legacy"
+    assert "KR-balanced-v3" in acc and acc["KR-balanced-v3"]["strategy"] == "balanced"
+    assert (files["trades"]["account"] == "KR-balanced").sum() >= n_bal
+    assert sum(a["strategy"] == "legacy" for a in acc.values()) == 1

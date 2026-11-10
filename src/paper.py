@@ -61,6 +61,10 @@ def load():
         state, files = migrate_v1(state, files)
     state.setdefault("version", 2)
     state.setdefault("accounts", {})
+    if not state["accounts"]:
+        state["score_v3"] = True                  # 새로 시작하는 기록은 처음부터 새 점수
+    else:
+        state, files = migrate_v3(state, files)
     return state, files
 
 
@@ -70,6 +74,25 @@ def save(state, files):
     for key, path, cols in (("hold", HOLD, HOLD_COLS), ("orders", ORDERS, ORDER_COLS),
                             ("trades", TRADES, TRADE_COLS), ("hist", HIST, HIST_COLS)):
         files[key].reindex(columns=cols).to_csv(path, index=False)
+
+
+def migrate_v3(state, files):
+    """v3(새 기술점수) 전환: 기존 균형형 계좌는 기록 그대로 '예전 점수' 비교 계좌로 이어가고,
+    매매 전인 다른 계좌는 새 점수로 다시 주문을 내도록 대기 주문과 교체 기록을 비웁니다."""
+    if state.get("score_v3"):
+        return state, files
+    for acc, a in state["accounts"].items():
+        if a["strategy"] == "balanced":
+            a["strategy"], a["name"] = "legacy", PAPER_STRATEGIES["legacy"]["name"]
+            a.setdefault("rules_since", {})["v3"] = "예전 점수로 계속 운용"
+        else:
+            traded = (files["trades"]["account"] == acc).any()
+            if not traded:
+                a["last_rebalance"] = None
+                files["orders"] = files["orders"][files["orders"]["account"] != acc]
+    state["score_v3"] = True
+    print("  [모의투자] 새 기술점수(v3) 전환: 기존 균형형 → 예전 점수 비교 계좌, 나머지는 새 점수로 주문 다시 냄")
+    return state, files
 
 
 def migrate_v1(state, files):
@@ -224,9 +247,11 @@ def update_ew(market, px: Prices, universe, since):
 # ───────────────────────── 계좌 처리 ─────────────────────────
 def ensure_accounts(state, market, d, usdkrw):
     for key, st in PAPER_STRATEGIES.items():
-        acc = f"{market}-{key}"
-        if acc in state["accounts"]:
+        if any(v["market"] == market and v["strategy"] == key for v in state["accounts"].values()):
             continue
+        acc = f"{market}-{key}"
+        if acc in state["accounts"]:                      # 같은 이름이 다른 전략으로 쓰이고 있으면 규칙 버전을 붙임
+            acc = f"{market}-{key}-{PAPER_RULES_VERSION}"
         start = PAPER_START_KRW if market == "KR" else round(PAPER_START_KRW / (usdkrw * (1 + PAPER_FX_COST)), 2)
         state["accounts"][acc] = {"market": market, "strategy": key, "name": st["name"], "start_date": d,
                                   "start_cash": start, "currency": "KRW" if market == "KR" else "USD", "cash": start,
@@ -242,6 +267,8 @@ def _rebalance_key(rule, d):
 
 def process_account(acc, a, market, d, res, px, bench, files, log):
     st = PAPER_STRATEGIES[a["strategy"]]
+    if st.get("score") == "legacy" and "score_legacy" in res:          # 예전 점수로 운용하는 비교 계좌
+        res = res.assign(score=res["score_legacy"], grade=res["grade_legacy"])
     cost = PAPER_COSTS[market]
     hold = files["hold"]
     mine = hold[hold["account"] == acc].copy().reset_index(drop=True)

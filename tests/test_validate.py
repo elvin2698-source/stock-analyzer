@@ -8,19 +8,18 @@ import validate
 from conftest import make_market
 
 
-def test_backtest_tech_score_matches_daily_analysis():
-    comp, prices, dates = make_market(n=80, days=260)
+def test_backtest_scores_match_daily_analysis():
+    """백테스트가 오늘 분석과 똑같은 기술점수 계산(v3·v2 모두)을 쓰는지."""
+    comp, prices, dates = make_market(n=80, days=300)
     res = analyze.analyze(prices, comp, "KR")
-    adj = analyze.adjusted_close(prices)
-    vol = analyze._wide(prices, "volume").reindex_like(adj)
-    d = adj.index[-1]
-    f = pd.DataFrame({"price": adj.loc[d], "ma20": adj.rolling(20).mean().loc[d], "ma60": adj.rolling(60).mean().loc[d],
-                      "ma200": adj.rolling(200, min_periods=200).mean().loc[d], "ret_3m": (adj / adj.shift(63) - 1).loc[d],
-                      "rsi": analyze.rsi_frame(adj).loc[d], "vol_ratio": (vol.rolling(5).mean() / vol.rolling(60).mean()).loc[d],
-                      "ret_1w": (adj / adj.shift(5) - 1).loc[d] * 100})
-    bt_score = sum(analyze.tech_components(f)).round(1)
-    daily = res.set_index("ticker")["tech_score"]
-    assert (bt_score.reindex(daily.index) - daily).abs().max() < 0.11
+    F = validate._features(prices, res)
+    d = F["adj"].index[-1]
+    cols = F["adj"].columns
+    daily = res.set_index("ticker")
+    v3 = validate._score_at(F, d, cols, "v3").round(1)
+    v2 = validate._score_at(F, d, cols, "v2").round(1)
+    assert (v3.reindex(daily.index) - daily["tech_score"]).abs().max() < 0.11
+    assert (v2.reindex(daily.index) - daily["tech_score_v2"]).abs().max() < 0.11
 
 
 def test_validation_detects_predictive_score(tmp_path, monkeypatch):
@@ -44,9 +43,12 @@ def test_validation_detects_predictive_score(tmp_path, monkeypatch):
     assert abs(h["ic_value"]) < 0.15
 
 
-def test_backtest_runs_and_returns_curves():
-    comp, prices, dates = make_market(n=120, days=300)
+def test_compare_scores_returns_both_versions():
+    comp, prices, dates = make_market(n=120, days=330)
     res = analyze.analyze(prices, comp, "KR")
-    out = validate.backtest("KR", prices, res)
-    assert out and len(out["dates"]) == len(out["strategy"]) == len(out["ew"])
-    assert out["stats"]["strategy"]["mdd"] <= 0
+    out = validate.compare_scores("KR", prices, res)
+    for v in ("v2", "v3"):
+        x = out["versions"][v]
+        assert len(x["curve"]) == len(out["dates"]) == len(out["ew_curve"])
+        assert x["mdd"] <= 0 and len(x["quintiles"]) == 5
+    assert set(out["ic_better"]) == {"A", "B"}

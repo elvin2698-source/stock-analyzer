@@ -31,7 +31,7 @@ def read_csv(path, **kw):
 
 # ── 모의투자 ──────────────────────────────────────────────
 # 규칙을 바꾸면 PAPER_RULES_VERSION 을 올리고 paper/RULES.md 에 바뀐 내용을 적습니다.
-PAPER_RULES_VERSION = "v2"
+PAPER_RULES_VERSION = "v3"
 PAPER_DIR = ROOT / "paper"
 PAPER_START_KRW = 50_000_000         # 계좌별 가상 자금 (미국 계좌는 시작일 환율로 달러 환전)
 PAPER_SLIPPAGE = 0.001               # 체결 가격 불리하게 0.1%
@@ -61,6 +61,8 @@ PAPER_STRATEGIES = {
                    "rebalance": "daily", "sizes": None, "pick": "top", "regime": False},
     "defensive":  {"name": "균형형+하락장 방어", "n": 20, "sector_cap": 4, "stop": -0.15, "keep_rank": 40,
                    "rebalance": "weekly", "sizes": None, "pick": "top", "regime": True},
+    "legacy":     {"name": "균형형 (예전 점수)", "n": 20, "sector_cap": 4, "stop": -0.15, "keep_rank": 40,
+                   "rebalance": "weekly", "sizes": None, "pick": "top", "regime": False, "score": "legacy"},
     "random":     {"name": "무작위 대조군", "n": 20, "sector_cap": 4, "stop": -0.15, "keep_rank": 40,
                    "rebalance": "weekly", "sizes": None, "pick": "random", "regime": False},
 }

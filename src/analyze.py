@@ -1,10 +1,11 @@
 """기술적 분석 + 가치 분석으로 종목별 점수(0~100)와 등급을 계산합니다.
 
-[기술적 분석 50점]
-  추세   20점: 현재가 > 200일선(8), 20일선 > 60일선(7), 현재가 > 20일선(5)
-  모멘텀 15점: 최근 3개월 수익률이 같은 시장 안에서 상위일수록 높음
-  RSI    10점: 40~60 안정(10), 30~40·60~70(7), 30 미만 과매도(5), 70 초과 과열(2)
-  거래량  5점: 거래량 급증 + 상승(5), 보통(2.5), 거래량 급증 + 하락(0)
+[기술적 분석 50점] v3 (2026-11-10~, 백테스트로 v2보다 나은 것을 확인하고 채택)
+  장기 추세       15점: 현재가 > 200일선(8), 60일선 > 200일선(4), 현재가 > 60일선(3)
+  중기 모멘텀     15점: 최근 1개월을 뺀 12개월 수익률이 시장 안에서 높을수록
+  단기 과열 피하기 10점: 최근 1개월 수익률이 낮을수록 (단기 급등은 되돌아오는 경향)
+  낮은 변동성     10점: 최근 60일 주가 변동이 작을수록
+  (예전 v2: 추세 20·3개월 모멘텀 15·RSI 10·거래량 5 → score_legacy 로 계속 계산해 비교)
 [가치 분석 50점]  같은 업종 안에서 비교 (업종 종목이 적으면 시장 전체와 비교)
   PER 15점: 낮을수록 높음 (적자면 0점)
   PBR 10점: 낮을수록 높음
@@ -158,27 +159,21 @@ def score(df: pd.DataFrame, market: str) -> pd.DataFrame:
         for i in np.flatnonzero(mask.fillna(False).to_numpy()):
             reasons[i].append(text)
 
-    # ── 기술적 분석 ─────────────────────────────
-    trend, mom, rsi_pts, vol_pts = tech_components(df)
+    # ── 기술적 분석 (v3: 장기 추세 15 · 12-1개월 모멘텀 15 · 단기 과열 피하기 10 · 낮은 변동성 10) ──
+    trend, mom, rev, lowvol = tech_components_v3(df)
     above200 = df["price"] > df["ma200"]
-    golden = df["ma20"] > df["ma60"]
     note(above200, "200일선 위(장기 상승추세)")
     note(df["ma200"].notna() & ~above200, "200일선 아래(장기 하락추세)")
-    note(golden, "20일선>60일선(단기 상승)")
-    note(~golden & df["ma60"].notna(), "20일선<60일선(단기 하락)")
-
-    note(mom >= 12, "3개월 수익률 상위 20%")
-    note(mom <= 3, "3개월 수익률 하위 20%")
-
-    r = df["rsi"]
-    note(r < 30, "RSI 과매도(반등 가능)")
-    note(r > 70, "RSI 과열(단기 조정 주의)")
-
-    surge = df["vol_ratio"] > 1.5
-    note(surge & (df["ret_1w"] > 0), "거래량 급증 + 상승")
-    note(surge & (df["ret_1w"] <= 0), "거래량 급증 + 하락")
-
-    df["tech_score"] = trend + mom + rsi_pts + vol_pts
+    note(df["ma60"] > df["ma200"], "60일선>200일선(추세 유지)")
+    note(mom >= 12, "12개월 모멘텀 상위 20%")
+    note(mom <= 3, "12개월 모멘텀 하위 20%")
+    note(rev <= 2, "최근 1개월 급등(단기 과열 주의)")
+    note(rev >= 8, "최근 1개월 쉬어감(단기 과열 아님)")
+    note(lowvol >= 8, "주가 변동이 작음(안정적)")
+    note(lowvol <= 2, "주가 변동이 큼")
+    df["tech_score"] = trend + mom + rev + lowvol
+    # 비교용: 예전 기술점수(v2: 추세·3개월 모멘텀·RSI·거래량)
+    df["tech_score_v2"] = sum(tech_components(df))
 
     # ── 가치 분석 ───────────────────────────────
     per_pts = (_rank(df["per"], sector, ascending=False) * 15)
@@ -203,10 +198,13 @@ def score(df: pd.DataFrame, market: str) -> pd.DataFrame:
     df["styles"] = categorize.styles(df, per_pts)
 
     df["score"] = (df["tech_score"] + df["value_score"]).round(1)
+    df["score_legacy"] = (df["tech_score_v2"] + df["value_score"]).round(1)
     df["tech_score"] = df["tech_score"].round(1)
+    df["tech_score_v2"] = df["tech_score_v2"].round(1)
     df["value_score"] = df["value_score"].round(1)
 
     grade = np.select([df["score"] >= BUY_SCORE, df["score"] <= SELL_SCORE], ["추천", "비추천"], "중립")
+    grade_legacy = np.select([df["score_legacy"] >= BUY_SCORE, df["score_legacy"] <= SELL_SCORE], ["추천", "비추천"], "중립")
     illiquid = df["trading_value"].fillna(0) < MIN_TRADING_VALUE[market]
     short = df["days"] < 60
     kind = df.get("instrument", pd.Series("", index=df.index)).fillna("")
@@ -217,6 +215,7 @@ def score(df: pd.DataFrame, market: str) -> pd.DataFrame:
     note(illiquid & ~not_stock, "거래대금 부족으로 제외")
     note(short & ~illiquid & ~not_stock, "상장 60거래일 미만으로 제외")
     df["grade"] = grade
+    df["grade_legacy"] = np.where(not_stock | illiquid | short, "제외", grade_legacy)
     df["reasons"] = [" · ".join(x) for x in reasons]
     return df
 
