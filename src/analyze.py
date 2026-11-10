@@ -108,13 +108,37 @@ def technicals(close: pd.DataFrame, volume: pd.DataFrame) -> pd.DataFrame:
         "rsi": rsi(close),
         "ret_1w": last / close.shift(5).iloc[-1] - 1,
         "ret_3m": last / close.shift(63).iloc[-1] - 1,
+        "ret_1m": last / close.shift(21).iloc[-1] - 1,
+        "ret_12_1": mom_12_1(close).iloc[-1],
+        "vol60": close.pct_change().iloc[-60:].std(),
         "vol_ratio": volume.iloc[-5:].mean() / volume.iloc[-60:].mean(),
         "trading_value": (close * volume).iloc[-20:].mean(),
         "days": close.notna().sum(),
     })
-    t["ret_1w"] *= 100
-    t["ret_3m"] *= 100
+    for c in ("ret_1w", "ret_3m", "ret_1m", "ret_12_1"):
+        t[c] *= 100
     return t
+
+
+def mom_12_1(close: pd.DataFrame) -> pd.DataFrame:
+    """최근 1개월(21거래일)을 뺀 12개월 수익률. 상장 1년이 안 되면 6개월(126일) 기준."""
+    long = close.shift(21) / close.shift(252) - 1
+    short = close.shift(21) / close.shift(126) - 1
+    return long.where(long.notna(), short)
+
+
+def tech_components_v3(df: pd.DataFrame):
+    """기술점수 v3 (근거 있는 4요소, 합계 50점).
+    df 열: price, ma60, ma200, ret_12_1, ret_1m, vol60"""
+    above200 = df["price"] > df["ma200"]
+    ma_up = df["ma60"] > df["ma200"]
+    above60 = df["price"] > df["ma60"]
+    trend = above200 * 8 + ma_up * 4 + above60 * 3
+    trend = trend.where(df["ma200"].notna(), above60 * 7.5)          # 상장 200일 미만: 절반만
+    mom = df["ret_12_1"].rank(pct=True).fillna(0.5) * 15            # 중기 모멘텀
+    rev = (1 - df["ret_1m"].rank(pct=True)).fillna(0.5) * 10         # 단기 급등 피하기
+    lowvol = (1 - df["vol60"].rank(pct=True)).fillna(0.5) * 10      # 낮은 변동성
+    return trend.astype(float), mom, rev, lowvol
 
 
 def _rank(s: pd.Series, groups: pd.Series, ascending=True) -> pd.Series:

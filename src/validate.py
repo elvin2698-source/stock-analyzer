@@ -182,3 +182,81 @@ def run_all(prices_by_market: dict, results: dict):
     VALID.write_text(json.dumps(val, ensure_ascii=False), encoding="utf-8")
     BACKTEST.write_text(json.dumps(bt, ensure_ascii=False), encoding="utf-8")
     return {"validation": val, "backtest": bt}
+
+
+# ───────────────────────── 점수 버전 비교 ─────────────────────────
+def _features(prices, res):
+    adj = analyze.adjusted_close(prices)
+    vol = analyze._wide(prices, "volume").reindex_like(adj)
+    ok_kind = set(res.loc[res.get("instrument", pd.Series("", index=res.index)).fillna("") == "", "ticker"])
+    adj = adj[[c for c in adj.columns if c in ok_kind]]
+    vol = vol[adj.columns]
+    F = {"adj": adj, "ma20": adj.rolling(20).mean(), "ma60": adj.rolling(60).mean(),
+         "ma200": adj.rolling(200, min_periods=200).mean(), "rsi": analyze.rsi_frame(adj),
+         "ret_1w": (adj / adj.shift(5) - 1) * 100, "ret_3m": adj / adj.shift(63) - 1,
+         "ret_1m": adj / adj.shift(21) - 1, "ret_12_1": analyze.mom_12_1(adj),
+         "vol60": adj.pct_change().rolling(60).std(),
+         "vol_ratio": vol.rolling(5).mean() / vol.rolling(60).mean(),
+         "tv": (adj * vol).rolling(20).mean(), "days": adj.notna().cumsum()}
+    return F
+
+
+def _score_at(F, d, cols, version):
+    f = pd.DataFrame({k: F[k].loc[d, cols] for k in ("ma20", "ma60", "ma200", "rsi", "ret_1w", "ret_3m", "ret_1m",
+                                                     "ret_12_1", "vol60", "vol_ratio")})
+    f["price"] = F["adj"].loc[d, cols]
+    comps = analyze.tech_components(f) if version == "v2" else analyze.tech_components_v3(f)
+    return sum(comps)
+
+
+def compare_scores(market, prices, res, n=20, every=5, h=20):
+    """기술점수 v2(기존)와 v3(새)를 같은 날짜·같은 종목으로 비교. 앞 절반·뒤 절반 기간도 따로."""
+    F = _features(prices, res)
+    adj, dates = F["adj"], list(F["adj"].index)
+    daily = adj.pct_change().clip(-0.5, 0.5)
+    cost = PAPER_COSTS[market]
+    fee = (cost["buy"] + cost["sell"]) / 2 + PAPER_SLIPPAGE
+    start = 260 if len(dates) > 400 else 70                    # 12개월 모멘텀이 계산되는 때부터
+    rebal = list(range(start, len(dates) - 1, every))
+    mid = dates[rebal[len(rebal) // 2]] if rebal else None
+    out = {"period": [dates[start], dates[-1]], "mid": mid, "versions": {}}
+    for ver in ("v2", "v3"):
+        eq, ew, prev, held, ics, quint = [1.0], [1.0], set(), [], [], []
+        half = {"A": {"ic": [], "eq": 1.0, "ew": 1.0}, "B": {"ic": [], "eq": 1.0, "ew": 1.0}}
+        for i in range(start, len(dates) - 1):
+            d = dates[i]
+            part = "A" if d < mid else "B"
+            if (i - start) % every == 0:
+                el = (F["tv"].loc[d] >= MIN_TRADING_VALUE[market]) & (F["days"].loc[d] >= 60) & adj.loc[d].notna()
+                cols = el[el].index
+                sc = _score_at(F, d, cols, ver)
+                new = list(sc.sort_values(ascending=False).head(n).index)
+                turn = len(set(new) ^ prev) / (2 * n) if prev else 0.5
+                eq[-1] *= 1 - 2 * turn * fee
+                half[part]["eq"] *= 1 - 2 * turn * fee
+                held, prev, universe = new, set(new), cols
+                if i + h < len(dates):
+                    fwd = (adj.iloc[i + h][cols] / adj.loc[d, cols] - 1).clip(-0.9, 3)
+                    ic = _spearman(sc, fwd)
+                    ics.append(ic)
+                    half[part]["ic"].append(ic)
+                    q = pd.qcut(sc.rank(method="first"), 5, labels=[1, 2, 3, 4, 5])
+                    quint.append(fwd.groupby(q, observed=True).mean().to_dict())
+            nd = dates[i + 1]
+            rs = float(daily.loc[nd, held].fillna(0).mean())
+            re = float(daily.loc[nd, universe].dropna().mean())
+            eq.append(eq[-1] * (1 + rs)); ew.append(ew[-1] * (1 + re))
+            half[part]["eq"] *= 1 + rs; half[part]["ew"] *= 1 + re
+        qm = pd.DataFrame(quint).mean()
+        icv = [x for x in ics if x is not None]
+        out["versions"][ver] = {
+            "ic": round(float(np.mean(icv)), 4), "ic_t": round(float(np.mean(icv) / np.std(icv, ddof=1) * np.sqrt(len(icv))), 2),
+            "quintiles": [round(float(qm[k]) * 100, 3) for k in range(1, 6)],
+            "top": round((eq[-1] - 1) * 100, 2), "ew": round((ew[-1] - 1) * 100, 2),
+            "mdd": round(float((pd.Series(eq) / pd.Series(eq).cummax() - 1).min()) * 100, 2),
+            "halves": {k: {"ic": round(float(np.mean([x for x in v["ic"] if x is not None])), 4),
+                           "top_vs_ew": round((v["eq"] / v["ew"] - 1) * 100, 2)} for k, v in half.items()}}
+    a, b = out["versions"]["v2"], out["versions"]["v3"]
+    out["ic_better"] = {k: b["halves"][k]["ic"] > a["halves"][k]["ic"] for k in ("A", "B")}
+    out["top_better"] = {k: b["halves"][k]["top_vs_ew"] > a["halves"][k]["top_vs_ew"] for k in ("A", "B")}
+    return out

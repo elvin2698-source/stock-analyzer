@@ -1,0 +1,27 @@
+name: 점검용 (기술점수 v2·v3 비교)
+on: workflow_dispatch
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12", cache: pip}
+      - run: pip install -r requirements.txt
+      - uses: actions/cache/restore@v4
+        with:
+          path: |
+            data/prices_kr.v2.csv.gz
+            data/prices_us.v2.csv.gz
+          key: prices-v2-none
+          restore-keys: prices-v2-
+      - run: |
+          python - <<'PY'
+          import sys, json; sys.path.insert(0, "src")
+          import analyze, validate
+          from config import read_csv
+          for m in ("KR", "US"):
+              p = read_csv(f"data/prices_{m.lower()}.v2.csv.gz"); c = read_csv(f"data/companies_{m.lower()}.csv")
+              res = analyze.analyze(p, c, m)
+              print("RESULT", m, json.dumps(validate.compare_scores(m, p, res), ensure_ascii=False))
+          PY
