@@ -12,6 +12,7 @@ import pandas as pd
 
 from config import DATA_DIR, read_csv
 import analyze
+import fundamentals
 import paper
 import report
 import validate
@@ -31,6 +32,11 @@ def main():
         try:
             if not args.no_collect:
                 (__import__("collect_kr") if m == "KR" else __import__("collect_us")).run()
+                try:   # 백테스트용 과거 재무 (실패해도 분석은 계속)
+                    c0 = read_csv(DATA_DIR / f"companies_{m.lower()}.csv").sort_values("market_cap", ascending=False)
+                    fundamentals.update(m, c0["ticker"].tolist())
+                except Exception as e:
+                    print(f"[{m}] 재무 이력 받기 실패: {type(e).__name__}: {e}", file=sys.stderr)
             low = m.lower()
             prices = read_csv(DATA_DIR / f"prices_{low}.v2.csv.gz")
             comp = read_csv(DATA_DIR / f"companies_{low}.csv")

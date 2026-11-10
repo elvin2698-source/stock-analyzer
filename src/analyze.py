@@ -150,6 +150,19 @@ def _rank(s: pd.Series, groups: pd.Series, ascending=True) -> pd.Series:
     return by_group.where(size >= 5, overall)
 
 
+def value_components(df: pd.DataFrame, sector: pd.Series):
+    """가치점수 4요소 (같은 업종 안에서 비교). 오늘 분석과 백테스트가 같은 계산을 씁니다.
+    df 열: per, pbr, roe, div_yield (PER·PBR은 0 이하이면 빈 값)"""
+    per_pts = (_rank(df["per"], sector, ascending=False) * 15)
+    per_pts = per_pts.where(df["per"].notna(), np.where(df["roe"] <= 0, 0, 7.5))   # PER 없음: 적자면 0, 모르면 중립
+    pbr_pts = (_rank(df["pbr"], sector, ascending=False) * 10).fillna(5)
+    roe_pts = (_rank(df["roe"], sector) * 15).where(df["roe"] > 0, 0)
+    roe_pts = roe_pts.where(df["roe"].notna(), 7.5)
+    div_pts = (_rank(df["div_yield"].where(df["div_yield"] > 0), sector) * 5).fillna(0)
+    div_pts = div_pts.where(df["div_yield"].notna(), 2.5)
+    return per_pts, pbr_pts, roe_pts, div_pts
+
+
 def score(df: pd.DataFrame, market: str) -> pd.DataFrame:
     df = df.copy()
     sector = df["sector"].fillna("기타")
@@ -176,21 +189,15 @@ def score(df: pd.DataFrame, market: str) -> pd.DataFrame:
     df["tech_score_v2"] = sum(tech_components(df))
 
     # ── 가치 분석 ───────────────────────────────
-    per_pts = (_rank(df["per"], sector, ascending=False) * 15)
-    per_pts = per_pts.where(df["per"].notna(), np.where(df["roe"] <= 0, 0, 7.5))   # PER 없음: 적자면 0, 모르면 중립
+    per_pts, pbr_pts, roe_pts, div_pts = value_components(df, sector)
     note(per_pts >= 12, "업종 대비 PER 낮음(저평가)")
     note(df["per"].notna() & (per_pts <= 3), "업종 대비 PER 높음(고평가)")
 
-    pbr_pts = (_rank(df["pbr"], sector, ascending=False) * 10).fillna(5)
     note(df["pbr"].notna() & (pbr_pts >= 8), "업종 대비 PBR 낮음")
 
-    roe_pts = (_rank(df["roe"], sector) * 15).where(df["roe"] > 0, 0)
-    roe_pts = roe_pts.where(df["roe"].notna(), 7.5)
     note(df["roe"] >= 15, "ROE 15% 이상(수익성 우수)")
     note(df["roe"] <= 0, "ROE 0 이하(적자)")
 
-    div_pts = (_rank(df["div_yield"].where(df["div_yield"] > 0), sector) * 5).fillna(0)
-    div_pts = div_pts.where(df["div_yield"].notna(), 2.5)
     note(df["div_yield"] >= 4, "배당수익률 4% 이상")
 
     note(df["per"].isna() & df["pbr"].isna() & df["roe"].isna(), "재무 데이터 없음(가치 점수 중립 처리)")

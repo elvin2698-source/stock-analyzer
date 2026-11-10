@@ -56,7 +56,7 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@users.noreply.github.com"
-          git add data/companies_*.csv results docs paper || true
+          git add data/companies_*.csv data/fundamentals_*.csv results docs paper || true
           git diff --cached --quiet || git commit -m "분석 결과 $(date -u +%F)"
           git pull --rebase origin main
           git push

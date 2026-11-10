@@ -17,6 +17,7 @@ import numpy as np
 import pandas as pd
 
 import analyze
+import fundamentals
 from config import PAPER_DIR, PAPER_COSTS, PAPER_SLIPPAGE, MIN_TRADING_VALUE, read_csv
 
 SIG_DIR = PAPER_DIR / "signals"
@@ -179,8 +180,9 @@ def run_all(prices_by_market: dict, results: dict):
             val[m] = validate(m, adj)
             bt[m] = compare_scores(m, prices, results[m])
             v = bt[m]["versions"]
-            print(f"  [검증] {m} 백테스트 상위 20: 새 점수 {v['v3']['top']:+.1f}% · 예전 점수 {v['v2']['top']:+.1f}% · "
-                  f"동일가중 {v['v3']['ew']:+.1f}% / IC 새 {v['v3']['ic']:.3f} · 예전 {v['v2']['ic']:.3f}")
+            print(f"  [검증] {m} 백테스트 (재무 이력 반영 {bt[m].get('value_coverage')}%) 동일가중 {v['v3']['ew']:+.1f}%")
+            for k in bt[m]["order"]:
+                print(f"         {v[k]['label']}: 상위 20 {v[k]['top']:+.1f}% · IC {v[k]['ic']:.3f} (t {v[k]['ic_t']})")
         except Exception as e:
             print(f"  [검증] {m} 실패: {type(e).__name__}: {e}")
     VALID.write_text(json.dumps(val, ensure_ascii=False), encoding="utf-8")
@@ -202,7 +204,24 @@ def _features(prices, res):
          "vol60": adj.pct_change().rolling(60).std(),
          "vol_ratio": vol.rolling(5).mean() / vol.rolling(60).mean(),
          "tv": (adj * vol).rolling(20).mean(), "days": adj.notna().cumsum()}
+    if "dividend" in prices:                                  # 가치점수용: 액면분할만 반영된 가격과 최근 1년 배당
+        raw = analyze._wide(prices, "close")
+        raw = analyze.clean_close(raw, analyze._wide(prices, "split").reindex_like(raw))
+        F["raw"] = raw.reindex_like(adj)
+        F["div12"] = analyze._wide(prices, "dividend").reindex_like(adj).fillna(0).rolling(252, min_periods=1).sum()
     return F
+
+
+def _value_at(F, fund, sector, d, cols):
+    """날짜 d에 알 수 있었던 실적으로 PER·PBR·ROE·배당수익률을 다시 계산해 가치점수를 매김."""
+    fa = fundamentals.at(fund, d).reindex(cols)
+    price = F["raw"].loc[d, cols]
+    eps, bps = fa["eps"], fa["bps"]
+    df = pd.DataFrame({"per": (price / eps).where(eps > 0), "pbr": (price / bps).where(bps > 0),
+                       "roe": (eps / bps * 100).where(bps > 0),
+                       "div_yield": (F["div12"].loc[d, cols] / price * 100)})
+    v = sum(analyze.value_components(df, sector.reindex(cols).fillna("기타")))
+    return v, float(eps.notna().mean())
 
 
 def _score_at(F, d, cols, version):
@@ -213,9 +232,31 @@ def _score_at(F, d, cols, version):
     return sum(comps)
 
 
-def compare_scores(market, prices, res, n=20, every=5, h=20):
-    """기술점수 v2(기존)와 v3(새)를 같은 날짜·같은 종목으로 비교. 앞 절반·뒤 절반 기간도 따로."""
+LABELS = {"total": "종합점수 (새)", "total_v2": "종합점수 (예전)", "v3": "기술점수 (새)", "v2": "기술점수 (예전)",
+          "value": "가치점수만"}
+
+
+def compare_scores(market, prices, res, n=20, every=5, h=20, fund=None):
+    """점수 방식별로 같은 날짜·같은 종목에서 비교. 앞 절반·뒤 절반 기간도 따로.
+    fund(과거 재무)가 있으면 가치점수·종합점수(그 시점 PER·PBR·ROE·배당으로 다시 계산)도 비교."""
     F = _features(prices, res)
+    if fund is None:
+        fund = fundamentals.load(market)
+    sector = res.set_index("ticker")["sector"] if "sector" in res else pd.Series(dtype=object)
+    use_value = fund is not None and len(fund) > 0 and "raw" in F
+    vcache, cover = {}, []
+
+    def score_of(ver, d, cols):
+        if ver in ("v2", "v3"):
+            return _score_at(F, d, cols, ver)
+        if d not in vcache:
+            v, c = _value_at(F, fund, sector, d, cols)
+            vcache[d] = v
+            cover.append(c)
+        if ver == "value":
+            return vcache[d]
+        return vcache[d] + _score_at(F, d, cols, "v3" if ver == "total" else "v2")
+
     adj, dates = F["adj"], list(F["adj"].index)
     daily = adj.pct_change().clip(-0.5, 0.5)
     cost = PAPER_COSTS[market]
@@ -228,7 +269,8 @@ def compare_scores(market, prices, res, n=20, every=5, h=20):
     step = max(1, len(curve_d) // 150)
     pick = sorted(set(list(range(0, len(curve_d), step)) + [len(curve_d) - 1]))
     out["dates"] = [curve_d[j] for j in pick]
-    for ver in ("v2", "v3"):
+    versions = ["total", "total_v2", "value", "v3", "v2"] if use_value else ["v3", "v2"]
+    for ver in versions:
         eq, ew, prev, held, ics, quint = [1.0], [1.0], set(), [], [], []
         half = {"A": {"ic": [], "eq": 1.0, "ew": 1.0}, "B": {"ic": [], "eq": 1.0, "ew": 1.0}}
         for i in range(start, len(dates) - 1):
@@ -237,7 +279,7 @@ def compare_scores(market, prices, res, n=20, every=5, h=20):
             if (i - start) % every == 0:
                 el = (F["tv"].loc[d] >= MIN_TRADING_VALUE[market]) & (F["days"].loc[d] >= 60) & adj.loc[d].notna()
                 cols = el[el].index
-                sc = _score_at(F, d, cols, ver)
+                sc = score_of(ver, d, cols)
                 new = list(sc.sort_values(ascending=False).head(n).index)
                 turn = len(set(new) ^ prev) / (2 * n) if prev else 0.5
                 eq[-1] *= 1 - 2 * turn * fee
@@ -261,6 +303,7 @@ def compare_scores(market, prices, res, n=20, every=5, h=20):
         vol_ = float(r.std() * np.sqrt(252)) if len(r) > 1 else None
         out["ew_curve"] = [round((ew[j] - 1) * 100, 2) for j in pick]
         out["versions"][ver] = {
+            "label": LABELS[ver],
             "curve": [round((eq[j] - 1) * 100, 2) for j in pick],
             "sharpe": round((float(r.mean()) * 252 - 0.03) / vol_, 2) if vol_ else None,
             "ic": round(float(np.mean(icv)), 4), "ic_t": round(float(np.mean(icv) / np.std(icv, ddof=1) * np.sqrt(len(icv))), 2),
@@ -269,6 +312,8 @@ def compare_scores(market, prices, res, n=20, every=5, h=20):
             "mdd": round(float((pd.Series(eq) / pd.Series(eq).cummax() - 1).min()) * 100, 2),
             "halves": {k: {"ic": round(float(np.mean([x for x in v["ic"] if x is not None])), 4),
                            "top_vs_ew": round((v["eq"] / v["ew"] - 1) * 100, 2)} for k, v in half.items()}}
+    out["order"] = versions
+    out["value_coverage"] = round(float(np.mean(cover)) * 100, 1) if cover else None
     a, b = out["versions"]["v2"], out["versions"]["v3"]
     out["ic_better"] = {k: b["halves"][k]["ic"] > a["halves"][k]["ic"] for k in ("A", "B")}
     out["top_better"] = {k: b["halves"][k]["top_vs_ew"] > a["halves"][k]["top_vs_ew"] for k in ("A", "B")}

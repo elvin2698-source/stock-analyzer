@@ -623,22 +623,24 @@ function drawValidation(){
   if(H)barChart($("vq"),["1분위\n(낮음)","2","3","4","5분위\n(높음)"].map(s=>s.split("\n")[0]),H.quintiles,{color:"--c1"});
   $("hz").onclick=e=>{const b=e.target.closest("button");if(!b)return;pst.hz=b.dataset.h;psave();drawValidation();};
 
-  const V3=(B.versions||{}).v3,V2=(B.versions||{}).v2;
-  $("btcard").innerHTML=`<div class="card-h"><h2>과거 백테스트: 새 점수 vs 예전 점수</h2><p>${B.period?`${B.period[0]} ~ ${B.period[1]} · `:""}기술점수 상위 ${B.n||20}종목, ${B.every||5}거래일마다 교체</p></div>
+  const BV=B.versions||{},ORD=B.order||Object.keys(BV),V3=BV.v3,V2=BV.v2,TOT=BV.total;
+  const VC={total:"--c1",total_v2:"--c5",value:"--c3",v3:"--c7",v2:"--c2"};
+  const main=TOT||V3;
+  $("btcard").innerHTML=`<div class="card-h"><h2>과거 백테스트: 점수 방식별 비교</h2><p>${B.period?`${B.period[0]} ~ ${B.period[1]} · `:""}점수 상위 ${B.n||20}종목, ${B.every||5}거래일마다 교체${B.value_coverage!=null?` · 과거 재무 반영 ${f(B.value_coverage,0)}%`:""}</p></div>
   <div class="card-b" style="display:grid;gap:12px">
-    ${V3?`<div class="tbox" style="border:1px solid var(--line);border-radius:8px"><table><thead><tr><th class="l">기술점수</th><th>상위 20 누적</th><th>동일가중</th><th class="hide-m">최대 낙폭</th><th>평균 IC</th><th class="hide-m">IC t값</th></tr></thead><tbody>
-      ${[["새 점수 (지금 사용)",V3,"--c1"],["예전 점수",V2,"--c5"]].map(([nm,x,c])=>`<tr><td class="l"><span class="strat-dot" style="background:var(${c})"></span>${nm}</td><td class="num">${signed(x.top,1)}</td><td class="num">${signed(x.ew,1)}</td><td class="num hide-m">${f(x.mdd,1)}%</td><td class="num">${f(x.ic,3)}</td><td class="num hide-m">${f(x.ic_t,2)}</td></tr>`).join("")}
+    ${main?`<div class="tbox" style="border:1px solid var(--line);border-radius:8px"><table><thead><tr><th class="l">점수 방식</th><th>상위 20 누적</th><th>동일가중</th><th class="hide-m">최대 낙폭</th><th>평균 IC</th><th class="hide-m">IC t값</th></tr></thead><tbody>
+      ${ORD.map(k=>{const x=BV[k];return `<tr><td class="l"><span class="strat-dot" style="background:var(${VC[k]})"></span>${esc(x.label||k)}${(TOT?k==="total":k==="v3")?' <span class="dim">(지금 사용)</span>':""}</td><td class="num">${signed(x.top,1)}</td><td class="num">${signed(x.ew,1)}</td><td class="num hide-m">${f(x.mdd,1)}%</td><td class="num">${f(x.ic,3)}</td><td class="num hide-m">${f(x.ic_t,2)}</td></tr>`;}).join("")}
       </tbody></table></div>
       <div class="chartbox" id="btc"></div>
-      <div><div class="label">새 점수 5분위별 20일 뒤 평균 수익률</div><div class="chartbox" id="btq"></div></div>
-      <div class="callout">기간을 반으로 나눠 본 IC: 앞 절반 새 ${f(V3.halves.A.ic,3)} · 예전 ${f(V2.halves.A.ic,3)}, 뒤 절반 새 ${f(V3.halves.B.ic,3)} · 예전 ${f(V2.halves.B.ic,3)}.
-        ${V3.halves.A.ic>V2.halves.A.ic&&V3.halves.B.ic>V2.halves.B.ic?"두 기간 모두 새 점수가 더 잘 맞았어요.":"두 기간 중 한쪽에서는 예전 점수가 더 나았어요."}
-        ${V3.top<V3.ew?" 다만 상위 20종목만 골라 담는 방식은 이 기간 동일가중보다 낮았어요. 점수는 나쁜 종목을 피하는 데 더 확실하게 쓸모가 있다는 뜻이에요.":" 상위 20종목 전략이 동일가중보다 나았어요."}</div>`
+      <div><div class="label">${esc(main.label||"")} 5분위별 20일 뒤 평균 수익률</div><div class="chartbox" id="btq"></div></div>
+      <div class="callout">IC는 점수 순위와 이후 수익률 순위가 같은 방향인 정도예요. ${TOT?`종합점수 IC ${f(TOT.ic,3)} · 가치점수만 ${f(BV.value.ic,3)} · 기술점수만 ${f(V3.ic,3)}.`:""}
+        ${main.top<main.ew?" 상위 20종목만 골라 담는 방식은 이 기간 동일가중보다 낮았어요. 점수는 나쁜 종목을 피하는 데 더 확실하게 쓸모가 있다는 뜻이에요.":" 상위 20종목 전략이 동일가중보다 나았어요."}</div>`
      :'<div class="chartnote">주가 기록이 충분히 쌓이면 계산돼요.</div>'}
-    <p class="note">과거 PER·PBR 기록은 무료로 구할 수 없어 기술점수만 검증해요. 지금 상장된 종목만으로 계산해 상장폐지 종목이 빠져 있어(생존자 편향) 실제보다 좋게 나올 수 있어요. 수수료와 체결 불리함은 반영했어요.</p>
+    <p class="note">가치점수는 그날까지 <b>발표돼 있던</b> 실적(한국 연간 90일·분기 45일, 미국 75일 뒤부터)으로 PER·PBR·ROE를 다시 계산했어요. 연간·분기 실적 기준이라 실제 그날 값과 조금 다를 수 있고, 미국은 재무 이력을 며칠에 걸쳐 모아요. 지금 상장된 종목만으로 계산해 상장폐지 종목이 빠져 있어(생존자 편향) 실제보다 좋게 나올 수 있어요. 수수료와 체결 불리함은 반영했어요.</p>
   </div>`;
-  if(V3){lineChart($("btc"),B.dates,[{name:"새 점수 상위 20",values:V3.curve,color:"--c1",bold:true},{name:"예전 점수 상위 20",values:V2.curve,color:"--c5"},{name:"동일가중(전 종목)",values:B.ew_curve,color:"--cN",dash:"2 3"}],{height:210});
-    barChart($("btq"),["1분위","2","3","4","5분위"],V3.quintiles,{color:"--c1"});}
+  if(main){lineChart($("btc"),B.dates,[...["total","value","v3"].filter(k=>BV[k]).map(k=>({name:BV[k].label,values:BV[k].curve,color:VC[k],bold:k==="total"})),
+      {name:"동일가중(전 종목)",values:B.ew_curve,color:"--cN",dash:"2 3"}],{height:210});
+    barChart($("btq"),["1분위","2","3","4","5분위"],main.quintiles,{color:"--c1"});}
 }
 
 /* ───────────────── 화면 전환 ───────────────── */
