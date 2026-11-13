@@ -93,3 +93,74 @@ date,account,side,ticker,name,shares,price,amount,cost,pnl,pnl_pct,held_days,rea
 2026-11-10,US-balanced-v3,매수,TX,Ternium S.A. Ternium S.A.,36,50.9309,1833.51,4.58,,,,추천 · 종합 72.6점 · 철강·금속·광업,v3
 2026-11-10,US-balanced-v3,매수,SNX,TD SYNNEX Corporation,8,230.23,1841.84,4.6,,,,추천 · 종합 72.5점 · 소프트웨어·인터넷,v3
 2026-11-10,US-balanced-v3,매수,CARE,Carter Bankshares Inc.,63,29.4094,1852.79,4.63,,,,추천 · 종합 72.4점 · 금융,v3
+2026-11-13,US-aggressive,매수,LPG,Dorian LPG Ltd.,76,48.4684,3683.6,9.21,,,,추천 · 종합 77.1점 · 운송·물류·여행,v3
+2026-11-13,US-aggressive,매수,HAFN,Hafnia Limited,384,9.6596,3709.31,9.27,,,,추천 · 종합 76.5점 · 운송·물류·여행,v3
+2026-11-13,US-aggressive,매수,FRD,Friedman Industries Inc.,96,38.4684,3692.97,9.23,,,,추천 · 종합 76.4점 · 철강·금속·광업,v3
+2026-11-13,US-aggressive,매수,CSQ,Calamos Strategic Total Return,191,19.4194,3709.11,9.27,,,,추천 · 종합 76.3점 · 금융,v3
+2026-11-13,US-aggressive,매수,INSW,International Seaways Inc.,34,106.3763,3616.79,9.04,,,,추천 · 종합 75.8점 · 운송·물류·여행,v3
+2026-11-13,US-aggressive,매수,PBF,PBF Energy Inc.,51,71.8217,3662.91,9.16,,,,추천 · 종합 75.5점 · 에너지·유틸리티,v3
+2026-11-13,US-aggressive,매수,KSPI,Joint Stock Company Kaspi.kz American Depository Shares,41,89.089,3652.65,9.13,,,,추천 · 종합 75.4점 · 기타 서비스,v3
+2026-11-13,US-aggressive,매수,EC,Ecopetrol S.A.,241,15.3754,3705.46,9.26,,,,추천 · 종합 75.1점 · 에너지·유틸리티,v3
+2026-11-13,US-aggressive,매수,CIB,Grupo Cibest S.A.,41,88.6786,3635.82,9.09,,,,추천 · 종합 74.4점 · 금융,v3
+2026-11-13,US-aggressive,매수,LTC,LTC Properties Inc.,84,44.1041,3704.74,9.26,,,,추천 · 종합 74.4점 · 건설·부동산,v3
+2026-11-13,US-balanced,매도,BZ,KANZHUN LIMITED American Depository Shares,110,12.4575,1370.33,3.43,-493.09,-26.51,4,"손절 (-26.1%, 기준 -15%)",v3
+2026-11-13,US-defensive,매수,LPG,Dorian LPG Ltd.,38,48.4684,1841.8,4.6,,,,추천 · 종합 77.1점 · 운송·물류·여행,v3
+2026-11-13,US-defensive,매수,HAFN,Hafnia Limited,192,9.6596,1854.65,4.64,,,,추천 · 종합 76.5점 · 운송·물류·여행,v3
+2026-11-13,US-defensive,매수,FRD,Friedman Industries Inc.,48,38.4684,1846.48,4.62,,,,추천 · 종합 76.4점 · 철강·금속·광업,v3
+2026-11-13,US-defensive,매수,CSQ,Calamos Strategic Total Return,95,19.4194,1844.84,4.61,,,,추천 · 종합 76.3점 · 금융,v3
+2026-11-13,US-defensive,매수,INSW,International Seaways Inc.,17,106.3763,1808.4,4.52,,,,추천 · 종합 75.8점 · 운송·물류·여행,v3
+2026-11-13,US-defensive,매수,PBF,PBF Energy Inc.,25,71.8217,1795.54,4.49,,,,추천 · 종합 75.5점 · 에너지·유틸리티,v3
+2026-11-13,US-defensive,매수,KSPI,Joint Stock Company Kaspi.kz American Depository Shares,20,89.089,1781.78,4.45,,,,추천 · 종합 75.4점 · 기타 서비스,v3
+2026-11-13,US-defensive,매수,EC,Ecopetrol S.A.,120,15.3754,1845.04,4.61,,,,추천 · 종합 75.1점 · 에너지·유틸리티,v3
+2026-11-13,US-defensive,매수,TEN,Tsakos Energy Navigation Ltd,38,47.7577,1814.79,4.54,,,,추천 · 종합 75.0점 · 운송·물류·여행,v3
+2026-11-13,US-defensive,매수,CIB,Grupo Cibest S.A.,20,88.6786,1773.57,4.43,,,,추천 · 종합 74.4점 · 금융,v3
+2026-11-13,US-defensive,매수,LTC,LTC Properties Inc.,42,44.1041,1852.37,4.63,,,,추천 · 종합 74.4점 · 건설·부동산,v3
+2026-11-13,US-defensive,매수,DINO,HF Sinclair Corporation,18,102.9729,1853.51,4.63,,,,추천 · 종합 74.3점 · 에너지·유틸리티,v3
+2026-11-13,US-defensive,매수,OGN,Organon & Co.,133,13.9139,1850.55,4.63,,,,추천 · 종합 74.3점 · 바이오·제약,v3
+2026-11-13,US-defensive,매수,ATNI,ATN International Inc.,63,29.3894,1851.53,4.63,,,,추천 · 종합 74.2점 · IT하드웨어·통신장비,v3
+2026-11-13,US-defensive,매수,KNTK,Kinetik Holdings Inc.,33,55.105,1818.47,4.55,,,,추천 · 종합 73.7점 · 에너지·유틸리티,v3
+2026-11-13,US-defensive,매수,TX,Ternium S.A. Ternium S.A.,36,50.9309,1833.51,4.58,,,,추천 · 종합 73.5점 · 철강·금속·광업,v3
+2026-11-13,US-defensive,매수,LNC,Lincoln National Corporation,43,42.3023,1819.0,4.55,,,,추천 · 종합 73.3점 · 금융,v3
+2026-11-13,US-defensive,매수,NUE,Nucor Corporation,7,262.4422,1837.1,4.59,,,,추천 · 종합 73.3점 · 철강·금속·광업,v3
+2026-11-13,US-defensive,매수,STLD,Steel Dynamics Inc.,7,239.9197,1679.44,4.2,,,,추천 · 종합 73.0점 · 철강·금속·광업,v3
+2026-11-13,US-defensive,매수,CARE,Carter Bankshares Inc.,63,29.3093,1846.48,4.62,,,,추천 · 종합 72.9점 · 금융,v3
+2026-11-13,US-random,매수,LTC,LTC Properties Inc.,42,44.1041,1852.37,4.63,,,,추천 · 종합 74.4점 · 건설·부동산 · 무작위 선택,v3
+2026-11-13,US-random,매수,STLD,Steel Dynamics Inc.,7,239.9197,1679.44,4.2,,,,추천 · 종합 73.0점 · 철강·금속·광업 · 무작위 선택,v3
+2026-11-13,US-random,매수,DINO,HF Sinclair Corporation,18,102.9729,1853.51,4.63,,,,추천 · 종합 74.3점 · 에너지·유틸리티 · 무작위 선택,v3
+2026-11-13,US-random,매수,HG,Hamilton Insurance Group Ltd.,47,39.059,1835.77,4.59,,,,추천 · 종합 70.2점 · 금융 · 무작위 선택,v3
+2026-11-13,US-random,매수,PARR,Par Pacific Holdings Inc.,25,72.8628,1821.57,4.55,,,,추천 · 종합 72.8점 · 에너지·유틸리티 · 무작위 선택,v3
+2026-11-13,US-random,매수,DAC,Danaos Corporation,12,153.123,1837.48,4.59,,,,추천 · 종합 74.5점 · 운송·물류·여행 · 무작위 선택,v3
+2026-11-13,US-random,매수,ATNI,ATN International Inc.,63,29.3894,1851.53,4.63,,,,추천 · 종합 74.2점 · IT하드웨어·통신장비 · 무작위 선택,v3
+2026-11-13,US-random,매수,GHC,Graham Holdings Company,1,1225.0338,1225.03,3.06,,,,추천 · 종합 71.7점 · 건설·부동산 · 무작위 선택,v3
+2026-11-13,US-random,매수,TMP,Tompkins Financial Corporation,18,100.3002,1805.4,4.51,,,,추천 · 종합 70.5점 · 금융 · 무작위 선택,v3
+2026-11-13,US-random,매수,MU,Micron Technology Inc.,2,783.4427,1566.89,3.92,,,,추천 · 종합 70.4점 · 반도체·전자부품 · 무작위 선택,v3
+2026-11-13,US-random,매수,CMBT,CMB.TECH NV,105,17.6376,1851.95,4.63,,,,추천 · 종합 74.8점 · 운송·물류·여행 · 무작위 선택,v3
+2026-11-13,US-random,매수,HCI,HCI Group Inc.,9,191.6414,1724.77,4.31,,,,추천 · 종합 71.5점 · 금융 · 무작위 선택,v3
+2026-11-13,US-random,매수,GSL,Global Ship Lease Inc New,42,43.7637,1838.08,4.6,,,,추천 · 종합 73.5점 · 운송·물류·여행 · 무작위 선택,v3
+2026-11-13,US-random,매수,ECO,Okeanis Eco Tankers Corp.,20,89.1491,1782.98,4.46,,,,추천 · 종합 74.5점 · 운송·물류·여행 · 무작위 선택,v3
+2026-11-13,US-random,매수,PSX,Phillips 66,6,266.3661,1598.2,4.0,,,,추천 · 종합 70.0점 · 에너지·유틸리티 · 무작위 선택,v3
+2026-11-13,US-random,매수,CSQ,Calamos Strategic Total Return,95,19.4194,1844.84,4.61,,,,추천 · 종합 76.3점 · 금융 · 무작위 선택,v3
+2026-11-13,US-random,매수,KSPI,Joint Stock Company Kaspi.kz American Depository Shares,20,89.089,1781.78,4.45,,,,추천 · 종합 75.4점 · 기타 서비스 · 무작위 선택,v3
+2026-11-13,US-random,매수,AES,The AES Corporation,124,14.9649,1855.65,4.64,,,,추천 · 종합 70.3점 · 에너지·유틸리티 · 무작위 선택,v3
+2026-11-13,US-random,매수,TECK,Teck Resources Ltd,30,61.2512,1837.54,4.59,,,,추천 · 종합 71.8점 · 철강·금속·광업 · 무작위 선택,v3
+2026-11-13,US-random,매수,FRD,Friedman Industries Inc.,48,38.4684,1846.48,4.62,,,,추천 · 종합 76.4점 · 철강·금속·광업 · 무작위 선택,v3
+2026-11-13,US-stable,매수,LPG,Dorian LPG Ltd.,38,48.4684,1841.8,4.6,,,,추천 · 종합 77.1점 · 운송·물류·여행,v3
+2026-11-13,US-stable,매수,HAFN,Hafnia Limited,192,9.6596,1854.65,4.64,,,,추천 · 종합 76.5점 · 운송·물류·여행,v3
+2026-11-13,US-stable,매수,CSQ,Calamos Strategic Total Return,95,19.4194,1844.84,4.61,,,,추천 · 종합 76.3점 · 금융,v3
+2026-11-13,US-stable,매수,INSW,International Seaways Inc.,17,106.3763,1808.4,4.52,,,,추천 · 종합 75.8점 · 운송·물류·여행,v3
+2026-11-13,US-stable,매수,PBF,PBF Energy Inc.,25,71.8217,1795.54,4.49,,,,추천 · 종합 75.5점 · 에너지·유틸리티,v3
+2026-11-13,US-stable,매수,KSPI,Joint Stock Company Kaspi.kz American Depository Shares,20,89.089,1781.78,4.45,,,,추천 · 종합 75.4점 · 기타 서비스,v3
+2026-11-13,US-stable,매수,EC,Ecopetrol S.A.,120,15.3754,1845.04,4.61,,,,추천 · 종합 75.1점 · 에너지·유틸리티,v3
+2026-11-13,US-stable,매수,CMBT,CMB.TECH NV,105,17.6376,1851.95,4.63,,,,추천 · 종합 74.8점 · 운송·물류·여행,v3
+2026-11-13,US-stable,매수,CIB,Grupo Cibest S.A.,20,88.6786,1773.57,4.43,,,,추천 · 종합 74.4점 · 금융,v3
+2026-11-13,US-stable,매수,LTC,LTC Properties Inc.,42,44.1041,1852.37,4.63,,,,추천 · 종합 74.4점 · 건설·부동산,v3
+2026-11-13,US-stable,매수,DINO,HF Sinclair Corporation,18,102.9729,1853.51,4.63,,,,추천 · 종합 74.3점 · 에너지·유틸리티,v3
+2026-11-13,US-stable,매수,OGN,Organon & Co.,133,13.9139,1850.55,4.63,,,,추천 · 종합 74.3점 · 바이오·제약,v3
+2026-11-13,US-stable,매수,KNTK,Kinetik Holdings Inc.,33,55.105,1818.47,4.55,,,,추천 · 종합 73.7점 · 에너지·유틸리티,v3
+2026-11-13,US-stable,매수,TX,Ternium S.A. Ternium S.A.,36,50.9309,1833.51,4.58,,,,추천 · 종합 73.5점 · 철강·금속·광업,v3
+2026-11-13,US-stable,매수,LNC,Lincoln National Corporation,43,42.3023,1819.0,4.55,,,,추천 · 종합 73.3점 · 금융,v3
+2026-11-13,US-stable,매수,NUE,Nucor Corporation,7,262.4422,1837.1,4.59,,,,추천 · 종합 73.3점 · 철강·금속·광업,v3
+2026-11-13,US-stable,매수,STLD,Steel Dynamics Inc.,7,239.9197,1679.44,4.2,,,,추천 · 종합 73.0점 · 철강·금속·광업,v3
+2026-11-13,US-stable,매수,BFH,Bread Financial Holdings Inc.,18,98.6485,1775.67,4.44,,,,추천 · 종합 71.9점 · 금융,v3
+2026-11-13,US-stable,매수,CXW,CoreCivic Inc.,59,31.0911,1834.37,4.59,,,,추천 · 종합 71.8점 · 건설·부동산,v3
+2026-11-13,US-stable,매수,TECK,Teck Resources Ltd,30,61.2512,1837.54,4.59,,,,추천 · 종합 71.8점 · 철강·금속·광업,v3

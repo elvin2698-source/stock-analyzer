@@ -34,43 +34,112 @@ KR-balanced-v3,068790,DMS,기계·조선·방산·항공,356,7008.051049999998,2
 KR-balanced-v3,091340,S&K글로벌,반도체·전자부품,423,2502.875374999999,2026-11-11,2525.0,2026-11-13
 KR-balanced-v3,100120,뷰웍스,의료기기·헬스케어,92,27031.054049999995,2026-11-11,28450.0,2026-11-13
 KR-balanced-v3,069730,DSR제강,철강·금속·광업,232,5165.934774,2026-11-11,4760.0,2026-11-13
-US-balanced,BNC,BNB Standard Corporation,식음료·농수산,378,4.887057175,2026-11-06,4.3,2026-11-12
-US-balanced,GHC,Graham Holdings Company,건설·부동산,1,1216.26510005,2026-11-06,1213.04,2026-11-12
-US-balanced,BME,Blackrock Health Sciences Trust,금융,39,47.034162174999985,2026-11-06,47.62,2026-11-12
-US-balanced,EVER,EverQuote Inc.,소프트웨어·인터넷,64,28.920942049999997,2026-11-06,27.89,2026-11-12
-US-balanced,RM,Regional Management Corp.,금융,50,36.376965625,2026-11-06,34.74,2026-11-12
-US-balanced,RNR,RenaissanceRe Holdings Ltd.,금융,5,348.56659337499997,2026-11-06,354.66,2026-11-12
-US-balanced,PYPL,PayPal Holdings Inc.,기계·조선·방산·항공,31,59.4474881,2026-11-06,58.3,2026-11-12
-US-balanced,STNG,Scorpio Tankers Inc.,운송·물류·여행,22,81.0428619,2026-11-06,83.44,2026-11-12
-US-balanced,COKE,Coca-Cola Consolidated Inc.,식음료·농수산,8,208.61813472499995,2026-11-06,207.0,2026-11-12
-US-balanced,XHG,XChange TEC.INC,금융,550,3.361733375,2026-11-06,3.26,2026-11-12
-US-balanced,CPA,Copa Holdings S.A.,운송·물류·여행,12,143.30015699999998,2026-11-06,142.82,2026-11-12
-US-balanced,UHS,Universal Health Services Inc.,의료기기·헬스케어,9,197.85055289999997,2026-11-09,193.84,2026-11-12
-US-balanced,CRON,Cronos Group Inc. Common Share,바이오·제약,525,3.5523988499999994,2026-11-09,3.41,2026-11-12
-US-balanced,BZ,KANZHUN LIMITED American Depository Shares,소프트웨어·인터넷,110,16.909017125,2026-11-09,12.49,2026-11-12
-US-balanced,KBR,KBR Inc.,기계·조선·방산·항공,48,38.785371624999996,2026-11-09,35.32,2026-11-12
-US-balanced,ECO,Okeanis Eco Tankers Corp.,운송·물류·여행,22,82.49794052499999,2026-11-09,87.67,2026-11-12
-US-balanced,COR,Cencora Inc.,바이오·제약,5,346.9710243999999,2026-11-09,349.38,2026-11-12
-US-balanced,DLX,Deluxe Corporation,미디어·엔터·레저,71,26.020819824999997,2026-11-09,26.69,2026-11-12
-US-balanced,M,Macy's Inc,유통·도소매,74,25.037387374999994,2026-11-09,24.33,2026-11-12
-US-balanced,HRB,H&R Block Inc.,기타 서비스,36,51.158557449999996,2026-11-09,50.73,2026-11-12
-US-balanced-v3,LPG,Dorian LPG Ltd.,운송·물류·여행,42,44.32470542499999,2026-11-10,47.8,2026-11-12
-US-balanced-v3,CSQ,Calamos Strategic Total Return,금융,95,19.558263724999996,2026-11-10,19.51,2026-11-12
-US-balanced-v3,CMBT,CMB.TECH NV,운송·물류·여행,114,16.296880599999998,2026-11-10,17.61,2026-11-12
-US-balanced-v3,INSW,International Seaways Inc.,운송·물류·여행,19,93.6067132,2026-11-10,104.65,2026-11-12
-US-balanced-v3,FRD,Friedman Industries Inc.,철강·금속·광업,49,37.932394499999994,2026-11-10,38.16,2026-11-12
-US-balanced-v3,GSL,Global Ship Lease Inc New,운송·물류·여행,45,40.993077125,2026-11-10,43.37,2026-11-12
-US-balanced-v3,KSPI,Joint Stock Company Kaspi.kz American Depository Shares,기타 서비스,20,90.31522499999998,2026-11-10,88.64,2026-11-12
-US-balanced-v3,ATNI,ATN International Inc.,IT하드웨어·통신장비,65,28.5797512,2026-11-10,29.06,2026-11-12
-US-balanced-v3,OGN,Organon & Co.,바이오·제약,134,13.878439574999998,2026-11-10,13.9,2026-11-12
-US-balanced-v3,PBF,PBF Energy Inc.,에너지·유틸리티,27,66.93361675,2026-11-10,70.96,2026-11-12
-US-balanced-v3,GAIN,Gladstone Investment Corporation Business Development Company,금융,122,15.162922774999998,2026-11-10,14.87,2026-11-12
-US-balanced-v3,DINO,HF Sinclair Corporation,에너지·유틸리티,18,98.11243942499998,2026-11-10,102.15,2026-11-12
-US-balanced-v3,EC,Ecopetrol S.A.,에너지·유틸리티,121,15.383693324999998,2026-11-10,15.32,2026-11-12
-US-balanced-v3,ENIC,Enel Chile S.A.,에너지·유틸리티,421,4.415411,2026-11-10,4.21,2026-11-12
-US-balanced-v3,LTC,LTC Properties Inc.,건설·부동산,41,45.16764752499999,2026-11-10,43.77,2026-11-12
-US-balanced-v3,GAM,General American Investors Inc.,금융,28,65.458468075,2026-11-10,65.56,2026-11-12
-US-balanced-v3,CXW,CoreCivic Inc.,건설·부동산,62,29.733779074999998,2026-11-10,31.48,2026-11-12
-US-balanced-v3,TX,Ternium S.A. Ternium S.A.,철강·금속·광업,36,51.0582072,2026-11-10,50.45,2026-11-12
-US-balanced-v3,SNX,TD SYNNEX Corporation,소프트웨어·인터넷,8,230.80557499999995,2026-11-10,242.51,2026-11-12
-US-balanced-v3,CARE,Carter Bankshares Inc.,금융,63,29.482903449999995,2026-11-10,29.1,2026-11-12
+US-aggressive,LPG,Dorian LPG Ltd.,운송·물류·여행,76,48.589591049999996,2026-11-13,48.17,2026-11-13
+US-aggressive,HAFN,Hafnia Limited,운송·물류·여행,384,9.683799124999998,2026-11-13,9.59,2026-11-13
+US-aggressive,FRD,Friedman Industries Inc.,철강·금속·광업,96,38.564601075,2026-11-13,37.68,2026-11-13
+US-aggressive,CSQ,Calamos Strategic Total Return,금융,191,19.4679485,2026-11-13,19.33,2026-11-13
+US-aggressive,INSW,International Seaways Inc.,운송·물류·여행,34,106.642210675,2026-11-13,105.23,2026-11-13
+US-aggressive,PBF,PBF Energy Inc.,에너지·유틸리티,51,72.00130437499999,2026-11-13,71.28,2026-11-13
+US-aggressive,KSPI,Joint Stock Company Kaspi.kz American Depository Shares,기타 서비스,41,89.31172249999999,2026-11-13,89.91,2026-11-13
+US-aggressive,EC,Ecopetrol S.A.,에너지·유틸리티,241,15.413798399999997,2026-11-13,15.43,2026-11-13
+US-aggressive,CIB,Grupo Cibest S.A.,금융,41,88.900286475,2026-11-13,89.51,2026-11-13
+US-aggressive,LTC,LTC Properties Inc.,건설·부동산,84,44.21432015,2026-11-13,43.28,2026-11-13
+US-balanced,BNC,BNB Standard Corporation,식음료·농수산,378,4.887057175,2026-11-06,4.14,2026-11-13
+US-balanced,GHC,Graham Holdings Company,건설·부동산,1,1216.26510005,2026-11-06,1244.05,2026-11-13
+US-balanced,BME,Blackrock Health Sciences Trust,금융,39,47.034162174999985,2026-11-06,47.59,2026-11-13
+US-balanced,EVER,EverQuote Inc.,소프트웨어·인터넷,64,28.920942049999997,2026-11-06,28.3,2026-11-13
+US-balanced,RM,Regional Management Corp.,금융,50,36.376965625,2026-11-06,35.67,2026-11-13
+US-balanced,RNR,RenaissanceRe Holdings Ltd.,금융,5,348.56659337499997,2026-11-06,353.62,2026-11-13
+US-balanced,PYPL,PayPal Holdings Inc.,기계·조선·방산·항공,31,59.4474881,2026-11-06,59.28,2026-11-13
+US-balanced,STNG,Scorpio Tankers Inc.,운송·물류·여행,22,81.0428619,2026-11-06,83.03,2026-11-13
+US-balanced,COKE,Coca-Cola Consolidated Inc.,식음료·농수산,8,208.61813472499995,2026-11-06,214.34,2026-11-13
+US-balanced,XHG,XChange TEC.INC,금융,550,3.361733375,2026-11-06,3.37,2026-11-13
+US-balanced,CPA,Copa Holdings S.A.,운송·물류·여행,12,143.30015699999998,2026-11-06,140.87,2026-11-13
+US-balanced,UHS,Universal Health Services Inc.,의료기기·헬스케어,9,197.85055289999997,2026-11-09,194.07,2026-11-13
+US-balanced,CRON,Cronos Group Inc. Common Share,바이오·제약,525,3.5523988499999994,2026-11-09,3.38,2026-11-13
+US-balanced,KBR,KBR Inc.,기계·조선·방산·항공,48,38.785371624999996,2026-11-09,35.59,2026-11-13
+US-balanced,ECO,Okeanis Eco Tankers Corp.,운송·물류·여행,22,82.49794052499999,2026-11-09,88.82,2026-11-13
+US-balanced,COR,Cencora Inc.,바이오·제약,5,346.9710243999999,2026-11-09,359.03,2026-11-13
+US-balanced,DLX,Deluxe Corporation,미디어·엔터·레저,71,26.020819824999997,2026-11-09,26.78,2026-11-13
+US-balanced,M,Macy's Inc,유통·도소매,74,25.037387374999994,2026-11-09,24.7,2026-11-13
+US-balanced,HRB,H&R Block Inc.,기타 서비스,36,51.158557449999996,2026-11-09,50.01,2026-11-13
+US-balanced-v3,LPG,Dorian LPG Ltd.,운송·물류·여행,42,44.32470542499999,2026-11-10,48.17,2026-11-13
+US-balanced-v3,CSQ,Calamos Strategic Total Return,금융,95,19.558263724999996,2026-11-10,19.33,2026-11-13
+US-balanced-v3,CMBT,CMB.TECH NV,운송·물류·여행,114,16.296880599999998,2026-11-10,17.51,2026-11-13
+US-balanced-v3,INSW,International Seaways Inc.,운송·물류·여행,19,93.6067132,2026-11-10,105.23,2026-11-13
+US-balanced-v3,FRD,Friedman Industries Inc.,철강·금속·광업,49,37.932394499999994,2026-11-10,37.68,2026-11-13
+US-balanced-v3,GSL,Global Ship Lease Inc New,운송·물류·여행,45,40.993077125,2026-11-10,43.05,2026-11-13
+US-balanced-v3,KSPI,Joint Stock Company Kaspi.kz American Depository Shares,기타 서비스,20,90.31522499999998,2026-11-10,89.91,2026-11-13
+US-balanced-v3,ATNI,ATN International Inc.,IT하드웨어·통신장비,65,28.5797512,2026-11-10,28.4,2026-11-13
+US-balanced-v3,OGN,Organon & Co.,바이오·제약,134,13.878439574999998,2026-11-10,13.9,2026-11-13
+US-balanced-v3,PBF,PBF Energy Inc.,에너지·유틸리티,27,66.93361675,2026-11-10,71.28,2026-11-13
+US-balanced-v3,GAIN,Gladstone Investment Corporation Business Development Company,금융,122,15.162922774999998,2026-11-10,14.88,2026-11-13
+US-balanced-v3,DINO,HF Sinclair Corporation,에너지·유틸리티,18,98.11243942499998,2026-11-10,102.18,2026-11-13
+US-balanced-v3,EC,Ecopetrol S.A.,에너지·유틸리티,121,15.383693324999998,2026-11-10,15.43,2026-11-13
+US-balanced-v3,ENIC,Enel Chile S.A.,에너지·유틸리티,421,4.415411,2026-11-10,4.22,2026-11-13
+US-balanced-v3,LTC,LTC Properties Inc.,건설·부동산,41,45.16764752499999,2026-11-10,43.28,2026-11-13
+US-balanced-v3,GAM,General American Investors Inc.,금융,28,65.458468075,2026-11-10,65.36,2026-11-13
+US-balanced-v3,CXW,CoreCivic Inc.,건설·부동산,62,29.733779074999998,2026-11-10,31.27,2026-11-13
+US-balanced-v3,TX,Ternium S.A. Ternium S.A.,철강·금속·광업,36,51.0582072,2026-11-10,49.86,2026-11-13
+US-balanced-v3,SNX,TD SYNNEX Corporation,소프트웨어·인터넷,8,230.80557499999995,2026-11-10,237.58,2026-11-13
+US-balanced-v3,CARE,Carter Bankshares Inc.,금융,63,29.482903449999995,2026-11-10,29.32,2026-11-13
+US-defensive,LPG,Dorian LPG Ltd.,운송·물류·여행,38,48.589591049999996,2026-11-13,48.17,2026-11-13
+US-defensive,HAFN,Hafnia Limited,운송·물류·여행,192,9.683799124999998,2026-11-13,9.59,2026-11-13
+US-defensive,FRD,Friedman Industries Inc.,철강·금속·광업,48,38.564601075,2026-11-13,37.68,2026-11-13
+US-defensive,CSQ,Calamos Strategic Total Return,금융,95,19.4679485,2026-11-13,19.33,2026-11-13
+US-defensive,INSW,International Seaways Inc.,운송·물류·여행,17,106.642210675,2026-11-13,105.23,2026-11-13
+US-defensive,PBF,PBF Energy Inc.,에너지·유틸리티,25,72.00130437499999,2026-11-13,71.28,2026-11-13
+US-defensive,KSPI,Joint Stock Company Kaspi.kz American Depository Shares,기타 서비스,20,89.31172249999999,2026-11-13,89.91,2026-11-13
+US-defensive,EC,Ecopetrol S.A.,에너지·유틸리티,120,15.413798399999996,2026-11-13,15.43,2026-11-13
+US-defensive,TEN,Tsakos Energy Navigation Ltd,운송·물류·여행,38,47.877104275,2026-11-13,47.33,2026-11-13
+US-defensive,CIB,Grupo Cibest S.A.,금융,20,88.900286475,2026-11-13,89.51,2026-11-13
+US-defensive,LTC,LTC Properties Inc.,건설·부동산,42,44.21432015,2026-11-13,43.28,2026-11-13
+US-defensive,DINO,HF Sinclair Corporation,에너지·유틸리티,18,103.23030217499998,2026-11-13,102.18,2026-11-13
+US-defensive,OGN,Organon & Co.,바이오·제약,133,13.94868475,2026-11-13,13.9,2026-11-13
+US-defensive,ATNI,ATN International Inc.,IT하드웨어·통신장비,63,29.462833399999997,2026-11-13,28.4,2026-11-13
+US-defensive,KNTK,Kinetik Holdings Inc.,에너지·유틸리티,33,55.24281262499999,2026-11-13,54.88,2026-11-13
+US-defensive,TX,Ternium S.A. Ternium S.A.,철강·금속·광업,36,51.0582072,2026-11-13,49.86,2026-11-13
+US-defensive,LNC,Lincoln National Corporation,금융,43,42.408015649999996,2026-11-13,41.96,2026-11-13
+US-defensive,NUE,Nucor Corporation,철강·금속·광업,7,263.09828544999993,2026-11-13,251.73,2026-11-13
+US-defensive,STLD,Steel Dynamics Inc.,철강·금속·광업,7,240.51947919999998,2026-11-13,229.43,2026-11-13
+US-defensive,CARE,Carter Bankshares Inc.,금융,63,29.3825532,2026-11-13,29.32,2026-11-13
+US-random,LTC,LTC Properties Inc.,건설·부동산,42,44.21432015,2026-11-13,43.28,2026-11-13
+US-random,STLD,Steel Dynamics Inc.,철강·금속·광업,7,240.51947919999998,2026-11-13,229.43,2026-11-13
+US-random,DINO,HF Sinclair Corporation,에너지·유틸리티,18,103.23030217499998,2026-11-13,102.18,2026-11-13
+US-random,HG,Hamilton Insurance Group Ltd.,금융,47,39.156667549999995,2026-11-13,38.4,2026-11-13
+US-random,PARR,Par Pacific Holdings Inc.,에너지·유틸리티,25,73.044946975,2026-11-13,73.1,2026-11-13
+US-random,DAC,Danaos Corporation,운송·물류·여행,12,153.50577742499996,2026-11-13,150.12,2026-11-13
+US-random,ATNI,ATN International Inc.,IT하드웨어·통신장비,63,29.462833399999997,2026-11-13,28.4,2026-11-13
+US-random,GHC,Graham Holdings Company,건설·부동산,1,1228.0963945249998,2026-11-13,1244.05,2026-11-13
+US-random,TMP,Tompkins Financial Corporation,금융,18,100.5509505,2026-11-13,100.39,2026-11-13
+US-random,MU,Micron Technology Inc.,반도체·전자부품,2,785.4012666499999,2026-11-13,778.31,2026-11-13
+US-random,CMBT,CMB.TECH NV,운송·물류·여행,105,17.681714049999997,2026-11-13,17.51,2026-11-13
+US-random,HCI,HCI Group Inc.,금융,9,192.12055362499999,2026-11-13,191.37,2026-11-13
+US-random,GSL,Global Ship Lease Inc New,운송·물류·여행,42,43.873129299999995,2026-11-13,43.05,2026-11-13
+US-random,ECO,Okeanis Eco Tankers Corp.,운송·물류·여행,20,89.37193264999999,2026-11-13,88.82,2026-11-13
+US-random,PSX,Phillips 66,에너지·유틸리티,6,267.03201525000003,2026-11-13,264.9,2026-11-13
+US-random,CSQ,Calamos Strategic Total Return,금융,95,19.4679485,2026-11-13,19.33,2026-11-13
+US-random,KSPI,Joint Stock Company Kaspi.kz American Depository Shares,기타 서비스,20,89.31172249999999,2026-11-13,89.91,2026-11-13
+US-random,AES,The AES Corporation,에너지·유틸리티,124,15.002362374999999,2026-11-13,14.91,2026-11-13
+US-random,TECK,Teck Resources Ltd,철강·금속·광업,30,61.404317975,2026-11-13,60.19,2026-11-13
+US-random,FRD,Friedman Industries Inc.,철강·금속·광업,48,38.564601075,2026-11-13,37.68,2026-11-13
+US-stable,LPG,Dorian LPG Ltd.,운송·물류·여행,38,48.589591049999996,2026-11-13,48.17,2026-11-13
+US-stable,HAFN,Hafnia Limited,운송·물류·여행,192,9.683799124999998,2026-11-13,9.59,2026-11-13
+US-stable,CSQ,Calamos Strategic Total Return,금융,95,19.4679485,2026-11-13,19.33,2026-11-13
+US-stable,INSW,International Seaways Inc.,운송·물류·여행,17,106.642210675,2026-11-13,105.23,2026-11-13
+US-stable,PBF,PBF Energy Inc.,에너지·유틸리티,25,72.00130437499999,2026-11-13,71.28,2026-11-13
+US-stable,KSPI,Joint Stock Company Kaspi.kz American Depository Shares,기타 서비스,20,89.31172249999999,2026-11-13,89.91,2026-11-13
+US-stable,EC,Ecopetrol S.A.,에너지·유틸리티,120,15.413798399999996,2026-11-13,15.43,2026-11-13
+US-stable,CMBT,CMB.TECH NV,운송·물류·여행,105,17.681714049999997,2026-11-13,17.51,2026-11-13
+US-stable,CIB,Grupo Cibest S.A.,금융,20,88.900286475,2026-11-13,89.51,2026-11-13
+US-stable,LTC,LTC Properties Inc.,건설·부동산,42,44.21432015,2026-11-13,43.28,2026-11-13
+US-stable,DINO,HF Sinclair Corporation,에너지·유틸리티,18,103.23030217499998,2026-11-13,102.18,2026-11-13
+US-stable,OGN,Organon & Co.,바이오·제약,133,13.94868475,2026-11-13,13.9,2026-11-13
+US-stable,KNTK,Kinetik Holdings Inc.,에너지·유틸리티,33,55.24281262499999,2026-11-13,54.88,2026-11-13
+US-stable,TX,Ternium S.A. Ternium S.A.,철강·금속·광업,36,51.0582072,2026-11-13,49.86,2026-11-13
+US-stable,LNC,Lincoln National Corporation,금융,43,42.408015649999996,2026-11-13,41.96,2026-11-13
+US-stable,NUE,Nucor Corporation,철강·금속·광업,7,263.09828544999993,2026-11-13,251.73,2026-11-13
+US-stable,STLD,Steel Dynamics Inc.,철강·금속·광업,7,240.51947919999998,2026-11-13,229.43,2026-11-13
+US-stable,BFH,Bread Financial Holdings Inc.,금융,18,98.89517137499999,2026-11-13,98.61,2026-11-13
+US-stable,CXW,CoreCivic Inc.,건설·부동산,59,31.168787649999995,2026-11-13,31.27,2026-11-13
+US-stable,TECK,Teck Resources Ltd,철강·금속·광업,30,61.404317975,2026-11-13,60.19,2026-11-13
