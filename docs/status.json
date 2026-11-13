@@ -1,0 +1,44 @@
+{
+  "run_at": "2026-11-13T14:04:00+00:00",
+  "level": "ok",
+  "markets": {
+    "KR": {
+      "collect": "ok",
+      "fundamentals": "ok",
+      "analyze": "ok",
+      "signals": "ok",
+      "paper": "ok"
+    },
+    "US": {
+      "collect": "ok",
+      "fundamentals": "ok",
+      "analyze": "ok",
+      "signals": "ok",
+      "paper": "ok"
+    }
+  },
+  "stages": {
+    "validate": "ok",
+    "weekly": "ok",
+    "excel": "ok",
+    "dashboard": "ok"
+  },
+  "as_of": {
+    "KR": "2026-11-13",
+    "US": "2026-11-12"
+  },
+  "stage_names": {
+    "collect": "데이터 수집",
+    "fundamentals": "과거 재무",
+    "analyze": "분석",
+    "paper": "모의투자",
+    "signals": "점수 기록",
+    "validate": "검증·백테스트",
+    "weekly": "주간 리포트",
+    "excel": "엑셀·CSV",
+    "dashboard": "대시보드"
+  },
+  "errors": [],
+  "last_ok": "2026-11-13T14:04:00+00:00",
+  "last_update": "2026-11-13T14:04:00+00:00"
+}
