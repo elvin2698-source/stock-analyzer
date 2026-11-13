@@ -10,12 +10,13 @@
       "currency": "KRW",
       "cash": 157125.08,
       "start_usdkrw": 1350.0699462890625,
-      "last_date": "2026-11-10",
+      "last_date": "2026-11-13",
       "last_rebalance": "2026-W46",
       "rules_since": {
         "v1": "2026-11-09",
         "v3": "예전 점수로 계속 운용"
-      }
+      },
+      "usdkrw_now": 1336.31005859375
     },
     "US-balanced": {
       "market": "US",
@@ -26,12 +27,13 @@
       "currency": "USD",
       "cash": 1606.82,
       "start_usdkrw": 1350.0699462890625,
-      "last_date": "2026-11-09",
+      "last_date": "2026-11-12",
       "last_rebalance": "2026-W46",
       "rules_since": {
         "v1": "2026-11-06",
         "v3": "예전 점수로 계속 운용"
-      }
+      },
+      "usdkrw_now": 1336.31005859375
     },
     "KR-stable": {
       "market": "KR",
@@ -42,12 +44,12 @@
       "currency": "KRW",
       "cash": 50000000,
       "start_usdkrw": 1338.7099609375,
-      "last_date": "2026-11-10",
-      "last_rebalance": null,
+      "last_date": "2026-11-13",
+      "last_rebalance": "2026-11",
       "rules_since": {
         "v2": "2026-11-10"
       },
-      "usdkrw_now": 1338.7099609375
+      "usdkrw_now": 1336.31005859375
     },
     "KR-aggressive": {
       "market": "KR",
@@ -58,12 +60,12 @@
       "currency": "KRW",
       "cash": 50000000,
       "start_usdkrw": 1338.7099609375,
-      "last_date": "2026-11-10",
-      "last_rebalance": null,
+      "last_date": "2026-11-13",
+      "last_rebalance": "2026-11-13",
       "rules_since": {
         "v2": "2026-11-10"
       },
-      "usdkrw_now": 1338.7099609375
+      "usdkrw_now": 1336.31005859375
     },
     "KR-defensive": {
       "market": "KR",
@@ -74,12 +76,12 @@
       "currency": "KRW",
       "cash": 50000000,
       "start_usdkrw": 1338.7099609375,
-      "last_date": "2026-11-10",
-      "last_rebalance": null,
+      "last_date": "2026-11-13",
+      "last_rebalance": "2026-W46",
       "rules_since": {
         "v2": "2026-11-10"
       },
-      "usdkrw_now": 1338.7099609375
+      "usdkrw_now": 1336.31005859375
     },
     "KR-random": {
       "market": "KR",
@@ -90,12 +92,12 @@
       "currency": "KRW",
       "cash": 50000000,
       "start_usdkrw": 1338.7099609375,
-      "last_date": "2026-11-10",
-      "last_rebalance": null,
+      "last_date": "2026-11-13",
+      "last_rebalance": "2026-W46",
       "rules_since": {
         "v2": "2026-11-10"
       },
-      "usdkrw_now": 1338.7099609375
+      "usdkrw_now": 1336.31005859375
     },
     "US-stable": {
       "market": "US",
@@ -106,12 +108,12 @@
       "currency": "USD",
       "cash": 37256.25,
       "start_usdkrw": 1338.7099609375,
-      "last_date": "2026-11-09",
-      "last_rebalance": null,
+      "last_date": "2026-11-12",
+      "last_rebalance": "2026-11",
       "rules_since": {
         "v2": "2026-11-09"
       },
-      "usdkrw_now": 1338.7099609375
+      "usdkrw_now": 1336.31005859375
     },
     "US-aggressive": {
       "market": "US",
@@ -122,12 +124,12 @@
       "currency": "USD",
       "cash": 37256.25,
       "start_usdkrw": 1338.7099609375,
-      "last_date": "2026-11-09",
-      "last_rebalance": null,
+      "last_date": "2026-11-12",
+      "last_rebalance": "2026-11-12",
       "rules_since": {
         "v2": "2026-11-09"
       },
-      "usdkrw_now": 1338.7099609375
+      "usdkrw_now": 1336.31005859375
     },
     "US-defensive": {
       "market": "US",
@@ -138,12 +140,12 @@
       "currency": "USD",
       "cash": 37256.25,
       "start_usdkrw": 1338.7099609375,
-      "last_date": "2026-11-09",
-      "last_rebalance": null,
+      "last_date": "2026-11-12",
+      "last_rebalance": "2026-W46",
       "rules_since": {
         "v2": "2026-11-09"
       },
-      "usdkrw_now": 1338.7099609375
+      "usdkrw_now": 1336.31005859375
     },
     "US-random": {
       "market": "US",
@@ -154,12 +156,12 @@
       "currency": "USD",
       "cash": 37256.25,
       "start_usdkrw": 1338.7099609375,
-      "last_date": "2026-11-09",
-      "last_rebalance": null,
+      "last_date": "2026-11-12",
+      "last_rebalance": "2026-W46",
       "rules_since": {
         "v2": "2026-11-09"
       },
-      "usdkrw_now": 1338.7099609375
+      "usdkrw_now": 1336.31005859375
     },
     "KR-balanced-v3": {
       "market": "KR",
@@ -168,14 +170,14 @@
       "start_date": "2026-11-10",
       "start_cash": 50000000,
       "currency": "KRW",
-      "cash": 50000000,
+      "cash": 17189746.64,
       "start_usdkrw": 1338.56005859375,
-      "last_date": "2026-11-10",
+      "last_date": "2026-11-13",
       "last_rebalance": "2026-W46",
       "rules_since": {
         "v3": "2026-11-10"
       },
-      "usdkrw_now": 1338.56005859375
+      "usdkrw_now": 1336.31005859375
     },
     "US-balanced-v3": {
       "market": "US",
@@ -184,14 +186,14 @@
       "start_date": "2026-11-09",
       "start_cash": 37260.42,
       "currency": "USD",
-      "cash": 37260.42,
+      "cash": 463.71,
       "start_usdkrw": 1338.56005859375,
-      "last_date": "2026-11-09",
+      "last_date": "2026-11-12",
       "last_rebalance": "2026-W46",
       "rules_since": {
         "v3": "2026-11-09"
       },
-      "usdkrw_now": 1338.56005859375
+      "usdkrw_now": 1336.31005859375
     }
   },
   "score_v3": true
