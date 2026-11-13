@@ -51,3 +51,15 @@ def test_paper_treats_unrecorded_reverse_split_as_share_change(paper_dir):
     assert float(h2["shares"].iloc[0] * h2["last_price"].iloc[0]) == pytest.approx(val0, rel=0.25)
     a = state["accounts"][acc]
     assert cash_from_trades(acc, a) == pytest.approx(a["cash"], abs=1.0)
+
+
+def test_fractional_split_on_integer_volume():
+    """정수 거래량에 1.5:1 같은 분할 비율을 곱해도 멈추지 않아야 함 (2026-11-10~13 자동 분석 실패 원인)."""
+    import yahoo_prices as yp
+    old = pd.DataFrame({"date": ["2026-11-06", "2026-11-07"], "ticker": "A", "open": [150, 151], "close": [150, 152],
+                        "volume": pd.Series([1001, 2003], dtype="int64"), "dividend": 0.0, "split": 0.0})
+    new = pd.DataFrame({"date": ["2026-11-10"], "ticker": "A", "open": [101.0], "close": [101.5], "volume": [3000],
+                        "dividend": 0.0, "split": [1.5]})
+    out = yp._apply_new_splits(old, new)
+    assert out["close"].tolist() == pytest.approx([100.0, 152 / 1.5])
+    assert out["volume"].tolist() == pytest.approx([1501.5, 3004.5])

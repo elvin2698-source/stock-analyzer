@@ -43,6 +43,8 @@ def _apply_new_splits(old: pd.DataFrame, new: pd.DataFrame) -> pd.DataFrame:
         return old
     seen = set(zip(old.loc[old["split"] > 0, "ticker"], old.loc[old["split"] > 0, "date"]))
     old = old.copy()
+    old[["open", "close", "dividend"]] = old[["open", "close", "dividend"]].astype(float)
+    old["volume"] = old["volume"].astype(float)              # 1.5:1 같은 분할이면 거래량이 소수가 됨
     for t, d, r in ev.itertuples(index=False):
         if (t, d) in seen:
             continue                                         # 이미 반영한 분할
