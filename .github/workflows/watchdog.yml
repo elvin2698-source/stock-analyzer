@@ -1,0 +1,33 @@
+name: 자동 분석 감시
+
+# 매일 한 번, 자동 분석이 실제로 돌았는지 확인합니다.
+# (예약 실행이 GitHub 쪽 사정으로 빠지거나 꺼져도 알 수 있게)
+on:
+  schedule:
+    - cron: "17 3 * * 2-6"    # 한국시간 화~토 12:17 (전날 미국장·당일 아침 분석이 끝났어야 할 때)
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: 마지막 실행 시각 확인
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          HOURS=$(python3 -c "
+          import json, datetime as d
+          s = json.load(open('docs/status.json'))
+          t = d.datetime.fromisoformat(s['run_at'])
+          print(int((d.datetime.now(d.timezone.utc) - t).total_seconds() // 3600))" 2>/dev/null || echo 999)
+          echo "마지막 실행 ${HOURS}시간 전"
+          if [ "$HOURS" -gt 30 ]; then
+            bash .github/scripts/alert.sh stale "- 마지막 자동 실행이 ${HOURS}시간 전이에요. Actions 탭에서 '매일 주식 분석'이 꺼져 있지 않은지 확인하세요."
+          fi

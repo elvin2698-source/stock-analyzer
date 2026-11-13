@@ -1,0 +1,39 @@
+name: 라이브러리 최신 버전 점검
+
+# 매일 분석은 requirements.txt 의 고정 버전으로 돌고,
+# 여기서는 매주 한 번 '최신 버전'으로 검사만 해 봅니다. 문제가 있으면 미리 알림 이슈를 남겨요.
+on:
+  schedule:
+    - cron: "23 1 * * 0"      # 한국시간 일요일 10:23
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  latest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: 최신 버전 설치
+        run: |
+          sed -E 's/==.*//' requirements.txt | grep -vE '^\s*(#|$)' > /tmp/latest.txt
+          pip install --upgrade -r /tmp/latest.txt pytest
+          pip list | grep -iE "^(pandas|numpy|yfinance|requests|openpyxl|lxml) "
+      - name: 검사
+        id: test
+        run: python -m pytest -q tests
+      - name: 문제 있으면 알림
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VERS=$(pip list 2>/dev/null | grep -iE "^(pandas|numpy|yfinance|requests|openpyxl|lxml) " | awk '{print "- "$1" "$2}')
+          bash .github/scripts/alert.sh deps "최신 버전으로 검사가 실패했어요. 매일 분석은 고정 버전이라 영향이 없지만, 언젠가 버전을 올리기 전에 고쳐야 해요.
+          $VERS"

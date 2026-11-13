@@ -1,6 +1,8 @@
-pandas>=2.2
-numpy>=1.26
-yfinance>=0.2.50
-requests>=2.31
-openpyxl>=3.1
-lxml>=5.0
+# 매일 자동 분석에 쓰는 버전을 고정합니다 (2026-11-13, GitHub 서버에서 검사 통과).
+# 새 버전은 매주 '라이브러리 최신 버전 점검'에서 먼저 시험하고, 문제없으면 여기 숫자만 올리면 됩니다.
+pandas==3.1.1
+numpy==2.5.4
+yfinance==1.8.0
+requests==2.34.2
+openpyxl==3.1.5
+lxml==6.1.3

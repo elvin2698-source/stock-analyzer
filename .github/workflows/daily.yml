@@ -29,7 +29,10 @@ jobs:
 
       - run: pip install -r requirements.txt pytest
 
+      # 검사가 실패해도 분석·대시보드는 계속 만들고, 기록이 틀어질 수 있는 모의투자만 쉼
       - name: 계산 검사 (모의투자·검증 테스트)
+        id: tests
+        continue-on-error: true
         run: python -m pytest -q tests
 
       # 주가 기록(용량이 커서 저장소에 올리지 않음)은 캐시로 이어 붙입니다
@@ -39,11 +42,20 @@ jobs:
           path: |
             data/prices_kr.v2.csv.gz
             data/prices_us.v2.csv.gz
+            data/last_analysis_*.csv.gz
           key: prices-v2-${{ github.run_id }}
           restore-keys: prices-v2-
 
+      # 한 번 실패하면 5분 뒤 한 번 더 (일시적인 접속 오류 대비)
       - name: 분석 실행
-        run: python src/main.py
+        id: analyze
+        env:
+          SAFE_MODE: ${{ steps.tests.outcome == 'failure' && '1' || '' }}
+        run: |
+          python src/main.py && exit 0
+          echo "1차 실행 실패 → 5분 뒤 다시 시도"
+          sleep 300
+          python src/main.py
 
       - name: 주가 기록 저장
         if: always()
@@ -52,6 +64,7 @@ jobs:
           path: |
             data/prices_kr.v2.csv.gz
             data/prices_us.v2.csv.gz
+            data/last_analysis_*.csv.gz
           key: prices-v2-${{ github.run_id }}
 
       - name: 결과 올리기
@@ -68,11 +81,14 @@ jobs:
           fi
           git push
 
-      - name: 실패하면 알림 이슈 만들기
-        if: failure()
+      - name: 상태 알림 (문제 있으면 이슈, 정상으로 돌아오면 자동으로 닫기)
+        if: always()
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh issue create --title "자동 분석 실패 $(date -u +%F)" \
-            --body "매일 주식 분석이 실패했어요. 실행 기록: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" \
-            || echo "이슈 만들기 실패"
+          LEVEL=$(python -c "import json;print(json.load(open('docs/status.json')).get('level','failed'))" 2>/dev/null || echo failed)
+          [ "${{ steps.analyze.outcome }}" != "success" ] && LEVEL=failed
+          [ "${{ job.status }}" != "success" ] && [ "$LEVEL" = "ok" ] && LEVEL=degraded
+          DETAIL=$(python -c "import json;s=json.load(open('docs/status.json'));print('\n'.join('- '+e for e in s.get('errors',[])) or '- 자세한 내용은 실행 기록을 보세요')" 2>/dev/null || echo "- 자세한 내용은 실행 기록을 보세요")
+          echo "상태: $LEVEL"
+          bash .github/scripts/alert.sh "$LEVEL" "$DETAIL"

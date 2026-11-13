@@ -114,10 +114,10 @@ def migrate_v1(state, files):
                 "date": a["last_date"], "account": acc, "side": "비용", "ticker": "", "name": "환전 수수료",
                 "shares": 0, "price": 0, "amount": fee, "cost": fee, "reason": "v2 전환: 시작 때 빠진 환전 수수료 0.25% 소급 반영",
                 "rules": PAPER_RULES_VERSION}]))
-    files["trades"]["rules"] = files["trades"]["rules"].fillna("v1")
+    files["trades"]["rules"] = files["trades"]["rules"].astype(object).fillna("v1")
     h = files["hold"]
-    files["hold"] = h.assign(last_price=h["last_price"].fillna(h["avg_cost"]),
-                             last_price_date=h["last_price_date"].fillna(h["buy_date"]))
+    files["hold"] = h.assign(last_price=h["last_price"].astype(float).fillna(h["avg_cost"].astype(float)),
+                             last_price_date=h["last_price_date"].astype(object).fillna(h["buy_date"]))
     print("  [모의투자] v1 기록을 v2 형식으로 옮김 (기존 매매·수익률 유지)")
     return {"version": 2, "accounts": accounts}, files
 

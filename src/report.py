@@ -93,7 +93,7 @@ def usdkrw():
         return 1400.0
 
 
-def dashboard_payload(res: pd.DataFrame, as_of: str, paper_data=None, rate=None) -> str:
+def dashboard_payload(res: pd.DataFrame, as_of: str, paper_data=None, rate=None, status=None) -> str:
     """대시보드용 데이터. 반복되는 글자(업종 등)는 번호로 바꿔 파일 크기를 줄입니다."""
     d = res[res["grade"] != "제외"].copy()
     rate = rate or usdkrw()
@@ -114,15 +114,15 @@ def dashboard_payload(res: pd.DataFrame, as_of: str, paper_data=None, rate=None)
     out["cap_usd"] = out["cap_usd"].round(0)
     out["styles"] = out["styles"].fillna("").map(lambda s: [STYLES.index(x) for x in s.split("·") if x])
     payload = {"asOf": as_of, "buy": BUY_SCORE, "sell": SELL_SCORE, "usdkrw": round(rate, 1),
-               "paper": paper_data or {}, "cols": cols, "dict": dicts, "styles": STYLES, "marketKo": MARKET_KO,
+               "paper": paper_data or {}, "status": status or {}, "cols": cols, "dict": dicts, "styles": STYLES, "marketKo": MARKET_KO,
                "rows": json.loads(out.to_json(orient="values", force_ascii=False))}
     return json.dumps(payload, ensure_ascii=False, separators=(",", ":"))
 
 
-def write_dashboard(res: pd.DataFrame, as_of: str, paper_data=None, rate=None):
+def write_dashboard(res: pd.DataFrame, as_of: str, paper_data=None, rate=None, status=None):
     DOCS_DIR.mkdir(exist_ok=True)
     tpl = Path(__file__).with_name("dashboard_template.html").read_text(encoding="utf-8")
-    body = tpl.replace("__PAYLOAD__", dashboard_payload(res, as_of, paper_data, rate).replace("</", "<\\/"))
+    body = tpl.replace("__PAYLOAD__", dashboard_payload(res, as_of, paper_data, rate, status).replace("</", "<\\/"))
     # GitHub 웹페이지용 완전한 HTML 문서 (한글 깨짐·화면 배율 문제 방지)
     html = ('<!doctype html>\n<html lang="ko">\n<head>\n<meta charset="utf-8">\n'
             '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
