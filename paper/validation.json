@@ -1,1 +1,1 @@
-{"KR": {"snapshots": 3, "first": "2026-11-10", "horizons": {}}, "US": {"snapshots": 3, "first": "2026-11-09", "horizons": {}}}
+{"KR": {"snapshots": 3, "first": "2026-11-10", "horizons": {}}, "US": {"snapshots": 4, "first": "2026-11-09", "horizons": {"5": {"n_dates": 1, "n_obs": 3730, "ic_mean": 0.3777, "ic_t": null, "ic_hit": 100.0, "quintiles": [-10.767, -6.801, -3.456, -2.113, -1.453], "grades": {"비추천": -8.846, "중립": -2.418, "추천": 0.103}, "ic_tech": 0.3454, "ic_value": 0.2433, "ic_legacy": 0.3597, "label": "1주"}}}}
