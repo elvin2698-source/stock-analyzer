@@ -1,30 +1,4 @@
 account,signal_date,side,ticker,name,group,score,rank,target_n,reason
-US-aggressive,2026-11-19,매도,ATNI,ATN International Inc.,IT하드웨어·통신장비,,0,0,교체: 점수 상위 20위 밖
-US-aggressive,2026-11-19,매도,OGN,Organon & Co.,바이오·제약,,0,0,교체: 점수 상위 20위 밖
-US-aggressive,2026-11-19,매수,TRMD,TORM plc,운송·물류·여행,73.9,1,10,추천 · 종합 73.9점 · 운송·물류·여행
-US-aggressive,2026-11-19,매수,BWLP,BW LPG Limited,운송·물류·여행,73.8,2,10,추천 · 종합 73.8점 · 운송·물류·여행
-US-aggressive,2026-11-19,매수,CMBT,CMB.TECH NV,운송·물류·여행,73.7,3,10,추천 · 종합 73.7점 · 운송·물류·여행
-US-aggressive,2026-11-19,매수,DHT,DHT Holdings Inc.,운송·물류·여행,73.4,4,10,추천 · 종합 73.4점 · 운송·물류·여행
-US-aggressive,2026-11-19,매수,TWIN,Twin Disc Incorporated,기계·조선·방산·항공,73.2,5,10,추천 · 종합 73.2점 · 기계·조선·방산·항공
-US-aggressive,2026-11-19,매수,DAC,Danaos Corporation,운송·물류·여행,73.2,6,10,추천 · 종합 73.2점 · 운송·물류·여행
-US-aggressive,2026-11-19,매수,TX,Ternium S.A. Ternium S.A.,철강·금속·광업,73.0,7,10,추천 · 종합 73.0점 · 철강·금속·광업
-US-aggressive,2026-11-19,매수,HAFN,Hafnia Limited,운송·물류·여행,72.7,8,10,추천 · 종합 72.7점 · 운송·물류·여행
-US-aggressive,2026-11-19,매수,KNTK,Kinetik Holdings Inc.,에너지·유틸리티,72.5,9,10,추천 · 종합 72.5점 · 에너지·유틸리티
-US-aggressive,2026-11-19,매수,CARE,Carter Bankshares Inc.,금융,72.2,10,10,추천 · 종합 72.2점 · 금융
-US-aggressive,2026-11-19,매수,MATX,Matson Inc.,운송·물류·여행,72.0,11,10,추천 · 종합 72.0점 · 운송·물류·여행
-US-aggressive,2026-11-19,매수,GSL,Global Ship Lease Inc New,운송·물류·여행,72.0,12,10,추천 · 종합 72.0점 · 운송·물류·여행
-US-aggressive,2026-11-19,매수,FRO,Frontline Plc,운송·물류·여행,71.9,13,10,추천 · 종합 71.9점 · 운송·물류·여행
-US-aggressive,2026-11-19,매수,ASC,Ardmore Shipping Corporation,운송·물류·여행,71.4,14,10,추천 · 종합 71.4점 · 운송·물류·여행
-US-aggressive,2026-11-19,매수,UGP,Ultrapar Participacoes S.A. (New),에너지·유틸리티,71.3,15,10,추천 · 종합 71.3점 · 에너지·유틸리티
-US-aggressive,2026-11-19,매수,STNG,Scorpio Tankers Inc.,운송·물류·여행,71.1,16,10,추천 · 종합 71.1점 · 운송·물류·여행
-US-aggressive,2026-11-19,매수,HSHP,Himalaya Shipping Ltd.,운송·물류·여행,70.9,17,10,추천 · 종합 70.9점 · 운송·물류·여행
-US-aggressive,2026-11-19,매수,ECO,Okeanis Eco Tankers Corp.,운송·물류·여행,70.7,18,10,추천 · 종합 70.7점 · 운송·물류·여행
-US-aggressive,2026-11-19,매수,HBB,Hamilton Beach Brands Holding Company,생활소비재,70.4,19,10,추천 · 종합 70.4점 · 생활소비재
-US-aggressive,2026-11-19,매수,NAT,Nordic American Tankers Limited,운송·물류·여행,70.4,20,10,추천 · 종합 70.4점 · 운송·물류·여행
-US-aggressive,2026-11-19,매수,DK,Delek US Holdings Inc.,에너지·유틸리티,70.3,21,10,추천 · 종합 70.3점 · 에너지·유틸리티
-US-aggressive,2026-11-19,매수,TNK,Teekay Tankers Ltd.,운송·물류·여행,70.3,22,10,추천 · 종합 70.3점 · 운송·물류·여행
-US-aggressive,2026-11-19,매수,NUE,Nucor Corporation,철강·금속·광업,70.3,23,10,추천 · 종합 70.3점 · 철강·금속·광업
-US-stable,2026-11-19,매도,EC,Ecopetrol S.A.,에너지·유틸리티,,0,0,"손절 (-13.3%, 기준 -10%)"
 KR-aggressive,2026-11-20,매도,025000,KPX케미칼,화학·소재,,0,0,교체: 점수 상위 20위 밖
 KR-aggressive,2026-11-20,매도,461300,아이스크림미디어,소프트웨어·인터넷,,0,0,교체: 점수 상위 20위 밖
 KR-aggressive,2026-11-20,매도,049430,코메론,IT하드웨어·통신장비,,0,0,교체: 점수 상위 20위 밖
@@ -39,3 +13,31 @@ KR-aggressive,2026-11-20,매수,066620,국보디자인,건설·부동산,70.2,7,
 KR-balanced-v3,2026-11-20,매도,001450,현대해상,금융,,0,0,"손절 (-16.3%, 기준 -15%)"
 KR-balanced-v3,2026-11-20,매도,068790,DMS,기계·조선·방산·항공,,0,0,등급이 비추천으로 떨어짐 (38.3점)
 KR-random,2026-11-20,매도,068790,DMS,기계·조선·방산·항공,,0,0,등급이 비추천으로 떨어짐 (38.3점)
+US-aggressive,2026-11-20,매도,KSPI,Joint Stock Company Kaspi.kz American Depository Shares,기타 서비스,,0,0,교체: 점수 상위 20위 밖
+US-aggressive,2026-11-20,매도,TX,Ternium S.A. Ternium S.A.,철강·금속·광업,,0,0,교체: 점수 상위 20위 밖
+US-aggressive,2026-11-20,매수,TRMD,TORM plc,운송·물류·여행,73.4,1,10,추천 · 종합 73.4점 · 운송·물류·여행
+US-aggressive,2026-11-20,매수,CMBT,CMB.TECH NV,운송·물류·여행,73.3,2,10,추천 · 종합 73.3점 · 운송·물류·여행
+US-aggressive,2026-11-20,매수,BWLP,BW LPG Limited,운송·물류·여행,73.3,3,10,추천 · 종합 73.3점 · 운송·물류·여행
+US-aggressive,2026-11-20,매수,DHT,DHT Holdings Inc.,운송·물류·여행,73.2,4,10,추천 · 종합 73.2점 · 운송·물류·여행
+US-aggressive,2026-11-20,매수,DAC,Danaos Corporation,운송·물류·여행,72.9,5,10,추천 · 종합 72.9점 · 운송·물류·여행
+US-aggressive,2026-11-20,매수,HAFN,Hafnia Limited,운송·물류·여행,72.6,6,10,추천 · 종합 72.6점 · 운송·물류·여행
+US-aggressive,2026-11-20,매수,ECO,Okeanis Eco Tankers Corp.,운송·물류·여행,72.6,7,10,추천 · 종합 72.6점 · 운송·물류·여행
+US-aggressive,2026-11-20,매수,CARE,Carter Bankshares Inc.,금융,72.0,8,10,추천 · 종합 72.0점 · 금융
+US-aggressive,2026-11-20,매수,FRO,Frontline Plc,운송·물류·여행,71.6,9,10,추천 · 종합 71.6점 · 운송·물류·여행
+US-aggressive,2026-11-20,매수,OGN,Organon & Co.,바이오·제약,71.5,10,10,추천 · 종합 71.5점 · 바이오·제약
+US-aggressive,2026-11-20,매수,MATX,Matson Inc.,운송·물류·여행,71.3,11,10,추천 · 종합 71.3점 · 운송·물류·여행
+US-aggressive,2026-11-20,매수,ASC,Ardmore Shipping Corporation,운송·물류·여행,71.2,12,10,추천 · 종합 71.2점 · 운송·물류·여행
+US-aggressive,2026-11-20,매수,UGP,Ultrapar Participacoes S.A. (New),에너지·유틸리티,71.2,13,10,추천 · 종합 71.2점 · 에너지·유틸리티
+US-aggressive,2026-11-20,매수,STNG,Scorpio Tankers Inc.,운송·물류·여행,70.7,14,10,추천 · 종합 70.7점 · 운송·물류·여행
+US-aggressive,2026-11-20,매수,SAIC,Science Applications International Corporation,소프트웨어·인터넷,70.7,15,10,추천 · 종합 70.7점 · 소프트웨어·인터넷
+US-aggressive,2026-11-20,매수,HSHP,Himalaya Shipping Ltd.,운송·물류·여행,70.5,16,10,추천 · 종합 70.5점 · 운송·물류·여행
+US-aggressive,2026-11-20,매수,HBB,Hamilton Beach Brands Holding Company,생활소비재,70.3,17,10,추천 · 종합 70.3점 · 생활소비재
+US-aggressive,2026-11-20,매수,TNK,Teekay Tankers Ltd.,운송·물류·여행,70.2,18,10,추천 · 종합 70.2점 · 운송·물류·여행
+US-aggressive,2026-11-20,매수,PBR,Petroleo Brasileiro S.A. Petrobras,에너지·유틸리티,70.0,19,10,추천 · 종합 70.0점 · 에너지·유틸리티
+US-aggressive,2026-11-20,매수,NAT,Nordic American Tankers Limited,운송·물류·여행,70.0,20,10,추천 · 종합 70.0점 · 운송·물류·여행
+US-balanced,2026-11-20,매도,SBC,SBC Medical Group Holdings Incorporated,의료기기·헬스케어,,0,0,"손절 (-15.3%, 기준 -15%)"
+US-defensive,2026-11-20,매도,DINO,HF Sinclair Corporation,에너지·유틸리티,,0,0,"손절 (-15.3%, 기준 -15%)"
+US-random,2026-11-20,매도,DINO,HF Sinclair Corporation,에너지·유틸리티,,0,0,"손절 (-15.3%, 기준 -15%)"
+US-stable,2026-11-20,매도,CSQ,Calamos Strategic Total Return,금융,,0,0,"손절 (-11.0%, 기준 -10%)"
+US-stable,2026-11-20,매도,TX,Ternium S.A. Ternium S.A.,철강·금속·광업,,0,0,"손절 (-10.2%, 기준 -10%)"
+US-stable,2026-11-20,매도,STLD,Steel Dynamics Inc.,철강·금속·광업,,0,0,"손절 (-14.4%, 기준 -10%)"
