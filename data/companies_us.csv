@@ -95,8 +95,8 @@ AFYA,Afya Limited,NASDAQ,Real Estate,Other Consumer Services,Brazil,951286735.0,
 AGCC,Agencia Comercial Spirits Ltd,NASDAQ,Consumer Staples,Beverages (Production/Distribution),Taiwan,717513413.0,337.5,27.217743,10.357001,0.0,2026-11-18
 AGEN,Agenus Inc.,NASDAQ,Health Care,Biotechnology: Biological Products (No Diagnostic Substances),United States,289577664.0,27.826086,,,0.0,2026-11-18
 AGIO,Agios Pharmaceuticals Inc.,NASDAQ,Health Care,Biotechnology: Pharmaceutical Preparations,United States,1775150442.0,,1.8404346,-32.946,0.0,2026-11-17
-AGLT,Agility Robotics Inc.,NASDAQ,Industrials,Industrial Machinery/Components,United States,1839850378.0,,,,0.0,2026-11-13
-AGLTW,Agility Robotics Inc. Warrants,NASDAQ,Industrials,Industrial Machinery/Components,United States,778914758.0,,,,,2026-11-13
+AGLT,Agility Robotics Inc.,NASDAQ,Industrials,Industrial Machinery/Components,United States,1839850378.0,,,,0.0,2026-11-20
+AGLTW,Agility Robotics Inc. Warrants,NASDAQ,Industrials,Industrial Machinery/Components,United States,778914758.0,,,,,2026-11-20
 AGMB,AgomAb Therapeutics NV,NASDAQ,Health Care,Biotechnology: Biological Products (No Diagnostic Substances),Belgium,286623215.0,,2.2852268,,0.0,2026-11-18
 AGMH,AGM Group Holdings Inc.,NASDAQ,Technology,EDP Services,Hong Kong,1955097.0,1.1466666,0.024604982,1.8929999999999998,0.0,2026-11-19
 AGNC,AGNC Investment Corp.,NASDAQ,Real Estate,Real Estate Investment Trusts,United States,9980267205.0,405.5,1.0668244,0.895,17.49,2026-11-16
@@ -386,7 +386,7 @@ BCAX,Bicara Therapeutics Inc.,NASDAQ,Health Care,Biotechnology: Pharmaceutical P
 BCBP,BCB Bancorp Inc. (NJ),NASDAQ,Finance,Savings Institutions,United States,281379171.0,,1.2741957,-54.683994999999996,0.0,2026-11-18
 BCDA,BioCardia Inc.,NASDAQ,Health Care,Biotechnology: Biological Products (No Diagnostic Substances),United States,11687140.0,,9.301206,-1803.194,0.0,2026-11-19
 BCG,Binah Capital Group Inc.,NASDAQ,Finance,Finance: Consumer Services,United States,27808014.0,8.15,4.8511906,24.325001,0.0,2026-11-19
-BCGWW,Binah Capital Group Inc. Warrants,NASDAQ,Finance,Finance: Consumer Services,United States,1023608.0,,0.2631579,22.427,,2026-11-13
+BCGWW,Binah Capital Group Inc. Warrants,NASDAQ,Finance,Finance: Consumer Services,United States,1023608.0,,0.23809524,24.325001,,2026-11-20
 BCIC,BCP Investment Corporation,NASDAQ,Finance,Finance: Consumer Services,United States,63064092.0,,0.30521077,-2.298,16.12,2026-11-19
 BCML,BayCom Corp,NASDAQ,Finance,Major Banks,United States,333172770.0,35.894115,0.9926148,2.7560001,3.9,2026-11-18
 BCPC,Balchem Corporation,NASDAQ,Industrials,Major Chemicals,United States,5361787879.0,32.354713,4.1131177,13.019,55.00000000000001,2026-11-16
@@ -397,7 +397,7 @@ BCTXZ,BriaCell Therapeutics Corp. Warrant expiring 2030,NASDAQ,Health Care,Biote
 BCYC,Bicycle Therapeutics plc,NASDAQ,Health Care,Biotechnology: Pharmaceutical Preparations,United Kingdom,217991597.0,,0.4308076,-25.235000000000003,0.0,2026-11-18
 BDAI,Biddance AI Systems Inc. Class A Ordinary Share,NASDAQ,Technology,Computer Software: Prepackaged Software,China,21891284.0,0.014757554,0.33273917,-0.685,0.0,2026-11-19
 BDMD,Baird Medical Investment Holdings Ltd Ordinary Share,NASDAQ,Health Care,Medical/Dental Instruments,China,3347420.0,,0.07276908,-46.030998000000004,0.0,2026-11-19
-BDMDW,Baird Medical Investment Holdings Ltd Warrant,NASDAQ,Health Care,Medical/Dental Instruments,China,677101.0,,0.017387304,-46.030998000000004,,2026-11-13
+BDMDW,Baird Medical Investment Holdings Ltd Warrant,NASDAQ,Health Care,Medical/Dental Instruments,China,677101.0,,0.01425943,-46.030998000000004,,2026-11-20
 BDRX,Biodexa Pharmaceuticals plc American Depositary Shs,NASDAQ,Health Care,Biotechnology: Pharmaceutical Preparations,United Kingdom,1074692.0,0.0039126086,0.014450444,-41.997,0.0,2026-11-19
 BDSX,Biodesix Inc.,NASDAQ,Health Care,Medical Specialities,United States,93143492.0,,10.700636,-778.88703,0.0,2026-11-18
 BDTX,Black Diamond Therapeutics Inc.,NASDAQ,Health Care,Biotechnology: Biological Products (No Diagnostic Substances),United States,82179605.0,,0.93281144,-41.142,0.0,2026-11-19
@@ -410,7 +410,7 @@ BELFB,Bel Fuse Inc.,NASDAQ,,,United States,3258264615.0,48.76815,3.2216842,13.00
 BENF,Beneficient,NASDAQ,Finance,Finance: Consumer Services,United States,10015967.0,,,,0.0,2026-11-19
 BENFW,Beneficient Warrant,NASDAQ,Finance,Finance: Consumer Services,United States,116978.0,,,,,2026-11-19
 BETR,Better Home & Finance Holding Company,NASDAQ,Finance,Finance: Consumer Services,United Kingdom,286246155.0,,11.788236,-505.63,0.0,2026-11-18
-BETRW,Better Home & Finance Holding Company Warrant,NASDAQ,Finance,Finance: Consumer Services,United Kingdom,1771184.0,,0.09568628,-505.63,,2026-11-13
+BETRW,Better Home & Finance Holding Company Warrant,NASDAQ,Finance,Finance: Consumer Services,United Kingdom,1771184.0,,0.0667451,-505.63,,2026-11-20
 BFC,Bank First Corporation,NASDAQ,Finance,Major Banks,United States,1600446872.0,18.797752,2.019258,11.946,1.72,2026-11-17
 BFRG,Bullfrog AI Holdings Inc.,NASDAQ,Health Care,Biotechnology: Pharmaceutical Preparations,United States,7853047.0,,2.246524,-130.70799,0.0,2026-11-19
 BFRGW,Bullfrog AI Holdings Inc. Warrants,NASDAQ,Health Care,Biotechnology: Pharmaceutical Preparations,United States,1800163.0,,0.49304813,,,2026-11-19
@@ -627,7 +627,7 @@ CDNA,CareDx Inc.,NASDAQ,Health Care,Medical Specialities,United States,391128499
 CDNL,Cardinal Infrastructure Group Inc.,NASDAQ,Industrials,Military/Government/Technical,United States,253852018.0,5.8681316,0.43085364,5.251,0.0,2026-11-18
 CDNS,Cadence Design Systems Inc.,NASDAQ,Technology,Computer Software: Prepackaged Software,United States,83910585780.0,64.2167,12.891009,22.869,0.0,2026-11-16
 CDRO,Codere Online Luxembourg S.A.,NASDAQ,Consumer Discretionary,Services-Misc. Amusement & Recreation,Luxembourg,376945595.0,31.884617,8.784824,34.046,0.0,2026-11-18
-CDROW,Codere Online Luxembourg S.A. Warrants,NASDAQ,Consumer Discretionary,Services-Misc. Amusement & Recreation,Luxembourg,1341362.0,,0.016955031,34.046,,2026-11-13
+CDROW,Codere Online Luxembourg S.A. Warrants,NASDAQ,Consumer Discretionary,Services-Misc. Amusement & Recreation,Luxembourg,1341362.0,,0.031260837,34.046,,2026-11-20
 CDT,CDT Equity Inc.,NASDAQ,Health Care,Biotechnology: Pharmaceutical Preparations,United States,651749.0,1.4706126e-07,0.00012487687,-69.67999999999999,0.0,2026-11-19
 CDTG,CDT Environmental Technology Investment Holdings Limited ordinary shares,NASDAQ,Industrials,Miscellaneous,China,3262680.0,,0.019086331,-30.453999999999997,0.0,2026-11-19
 CDTTW,CDT Equity Inc. Warrant,NASDAQ,Health Care,Biotechnology: Pharmaceutical Preparations,United States,13301.0,,8.5699816e-07,-69.67999999999999,,2026-11-19
@@ -804,7 +804,7 @@ CRIS,Curis Inc.,NASDAQ,Health Care,Biotechnology: Biological Products (No Diagno
 CRMD,CorMedix Inc.,NASDAQ,Health Care,Biotechnology: Pharmaceutical Preparations,United States,357919317.0,7.03125,0.77466,15.287,0.0,2026-11-18
 CRML,Critical Metals Corp.,NASDAQ,Basic Materials,Metal Mining,British Virgin Islands,719583733.0,,1.6324787,-99.240994,0.0,2026-11-18
 CRMLW,Critical Metals Corp. Warrants,NASDAQ,Basic Materials,Metal Mining,British Virgin Islands,211699398.0,,0.4957265,-99.240994,,2026-11-18
-CRMN,Skyline Builders Group Holding Limited,NASDAQ,Consumer Discretionary,Engineering & Construction,Hong Kong,15789043.0,,0.18331137,20.549999,,2026-11-13
+CRMN,Skyline Builders Group Holding Limited,NASDAQ,Consumer Discretionary,Engineering & Construction,Hong Kong,15789043.0,40.215,0.17661397,20.549999,0.0,2026-11-20
 CRMT,America's Car-Mart Inc,NASDAQ,Consumer Discretionary,Retail-Auto Dealers and Gas Stations,United States,6913432.0,,0.018368116,-42.953,0.0,2026-11-19
 CRNC,Cerence Inc.,NASDAQ,Technology,Computer Software: Prepackaged Software,United States,315707194.0,,1.8962239,-9.561,0.0,2026-11-18
 CRNT,Ceragon Networks Ltd.,NASDAQ,Technology,Radio And Television Broadcasting And Communications Equipment,Israel,205837555.0,,1.1862178,-0.5329999999999999,0.0,2026-11-18
@@ -996,7 +996,7 @@ ECHO,EchoStar  Corporation,NASDAQ,Consumer Discretionary,Telecommunications Equi
 ECOR,electroCore Inc.,NASDAQ,Health Care,Biotechnology: Electromedical & Electrotherapeutic Apparatus,United States,47698451.0,,,,0.0,2026-11-19
 ECPG,Encore Capital Group Inc,NASDAQ,Finance,Finance Companies,United States,2193469976.0,6.8321543,2.0625923,34.544998,0.0,2026-11-17
 ECX,ECARX Holdings Inc. Class A Ordinary shares,NASDAQ,Technology,EDP Services,China,291510888.0,,,,0.0,2026-11-18
-ECXWW,ECARX Holdings Inc. Warrants,NASDAQ,Technology,EDP Services,China,7659306.0,,,,,2026-11-13
+ECXWW,ECARX Holdings Inc. Warrants,NASDAQ,Technology,EDP Services,China,7659306.0,,,,,2026-11-20
 EDBL,Edible Garden AG Incorporated,NASDAQ,Consumer Staples,Farming/Seeds/Milling,United States,1085668.0,,0.22536968,-186.755,0.0,2026-11-19
 EDBLW,Edible Garden AG Incorporated Warrant,NASDAQ,Consumer Staples,Farming/Seeds/Milling,United States,11575.0,,0.0016924995,-186.755,,2026-11-19
 EDHL,Everbright Digital Holding Limited,NASDAQ,Consumer Discretionary,Advertising,Hong Kong,41476554.0,,2.71875,-70.772004,0.0,2026-11-19
@@ -1202,7 +1202,7 @@ FMBH,First Mid Bancshares Inc.,NASDAQ,Finance,Major Banks,United States,13125330
 FMFC,Kandal M Venture Limited,NASDAQ,Consumer Discretionary,Apparel,Cambodia,701633.0,3.1999998,0.07275207,5.592,0.0,2026-11-19
 FMNB,Farmers National Banc Corp.,NASDAQ,Finance,Major Banks,United States,888263389.0,10.942029,1.2486563,11.581001,4.77,2026-11-18
 FMST,Foremost Clean Energy Ltd.,NASDAQ,Basic Materials,Other Metals and Minerals,Canada,10518869.0,,0.3987395,-17.492001,0.0,2026-11-19
-FMSTW,Foremost Clean Energy Ltd. Warrant,NASDAQ,Basic Materials,Other Metals and Minerals,Canada,2949864.0,,0.105737515,-25.669999999999998,,2026-11-13
+FMSTW,Foremost Clean Energy Ltd. Warrant,NASDAQ,Basic Materials,Other Metals and Minerals,Canada,2949864.0,,0.11182071,-17.492001,,2026-11-20
 FNGR,FingerMotion Inc.,NASDAQ,Technology,Computer Software: Prepackaged Software,United States,3716640.0,,0.28571427,-79.62599999999999,0.0,2026-11-19
 FNKO,Funko Inc.,NASDAQ,Consumer Discretionary,Recreational Games/Products/Toys,United States,387190789.0,85.75,1.954973,2.4389998999999998,0.0,2026-11-18
 FNLC,First Bancorp Inc  (ME),NASDAQ,Finance,Major Banks,United States,403618787.0,10.214286,1.4001487,14.002,4.21,2026-11-18
@@ -1440,7 +1440,7 @@ HCAT,Health Catalyst Inc,NASDAQ,Technology,Computer Software: Programming Data P
 HCKT,Hackett Group Inc (The).,NASDAQ,Consumer Discretionary,Professional Services,United States,325185723.0,19.0,4.5775137,20.663,3.66,2026-11-18
 HCM,HUTCHMED (China) Limited,NASDAQ,Health Care,Biotechnology: Pharmaceutical Preparations,Hong Kong,2440772681.0,147.29999,2.0303237,1.464,0.0,2026-11-17
 HCMA,HCM III Acquisition Corp. Class A Ordinary Share,NASDAQ,Consumer Discretionary,Hotels/Resorts,United States,401709375.0,,,,0.0,2026-11-18
-HCMAW,HCM III Acquisition Corp. Warrants,NASDAQ,Consumer Discretionary,Hotels/Resorts,United States,27742930.0,,,,,2026-11-13
+HCMAW,HCM III Acquisition Corp. Warrants,NASDAQ,Consumer Discretionary,Hotels/Resorts,United States,27742930.0,,,,,2026-11-20
 HCSG,Healthcare Services Group Inc.,NASDAQ,Health Care,Hospital/Nursing Management,United States,1692543376.0,16.743244,3.1442711,20.415,0.0,2026-11-17
 HCTI,Healthcare Triangle Inc.,NASDAQ,Technology,EDP Services,United States,2827934.0,,0.055597585,-59.867000000000004,0.0,2026-11-19
 HCWB,HCW Biologics Inc.,NASDAQ,Health Care,Biotechnology: Pharmaceutical Preparations,United States,2505671.0,,0.15102807,-151.359,0.0,2026-11-19
@@ -1781,7 +1781,7 @@ KTCC,Key Tronic Corporation,NASDAQ,Technology,Electrical Products,United States,
 KTOS,Kratos Defense & Security Solutions Inc.,NASDAQ,Industrials,Military/Government/Technical,United States,5693390882.0,263.83334,1.722056,0.8099999999999999,0.0,2026-11-16
 KTTA,Pasithea Therapeutics Corp.,NASDAQ,Health Care,Biotechnology: Pharmaceutical Preparations,United States,18776877.0,,0.39029795,-88.78399999999999,0.0,2026-11-19
 KTWO,K2 Capital Acquisition Corporation Class A Ordinary Share,NASDAQ,Health Care,Medical/Dental Instruments,Cayman Islands,203016951.0,,389.6154,,0.0,2026-11-18
-KTWOR,K2 Capital Acquisition Corporation Rights,NASDAQ,,,Cayman Islands,2006120.0,,3.1714287,,,2026-11-13
+KTWOR,K2 Capital Acquisition Corporation Rights,NASDAQ,,,Cayman Islands,2006120.0,,3.9423075,,,2026-11-20
 KURA,Kura Oncology Inc.,NASDAQ,Health Care,Biotechnology: Pharmaceutical Preparations,United States,674389614.0,,38.410255,-224.854,0.0,2026-11-18
 KUST,Kustom Entertainment Inc.,NASDAQ,Technology,Radio And Television Broadcasting And Communications Equipment,United States,1757611.0,,0.23209548,-167.638,0.0,2026-11-19
 KVHI,KVH Industries Inc.,NASDAQ,Consumer Discretionary,Telecommunications Equipment,United States,130665660.0,239.66667,1.0935361,0.38400001,0.0,2026-11-18
@@ -2015,7 +2015,7 @@ MIRM,Mirum Pharmaceuticals Inc.,NASDAQ,Health Care,Biotechnology: Pharmaceutical
 MIST,Milestone Pharmaceuticals Inc.,NASDAQ,Health Care,Biotechnology: Pharmaceutical Preparations,Canada,57319198.0,,1.3501467,-35522.62,0.0,2026-11-19
 MITK,Mitek Systems Inc.,NASDAQ,Technology,Computer peripheral equipment,United States,789190321.0,35.51064,3.0050416,9.232999999999999,0.0,2026-11-18
 MKDW,MKDWELL Tech Inc. Ordinary Share,NASDAQ,Technology,Consumer Electronics/Appliances,Taiwan,3144656.0,,,,0.0,2026-11-19
-MKDWW,MKDWELL Tech Inc. Warrants,NASDAQ,Technology,Consumer Electronics/Appliances,Taiwan,10543.0,,,,,2026-11-13
+MKDWW,MKDWELL Tech Inc. Warrants,NASDAQ,Technology,Consumer Electronics/Appliances,Taiwan,10543.0,,,,,2026-11-20
 MKSI,MKS Inc.,NASDAQ,Industrials,Industrial Machinery/Components,United States,14244253059.0,25.52071,4.436421,20.455000000000002,46.0,2026-11-16
 MKTW,MarketWise Inc.,NASDAQ,Technology,Computer Software: Prepackaged Software,United States,330651647.0,23.685394,,,6.86,2026-11-18
 MKTX,MarketAxess Holdings Inc.,NASDAQ,Finance,Investment Bankers/Brokers/Service,United States,5822853245.0,20.274511,4.567264,21.851999,1.89,2026-11-16
@@ -2070,13 +2070,13 @@ MRLN,Merlin Inc.,NASDAQ,Technology,EDP Services,United States,89124953.0,,,,0.0,
 MRM,MEDIROM Healthcare Technologies Inc. American Depositary Share,NASDAQ,Consumer Discretionary,Other Consumer Services,Japan,2139058.0,0.65999997,1.3588599,53.191,0.0,2026-11-19
 MRNA,Moderna Inc.,NASDAQ,Health Care,Biotechnology: Biological Products (No Diagnostic Substances),United States,79625361670.0,,13.199196,-34.502,0.0,2026-11-16
 MRNO,Murano Global Investments PLC,NASDAQ,Consumer Discretionary,Hotels/Resorts,Mexico,15309723.0,,0.124892905,-7.516,0.0,2026-11-19
-MRNOW,Murano Global Investments PLC Warrants,NASDAQ,Consumer Discretionary,Hotels/Resorts,Mexico,546776.0,,0.0013575314,-7.516,,2026-11-13
+MRNOW,Murano Global Investments PLC Warrants,NASDAQ,Consumer Discretionary,Hotels/Resorts,Mexico,546776.0,,0.0023918413,-7.516,,2026-11-20
 MRTN,Marten Transport Ltd.,NASDAQ,Industrials,Trucking Freight/Courier Services,United States,982389878.0,74.0,1.2652277,1.7389999999999999,2.03,2026-11-18
 MRVI,Maravai LifeSciences Holdings Inc.,NASDAQ,Health Care,Biotechnology: Pharmaceutical Preparations,United States,1918346477.0,,5.6359487,-29.798000000000002,0.0,2026-11-17
 MRVL,Marvell Technology Inc.,NASDAQ,Technology,Semiconductors,United States,127624026000.0,51.56579,7.4170804,16.523,15.0,2026-11-16
 MRX,Marex Group Limited,NASDAQ,Finance,Investment Bankers/Brokers/Service,United Kingdom,4751914852.0,12.789855,3.4834952,28.444000000000003,90.0,2026-11-16
 MSAI,MultiSensor AI Holdings Inc.,NASDAQ,Technology,Electronic Components,United States,5989351.0,,0.16920716,-46.471000000000004,0.0,2026-11-19
-MSAIW,MultiSensor AI Holdings Inc. Warrant,NASDAQ,Technology,Electronic Components,United States,21074.0,,0.0013392166,-46.471000000000004,,2026-11-13
+MSAIW,MultiSensor AI Holdings Inc. Warrant,NASDAQ,Technology,Electronic Components,United States,21074.0,,0.0005954246,-46.471000000000004,,2026-11-20
 MSBI,Midland States Bancorp Inc.,NASDAQ,Finance,Major Banks,United States,616373542.0,13.246696,1.4864063,10.4490004,4.38,2026-11-18
 MSBIP,Midland States Bancorp Inc. Depositary Shares Each Representing a 1/40th Interest in a Share of 7.750% Fixed-Rate Reset Non-Cumulative Perpetual Preferred Stock Series A,NASDAQ,Finance,Major Banks,United States,520578734.0,,1.2357885,10.4490004,7.75,2026-11-18
 MSEX,Middlesex Water Company,NASDAQ,Utilities,Water Supply,United States,1080252973.0,20.32491,1.966606,10.073,2.59,2026-11-18
@@ -2170,7 +2170,7 @@ NEWTP,NewtekOne Inc. Depositary Shares Non-Cumulative Perpetual Preferred Stock 
 NEXM,NexMetals Mining Corp.,NASDAQ,Basic Materials,Metal Mining,Canada,32267018.0,,0.5440602,-104.28999999999999,0.0,2026-11-19
 NEXN,Nexxen International Ltd.,NASDAQ,Technology,Computer Software: Programming Data Processing,Israel,545013117.0,30.21212,1.1772346,4.0120002,0.0,2026-11-18
 NEXR,Nexera Technologies Ltd,NASDAQ,Consumer Discretionary,Other Specialty Stores,Israel,685712.0,0.0001255348,0.0052910736,-74.202,0.0,2026-11-19
-NEXRW,Nexera Technologies Ltd Warrant,NASDAQ,Consumer Discretionary,Other Specialty Stores,Israel,4747.0,,3.871517e-05,-74.202,,2026-11-13
+NEXRW,Nexera Technologies Ltd Warrant,NASDAQ,Consumer Discretionary,Other Specialty Stores,Israel,4747.0,,3.871517e-05,-74.202,,2026-11-20
 NEXT,NextDecade Corporation,NASDAQ,Utilities,Oil & Gas Production,United States,1637005891.0,,15.107914,13.597000000000001,0.0,2026-11-17
 NFE,New Fortress Energy Inc.,NASDAQ,Utilities,Oil/Gas Transmission,United States,67571238.0,,0.05301032,-23.055,0.0,2026-11-19
 NFEGP,New Fortress Energy Inc. Series A Mandatorily Convertible Preferred Stock,NASDAQ,Utilities,Oil/Gas Transmission,United States,4653601762.0,,,,,2026-11-17
@@ -2910,7 +2910,7 @@ SLRC,SLR Investment Corp.,NASDAQ,Finance,Finance/Investors Services,United State
 SLS,SELLAS Life Sciences Group Inc.,NASDAQ,Health Care,Biotechnology: Pharmaceutical Preparations,United States,3659271760.0,,12.580646,-39.633998,0.0,2026-11-17
 SLSN,Solesence Inc.,NASDAQ,Consumer Discretionary,Package Goods/Cosmetics,United States,115861154.0,54.666668,6.9198313,10.66,0.0,2026-11-18
 SLXN,Silexion Therapeutics Corp,NASDAQ,Health Care,Biotechnology: Biological Products (No Diagnostic Substances),Israel,935320.0,,7.894737,,0.0,2026-11-19
-SLXNW,Silexion Therapeutics Corp Warrant,NASDAQ,Health Care,Biotechnology: Biological Products (No Diagnostic Substances),Israel,2923.0,,0.02263158,,,2026-11-13
+SLXNW,Silexion Therapeutics Corp Warrant,NASDAQ,Health Care,Biotechnology: Biological Products (No Diagnostic Substances),Israel,2923.0,,0.021578947,,,2026-11-20
 SMBC,Southern Missouri Bancorp Inc.,NASDAQ,Finance,Banks,United States,748213183.0,10.148967,1.2584816,12.964999999999998,1.57,2026-11-18
 SMCI,Super Micro Computer Inc.,NASDAQ,Technology,Computer Manufacturing,United States,16065370934.0,5.6677217,1.4954077,32.368,0.0,2026-11-16
 SMCIP,Super Micro Computer Inc. Depositary Shares representing a 1/20th Interest in a Share of 7% Series A Mandatory Convertible Preferred Stock,NASDAQ,Technology,Computer Manufacturing,United States,28089678108.0,,2.5819647,32.368,6.4,2026-11-16
@@ -2923,7 +2923,7 @@ SMTI,Sanara MedTech Inc.,NASDAQ,Health Care,Industrial Specialties,United States
 SMTK,SmartKem Inc.,NASDAQ,Technology,Semiconductors,United States,1047194.0,,0.0137952985,-598.72303,0.0,2026-11-19
 SMX,SMX (Security Matters) Public Limited Company,NASDAQ,Technology,Industrial Machinery/Components,Ireland,2558493.0,4.1023887e-07,0.022136608,-553.2339999999999,0.0,2026-11-19
 SMXT,Solarmax Technology Inc.,NASDAQ,Consumer Discretionary,Engineering & Construction,United States,18257343.0,,,,0.0,2026-11-19
-SMXWW,SMX (Security Matters) Public Limited Company Warrant,NASDAQ,Technology,Industrial Machinery/Components,Ireland,10414.0,,0.00011650847,-553.2339999999999,,2026-11-13
+SMXWW,SMX (Security Matters) Public Limited Company Warrant,NASDAQ,Technology,Industrial Machinery/Components,Ireland,10414.0,,0.00012349899,-553.2339999999999,,2026-11-20
 SNAL,Snail Inc.,NASDAQ,Technology,Computer Software: Prepackaged Software,United States,20710571.0,3.9152544,,,0.0,2026-11-19
 SND,Smart Sand Inc.,NASDAQ,Industrials,Mining & Quarrying of Nonmetallic Minerals (No Fuels),United States,206238443.0,12.153846,0.76353085,6.563000400000001,0.0,2026-11-18
 SNDK,Sandisk Corporation,NASDAQ,Technology,Electronic Components,United States,110447850900.0,7.0732894,7.0277376,141.174,0.0,2026-11-16
@@ -3032,7 +3032,7 @@ SVIA,Silvia Inc.,NASDAQ,Finance,Finance: Consumer Services,United States,1628691
 SVIAW,Silvia Inc. Warrant,NASDAQ,Finance,Finance: Consumer Services,United States,18858139.0,,0.11617796,,,2026-11-19
 SVRA,Savara Inc.,NASDAQ,Health Care,Biotechnology: Pharmaceutical Preparations,United States,1041342972.0,,10.566038,-151.048,0.0,2026-11-18
 SVRE,SaverOne 2014 Ltd.,NASDAQ,Technology,EDP Services,Israel,2161607.0,,280.0,-151.12699999999998,0.0,2026-11-19
-SVREW,SaverOne 2014 Ltd. Warrant,NASDAQ,Technology,EDP Services,Israel,1609093998.0,,2.5749998,-151.12699999999998,,2026-11-13
+SVREW,SaverOne 2014 Ltd. Warrant,NASDAQ,Technology,EDP Services,Israel,1609093998.0,,3.0,-151.12699999999998,,2026-11-20
 SVRN,SVRN Inc.,NASDAQ,Consumer Discretionary,Marine Transportation,Greece,25492339.0,,0.0655284,-54.115002999999994,0.0,2026-11-19
 SWAG,Stran & Company Inc.,NASDAQ,Consumer Discretionary,Advertising,United States,21894636.0,16.857141,0.6998814,4.33,0.0,2026-11-19
 SWBI,Smith & Wesson Brands Inc.,NASDAQ,Industrials,Ordnance And Accessories,United States,871566761.0,29.833334,1.9330455,6.633,3.23,2026-11-18
@@ -3425,7 +3425,7 @@ XAIR,Beyond Air Inc.,NASDAQ,Health Care,Medical/Dental Instruments,United States
 XBIO,Xenetic Biosciences Inc.,NASDAQ,Health Care,Biotechnology: Pharmaceutical Preparations,United States,3585067.0,,0.47412455,-47.04,0.0,2026-11-19
 XBIT,XBiotech Inc.,NASDAQ,Health Care,Biotechnology: Pharmaceutical Preparations,United States,52743775.0,,0.37584183,-29.936,0.0,2026-11-19
 XBP,XBP Global Holdings Inc.,NASDAQ,Technology,EDP Services,United States,36676896.0,,0.7072243,-385.57198,0.0,2026-11-19
-XBPEW,XBP Europe Holdings Inc. Warrant,NASDAQ,Technology,EDP Services,United States,497555.0,,0.0076299114,11938.4766,,2026-11-13
+XBPEW,XBP Europe Holdings Inc. Warrant,NASDAQ,Technology,EDP Services,United States,497555.0,,0.0076299114,-385.57198,,2026-11-20
 XCH,XCHG Limited American Depositary Share,NASDAQ,Miscellaneous,Industrial Machinery/Components,Germany,14784290.0,,1.4164546,-204.683,0.0,2026-11-19
 XCUR,Exicure Inc.,NASDAQ,Health Care,Biotechnology: Pharmaceutical Preparations,United States,6807835.0,,6.7973857,-168.37399,0.0,2026-11-19
 XE,X-Energy Inc.,NASDAQ,Industrials,Metal Fabrications,United States,4098619206.0,,2.0673075,-37.601003,0.0,2026-11-17
@@ -3511,7 +3511,7 @@ ZURA,Zura Bio Limited,NASDAQ,Health Care,Biotechnology: Biological Products (No 
 ZVRA,Zevra Therapeutics Inc.,NASDAQ,Health Care,Biotechnology: Pharmaceutical Preparations,United States,552202883.0,7.7049174,2.3383083,41.933998,0.0,2026-11-18
 ZYBT,Zhengye Biotechnology Holding Limited,NASDAQ,Health Care,Biotechnology: Pharmaceutical Preparations,China,71087064.0,,2.0658479,-24.543,0.0,2026-11-19
 ZYME,Zymeworks Inc.,NASDAQ,Health Care,Biotechnology: Pharmaceutical Preparations,United States,1797559194.0,49.905666,7.2905183,14.977999,0.0,2026-11-17
-ZYN,PTL LTD,NASDAQ,Energy,Oil Refining/Marketing,Singapore,105326250.0,,,,,2026-11-13
+ZYN,PTL LTD,NASDAQ,Energy,Oil Refining/Marketing,Singapore,105326250.0,,1.4180026,-24.826999,0.0,2026-11-20
 A,Agilent Technologies Inc.,NYSE,Industrials,Biotechnology: Laboratory Analytical Instruments,United States,49974708660.0,34.311638,6.661816,20.971,59.0,2026-11-16
 AA,Alcoa Corporation,NYSE,Industrials,Aluminum,United States,9596624769.0,6.842478,1.237714,20.577998,1.01,2026-11-16
 AAC,Ares Acquisition Corporation III,NYSE,Industrials,Metal Fabrications,,489245625.0,,,,0.0,2026-11-18
