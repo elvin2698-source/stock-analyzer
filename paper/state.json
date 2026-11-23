@@ -25,15 +25,15 @@
       "start_date": "2026-11-06",
       "start_cash": 37035.12,
       "currency": "USD",
-      "cash": 225.47,
+      "cash": 1776.87,
       "start_usdkrw": 1350.0699462890625,
-      "last_date": "2026-11-20",
-      "last_rebalance": "2026-W47",
+      "last_date": "2026-11-23",
+      "last_rebalance": "2026-W48",
       "rules_since": {
         "v1": "2026-11-06",
         "v3": "예전 점수로 계속 운용"
       },
-      "usdkrw_now": 1346.1300048828125
+      "usdkrw_now": 1342.0899658203125
     },
     "KR-stable": {
       "market": "KR",
@@ -106,14 +106,14 @@
       "start_date": "2026-11-09",
       "start_cash": 37256.25,
       "currency": "USD",
-      "cash": 7158.53,
+      "cash": 12087.51,
       "start_usdkrw": 1338.7099609375,
-      "last_date": "2026-11-20",
+      "last_date": "2026-11-23",
       "last_rebalance": "2026-11",
       "rules_since": {
         "v2": "2026-11-09"
       },
-      "usdkrw_now": 1346.1300048828125
+      "usdkrw_now": 1342.0899658203125
     },
     "US-aggressive": {
       "market": "US",
@@ -122,14 +122,14 @@
       "start_date": "2026-11-09",
       "start_cash": 37256.25,
       "currency": "USD",
-      "cash": 706.1,
+      "cash": 862.29,
       "start_usdkrw": 1338.7099609375,
-      "last_date": "2026-11-20",
-      "last_rebalance": "2026-11-20",
+      "last_date": "2026-11-23",
+      "last_rebalance": "2026-11-23",
       "rules_since": {
         "v2": "2026-11-09"
       },
-      "usdkrw_now": 1346.1300048828125
+      "usdkrw_now": 1342.0899658203125
     },
     "US-defensive": {
       "market": "US",
@@ -138,14 +138,14 @@
       "start_date": "2026-11-09",
       "start_cash": 37256.25,
       "currency": "USD",
-      "cash": 658.19,
+      "cash": 2254.59,
       "start_usdkrw": 1338.7099609375,
-      "last_date": "2026-11-20",
-      "last_rebalance": "2026-W47",
+      "last_date": "2026-11-23",
+      "last_rebalance": "2026-W48",
       "rules_since": {
         "v2": "2026-11-09"
       },
-      "usdkrw_now": 1346.1300048828125
+      "usdkrw_now": 1342.0899658203125
     },
     "US-random": {
       "market": "US",
@@ -154,14 +154,14 @@
       "start_date": "2026-11-09",
       "start_cash": 37256.25,
       "currency": "USD",
-      "cash": 626.26,
+      "cash": 2222.66,
       "start_usdkrw": 1338.7099609375,
-      "last_date": "2026-11-20",
-      "last_rebalance": "2026-W47",
+      "last_date": "2026-11-23",
+      "last_rebalance": "2026-W48",
       "rules_since": {
         "v2": "2026-11-09"
       },
-      "usdkrw_now": 1346.1300048828125
+      "usdkrw_now": 1342.0899658203125
     },
     "KR-balanced-v3": {
       "market": "KR",
@@ -188,12 +188,12 @@
       "currency": "USD",
       "cash": 425.19,
       "start_usdkrw": 1338.56005859375,
-      "last_date": "2026-11-20",
-      "last_rebalance": "2026-W47",
+      "last_date": "2026-11-23",
+      "last_rebalance": "2026-W48",
       "rules_since": {
         "v3": "2026-11-09"
       },
-      "usdkrw_now": 1346.1300048828125
+      "usdkrw_now": 1342.0899658203125
     }
   },
   "score_v3": true

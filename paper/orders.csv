@@ -1,32 +1,4 @@
 account,signal_date,side,ticker,name,group,score,rank,target_n,reason
-US-aggressive,2026-11-20,매도,KSPI,Joint Stock Company Kaspi.kz American Depository Shares,기타 서비스,,0,0,교체: 점수 상위 20위 밖
-US-aggressive,2026-11-20,매도,TX,Ternium S.A. Ternium S.A.,철강·금속·광업,,0,0,교체: 점수 상위 20위 밖
-US-aggressive,2026-11-20,매수,TRMD,TORM plc,운송·물류·여행,73.4,1,10,추천 · 종합 73.4점 · 운송·물류·여행
-US-aggressive,2026-11-20,매수,CMBT,CMB.TECH NV,운송·물류·여행,73.3,2,10,추천 · 종합 73.3점 · 운송·물류·여행
-US-aggressive,2026-11-20,매수,BWLP,BW LPG Limited,운송·물류·여행,73.3,3,10,추천 · 종합 73.3점 · 운송·물류·여행
-US-aggressive,2026-11-20,매수,DHT,DHT Holdings Inc.,운송·물류·여행,73.2,4,10,추천 · 종합 73.2점 · 운송·물류·여행
-US-aggressive,2026-11-20,매수,DAC,Danaos Corporation,운송·물류·여행,72.9,5,10,추천 · 종합 72.9점 · 운송·물류·여행
-US-aggressive,2026-11-20,매수,HAFN,Hafnia Limited,운송·물류·여행,72.6,6,10,추천 · 종합 72.6점 · 운송·물류·여행
-US-aggressive,2026-11-20,매수,ECO,Okeanis Eco Tankers Corp.,운송·물류·여행,72.6,7,10,추천 · 종합 72.6점 · 운송·물류·여행
-US-aggressive,2026-11-20,매수,CARE,Carter Bankshares Inc.,금융,72.0,8,10,추천 · 종합 72.0점 · 금융
-US-aggressive,2026-11-20,매수,FRO,Frontline Plc,운송·물류·여행,71.6,9,10,추천 · 종합 71.6점 · 운송·물류·여행
-US-aggressive,2026-11-20,매수,OGN,Organon & Co.,바이오·제약,71.5,10,10,추천 · 종합 71.5점 · 바이오·제약
-US-aggressive,2026-11-20,매수,MATX,Matson Inc.,운송·물류·여행,71.3,11,10,추천 · 종합 71.3점 · 운송·물류·여행
-US-aggressive,2026-11-20,매수,ASC,Ardmore Shipping Corporation,운송·물류·여행,71.2,12,10,추천 · 종합 71.2점 · 운송·물류·여행
-US-aggressive,2026-11-20,매수,UGP,Ultrapar Participacoes S.A. (New),에너지·유틸리티,71.2,13,10,추천 · 종합 71.2점 · 에너지·유틸리티
-US-aggressive,2026-11-20,매수,STNG,Scorpio Tankers Inc.,운송·물류·여행,70.7,14,10,추천 · 종합 70.7점 · 운송·물류·여행
-US-aggressive,2026-11-20,매수,SAIC,Science Applications International Corporation,소프트웨어·인터넷,70.7,15,10,추천 · 종합 70.7점 · 소프트웨어·인터넷
-US-aggressive,2026-11-20,매수,HSHP,Himalaya Shipping Ltd.,운송·물류·여행,70.5,16,10,추천 · 종합 70.5점 · 운송·물류·여행
-US-aggressive,2026-11-20,매수,HBB,Hamilton Beach Brands Holding Company,생활소비재,70.3,17,10,추천 · 종합 70.3점 · 생활소비재
-US-aggressive,2026-11-20,매수,TNK,Teekay Tankers Ltd.,운송·물류·여행,70.2,18,10,추천 · 종합 70.2점 · 운송·물류·여행
-US-aggressive,2026-11-20,매수,PBR,Petroleo Brasileiro S.A. Petrobras,에너지·유틸리티,70.0,19,10,추천 · 종합 70.0점 · 에너지·유틸리티
-US-aggressive,2026-11-20,매수,NAT,Nordic American Tankers Limited,운송·물류·여행,70.0,20,10,추천 · 종합 70.0점 · 운송·물류·여행
-US-balanced,2026-11-20,매도,SBC,SBC Medical Group Holdings Incorporated,의료기기·헬스케어,,0,0,"손절 (-15.3%, 기준 -15%)"
-US-defensive,2026-11-20,매도,DINO,HF Sinclair Corporation,에너지·유틸리티,,0,0,"손절 (-15.3%, 기준 -15%)"
-US-random,2026-11-20,매도,DINO,HF Sinclair Corporation,에너지·유틸리티,,0,0,"손절 (-15.3%, 기준 -15%)"
-US-stable,2026-11-20,매도,CSQ,Calamos Strategic Total Return,금융,,0,0,"손절 (-11.0%, 기준 -10%)"
-US-stable,2026-11-20,매도,TX,Ternium S.A. Ternium S.A.,철강·금속·광업,,0,0,"손절 (-10.2%, 기준 -10%)"
-US-stable,2026-11-20,매도,STLD,Steel Dynamics Inc.,철강·금속·광업,,0,0,"손절 (-14.4%, 기준 -10%)"
 KR-aggressive,2026-11-23,매도,036030,케이티알파,유통·도소매,,0,0,교체: 점수 상위 20위 밖
 KR-aggressive,2026-11-23,매도,100120,뷰웍스,의료기기·헬스케어,,0,0,교체: 점수 상위 20위 밖
 KR-aggressive,2026-11-23,매도,338100,NH프라임리츠,건설·부동산,,0,0,교체: 점수 상위 20위 밖
@@ -84,3 +56,178 @@ KR-stable,2026-11-23,매도,001450,현대해상,금융,,0,0,"손절 (-11.9%, 기
 KR-stable,2026-11-23,매도,088350,한화생명,금융,,0,0,"손절 (-10.3%, 기준 -10%)"
 KR-stable,2026-11-23,매도,002380,KCC,화학·소재,,0,0,"손절 (-10.2%, 기준 -10%)"
 KR-stable,2026-11-23,매도,300720,한일시멘트,화학·소재,,0,0,"손절 (-10.9%, 기준 -10%)"
+US-aggressive,2026-11-23,매도,TWIN,Twin Disc Incorporated,기계·조선·방산·항공,,0,0,교체: 점수 상위 20위 밖
+US-aggressive,2026-11-23,매수,DHT,DHT Holdings Inc.,운송·물류·여행,74.6,1,10,추천 · 종합 74.6점 · 운송·물류·여행
+US-aggressive,2026-11-23,매수,TRMD,TORM plc,운송·물류·여행,74.4,2,10,추천 · 종합 74.4점 · 운송·물류·여행
+US-aggressive,2026-11-23,매수,BWLP,BW LPG Limited,운송·물류·여행,74.2,3,10,추천 · 종합 74.2점 · 운송·물류·여행
+US-aggressive,2026-11-23,매수,HAFN,Hafnia Limited,운송·물류·여행,73.7,4,10,추천 · 종합 73.7점 · 운송·물류·여행
+US-aggressive,2026-11-23,매수,ECO,Okeanis Eco Tankers Corp.,운송·물류·여행,73.7,5,10,추천 · 종합 73.7점 · 운송·물류·여행
+US-aggressive,2026-11-23,매수,CMBT,CMB.TECH NV,운송·물류·여행,73.4,6,10,추천 · 종합 73.4점 · 운송·물류·여행
+US-aggressive,2026-11-23,매수,FRO,Frontline Plc,운송·물류·여행,73.3,7,10,추천 · 종합 73.3점 · 운송·물류·여행
+US-aggressive,2026-11-23,매수,DAC,Danaos Corporation,운송·물류·여행,73.1,8,10,추천 · 종합 73.1점 · 운송·물류·여행
+US-aggressive,2026-11-23,매수,STNG,Scorpio Tankers Inc.,운송·물류·여행,72.6,9,10,추천 · 종합 72.6점 · 운송·물류·여행
+US-aggressive,2026-11-23,매수,KSPI,Joint Stock Company Kaspi.kz American Depository Shares,기타 서비스,72.5,10,10,추천 · 종합 72.5점 · 기타 서비스
+US-aggressive,2026-11-23,매수,ASC,Ardmore Shipping Corporation,운송·물류·여행,72.2,11,10,추천 · 종합 72.2점 · 운송·물류·여행
+US-aggressive,2026-11-23,매수,TX,Ternium S.A. Ternium S.A.,철강·금속·광업,72.1,12,10,추천 · 종합 72.1점 · 철강·금속·광업
+US-aggressive,2026-11-23,매수,MATX,Matson Inc.,운송·물류·여행,71.9,13,10,추천 · 종합 71.9점 · 운송·물류·여행
+US-aggressive,2026-11-23,매수,GSL,Global Ship Lease Inc New,운송·물류·여행,71.9,14,10,추천 · 종합 71.9점 · 운송·물류·여행
+US-aggressive,2026-11-23,매수,HCI,HCI Group Inc.,금융,71.8,15,10,추천 · 종합 71.8점 · 금융
+US-aggressive,2026-11-23,매수,SLDE,Slide Insurance Holdings Inc.,금융,71.5,16,10,추천 · 종합 71.5점 · 금융
+US-aggressive,2026-11-23,매수,UGP,Ultrapar Participacoes S.A. (New),에너지·유틸리티,71.5,17,10,추천 · 종합 71.5점 · 에너지·유틸리티
+US-aggressive,2026-11-23,매수,PBR,Petroleo Brasileiro S.A. Petrobras,에너지·유틸리티,71.4,18,10,추천 · 종합 71.4점 · 에너지·유틸리티
+US-aggressive,2026-11-23,매수,TNK,Teekay Tankers Ltd.,운송·물류·여행,71.2,19,10,추천 · 종합 71.2점 · 운송·물류·여행
+US-aggressive,2026-11-23,매수,LTC,LTC Properties Inc.,건설·부동산,70.7,20,10,추천 · 종합 70.7점 · 건설·부동산
+US-aggressive,2026-11-23,매수,NAT,Nordic American Tankers Limited,운송·물류·여행,70.7,21,10,추천 · 종합 70.7점 · 운송·물류·여행
+US-aggressive,2026-11-23,매수,KNTK,Kinetik Holdings Inc.,에너지·유틸리티,70.6,22,10,추천 · 종합 70.6점 · 에너지·유틸리티
+US-aggressive,2026-11-23,매수,DK,Delek US Holdings Inc.,에너지·유틸리티,70.5,23,10,추천 · 종합 70.5점 · 에너지·유틸리티
+US-aggressive,2026-11-23,매수,HSHP,Himalaya Shipping Ltd.,운송·물류·여행,70.2,24,10,추천 · 종합 70.2점 · 운송·물류·여행
+US-aggressive,2026-11-23,매수,APA,APA Corporation,에너지·유틸리티,70.0,25,10,추천 · 종합 70.0점 · 에너지·유틸리티
+US-balanced,2026-11-23,매도,RNR,RenaissanceRe Holdings Ltd.,금융,,0,0,교체: 점수 상위 40위 밖
+US-balanced,2026-11-23,매도,PYPL,PayPal Holdings Inc.,기계·조선·방산·항공,,0,0,교체: 점수 상위 40위 밖
+US-balanced,2026-11-23,매도,STNG,Scorpio Tankers Inc.,운송·물류·여행,,0,0,교체: 점수 상위 40위 밖
+US-balanced,2026-11-23,매도,FOXA,Fox Corporation,미디어·엔터·레저,,0,0,교체: 점수 상위 40위 밖
+US-balanced,2026-11-23,매도,FOX,Fox Corporation,미디어·엔터·레저,,0,0,교체: 점수 상위 40위 밖
+US-balanced,2026-11-23,매도,KNTK,Kinetik Holdings Inc.,에너지·유틸리티,,0,0,교체: 점수 상위 40위 밖
+US-balanced,2026-11-23,매도,NOMD,Nomad Foods Limited,식음료·농수산,,0,0,교체: 점수 상위 40위 밖
+US-balanced,2026-11-23,매도,MMS,Maximus Inc.,기타 서비스,,0,0,교체: 점수 상위 40위 밖
+US-balanced,2026-11-23,매도,SUZ,Suzano S.A.,화학·소재,,0,0,교체: 점수 상위 40위 밖
+US-balanced,2026-11-23,매수,AER,AerCap Holdings N.V.,기타 서비스,80.6,1,20,추천 · 종합 80.6점 · 기타 서비스
+US-balanced,2026-11-23,매수,OSPN,OneSpan Inc.,소프트웨어·인터넷,78.2,2,20,추천 · 종합 78.2점 · 소프트웨어·인터넷
+US-balanced,2026-11-23,매수,AII,American Integrity Insurance Group Inc.,금융,77.0,3,20,추천 · 종합 77.0점 · 금융
+US-balanced,2026-11-23,매수,CET,Central Securities Corporation,금융,76.9,4,20,추천 · 종합 76.9점 · 금융
+US-balanced,2026-11-23,매수,GHC,Graham Holdings Company,건설·부동산,76.5,5,20,추천 · 종합 76.5점 · 건설·부동산
+US-balanced,2026-11-23,매수,ALEC,Alector Inc.,바이오·제약,76.1,6,20,추천 · 종합 76.1점 · 바이오·제약
+US-balanced,2026-11-23,매수,TASK,TaskUs Inc.,소프트웨어·인터넷,76.0,7,20,추천 · 종합 76.0점 · 소프트웨어·인터넷
+US-balanced,2026-11-23,매수,GEHC,GE HealthCare Technologies Inc.,의료기기·헬스케어,76.0,8,20,추천 · 종합 76.0점 · 의료기기·헬스케어
+US-balanced,2026-11-23,매수,RJET,Republic Airways Holdings Inc.,운송·물류·여행,75.9,9,20,추천 · 종합 75.9점 · 운송·물류·여행
+US-balanced,2026-11-23,매수,ASO,Academy Sports and Outdoors Inc.,유통·도소매,75.8,10,20,추천 · 종합 75.8점 · 유통·도소매
+US-balanced,2026-11-23,매수,LTC,LTC Properties Inc.,건설·부동산,75.2,11,20,추천 · 종합 75.2점 · 건설·부동산
+US-balanced,2026-11-23,매수,GLOB,Globant S.A.,소프트웨어·인터넷,75.2,12,20,추천 · 종합 75.2점 · 소프트웨어·인터넷
+US-balanced,2026-11-23,매수,ZBH,Zimmer Biomet Holdings Inc.,바이오·제약,75.0,13,20,추천 · 종합 75.0점 · 바이오·제약
+US-balanced,2026-11-23,매수,CKX,CKX Lands Inc.,에너지·유틸리티,75.0,14,20,추천 · 종합 75.0점 · 에너지·유틸리티
+US-balanced,2026-11-23,매수,GNE,Genie Energy Ltd.,에너지·유틸리티,74.9,15,20,추천 · 종합 74.9점 · 에너지·유틸리티
+US-balanced,2026-11-23,매수,TDC,Teradata Corporation,소프트웨어·인터넷,74.7,16,20,추천 · 종합 74.7점 · 소프트웨어·인터넷
+US-balanced,2026-11-23,매수,ALL,Allstate Corporation (The),금융,74.7,17,20,추천 · 종합 74.7점 · 금융
+US-balanced,2026-11-23,매수,EXPD,Expeditors International of Washington Inc.,운송·물류·여행,74.5,18,20,추천 · 종합 74.5점 · 운송·물류·여행
+US-balanced,2026-11-23,매수,YMM,Full Truck Alliance Co. Ltd.,소프트웨어·인터넷,74.4,19,20,추천 · 종합 74.4점 · 소프트웨어·인터넷
+US-balanced,2026-11-23,매수,EWTX,Edgewise Therapeutics Inc.,바이오·제약,74.3,20,20,추천 · 종합 74.3점 · 바이오·제약
+US-balanced,2026-11-23,매수,GRVY,GRAVITY Co. Ltd. American Depository Shares,소프트웨어·인터넷,74.0,21,20,추천 · 종합 74.0점 · 소프트웨어·인터넷
+US-balanced,2026-11-23,매수,SBC,SBC Medical Group Holdings Incorporated,의료기기·헬스케어,74.0,22,20,추천 · 종합 74.0점 · 의료기기·헬스케어
+US-balanced,2026-11-23,매수,TREE,LendingTree Inc.,금융,74.0,23,20,추천 · 종합 74.0점 · 금융
+US-balanced,2026-11-23,매수,GFF,Griffon Corporation,건설·부동산,73.9,24,20,추천 · 종합 73.9점 · 건설·부동산
+US-balanced,2026-11-23,매수,PLGO,Pelagos Insurance Capital Limited,금융,73.9,25,20,추천 · 종합 73.9점 · 금융
+US-balanced,2026-11-23,매수,G,Genpact Limited,기타 서비스,73.8,26,20,추천 · 종합 73.8점 · 기타 서비스
+US-balanced,2026-11-23,매수,WTM,White Mountains Insurance Group Ltd.,금융,73.7,27,20,추천 · 종합 73.7점 · 금융
+US-balanced,2026-11-23,매수,CCSI,Consensus Cloud Solutions Inc.,소프트웨어·인터넷,73.7,28,20,추천 · 종합 73.7점 · 소프트웨어·인터넷
+US-balanced,2026-11-23,매수,AXS,Axis Capital Holdings Limited,금융,73.6,29,20,추천 · 종합 73.6점 · 금융
+US-balanced,2026-11-23,매수,HG,Hamilton Insurance Group Ltd.,금융,73.6,30,20,추천 · 종합 73.6점 · 금융
+US-balanced,2026-11-23,매수,VYX,NCR Voyix Corporation,IT하드웨어·통신장비,73.5,31,20,추천 · 종합 73.5점 · IT하드웨어·통신장비
+US-balanced,2026-11-23,매수,UVE,UNIVERSAL INSURANCE HOLDINGS INC,금융,73.4,32,20,추천 · 종합 73.4점 · 금융
+US-balanced,2026-11-23,매수,HCI,HCI Group Inc.,금융,73.2,33,20,추천 · 종합 73.2점 · 금융
+US-balanced,2026-11-23,매수,AMPH,Amphastar Pharmaceuticals Inc.,바이오·제약,73.1,34,20,추천 · 종합 73.1점 · 바이오·제약
+US-balanced,2026-11-23,매수,AEO,American Eagle Outfitters Inc.,패션·의류,73.1,35,20,추천 · 종합 73.1점 · 패션·의류
+US-balanced,2026-11-23,매수,VFC,V.F. Corporation,패션·의류,73.1,36,20,추천 · 종합 73.1점 · 패션·의류
+US-balanced,2026-11-23,매수,GEN,Gen Digital Inc.,소프트웨어·인터넷,73.0,37,20,추천 · 종합 73.0점 · 소프트웨어·인터넷
+US-balanced,2026-11-23,매수,SMP,Standard Motor Products Inc.,자동차·부품,73.0,38,20,추천 · 종합 73.0점 · 자동차·부품
+US-balanced,2026-11-23,매수,SNY,Sanofi,바이오·제약,72.9,39,20,추천 · 종합 72.9점 · 바이오·제약
+US-balanced,2026-11-23,매수,HCSG,Healthcare Services Group Inc.,의료기기·헬스케어,72.8,40,20,추천 · 종합 72.8점 · 의료기기·헬스케어
+US-balanced,2026-11-23,매수,DDI,DoubleDown Interactive Co. Ltd. American Depository Shares,소프트웨어·인터넷,72.8,41,20,추천 · 종합 72.8점 · 소프트웨어·인터넷
+US-balanced,2026-11-23,매수,WWW,Wolverine World Wide Inc.,패션·의류,72.7,42,20,추천 · 종합 72.7점 · 패션·의류
+US-balanced,2026-11-23,매수,LEVI,Levi Strauss & Co,패션·의류,72.7,43,20,추천 · 종합 72.7점 · 패션·의류
+US-balanced,2026-11-23,매수,AERO,Grupo Aeromexico S.A.B. de C.V.,운송·물류·여행,72.7,44,20,추천 · 종합 72.7점 · 운송·물류·여행
+US-balanced,2026-11-23,매수,ACGL,Arch Capital Group Ltd.,금융,72.6,45,20,추천 · 종합 72.6점 · 금융
+US-balanced,2026-11-23,매수,RCBC,River City Bank Common stock,금융,72.5,46,20,추천 · 종합 72.5점 · 금융
+US-balanced,2026-11-23,매수,REGN,Regeneron Pharmaceuticals Inc.,바이오·제약,72.5,47,20,추천 · 종합 72.5점 · 바이오·제약
+US-balanced,2026-11-23,매수,GCT,GigaCloud Technology Inc,유통·도소매,72.4,48,20,추천 · 종합 72.4점 · 유통·도소매
+US-balanced,2026-11-23,매수,DCBO,Docebo Inc.,소프트웨어·인터넷,72.4,49,20,추천 · 종합 72.4점 · 소프트웨어·인터넷
+US-balanced,2026-11-23,매수,AVA,Avista Corporation,에너지·유틸리티,72.4,50,20,추천 · 종합 72.4점 · 에너지·유틸리티
+US-balanced,2026-11-23,매수,DLX,Deluxe Corporation,미디어·엔터·레저,72.3,51,20,추천 · 종합 72.3점 · 미디어·엔터·레저
+US-balanced,2026-11-23,매수,JRSH,Jerash Holdings (US) Inc.,패션·의류,72.3,52,20,추천 · 종합 72.3점 · 패션·의류
+US-balanced,2026-11-23,매수,GTN,Gray Media Inc.,미디어·엔터·레저,72.3,53,20,추천 · 종합 72.3점 · 미디어·엔터·레저
+US-balanced,2026-11-23,매수,RDN,Radian Group Inc.,금융,72.3,54,20,추천 · 종합 72.3점 · 금융
+US-balanced,2026-11-23,매수,PD,PagerDuty Inc.,소프트웨어·인터넷,72.2,55,20,추천 · 종합 72.2점 · 소프트웨어·인터넷
+US-balanced,2026-11-23,매수,EPR,EPR Properties,건설·부동산,72.2,56,20,추천 · 종합 72.2점 · 건설·부동산
+US-balanced,2026-11-23,매수,NUE,Nucor Corporation,철강·금속·광업,72.1,57,20,추천 · 종합 72.1점 · 철강·금속·광업
+US-balanced,2026-11-23,매수,MDT,Medtronic plc.,의료기기·헬스케어,72.1,58,20,추천 · 종합 72.1점 · 의료기기·헬스케어
+US-balanced,2026-11-23,매수,ARDT,Ardent Health Inc.,의료기기·헬스케어,72.0,59,20,추천 · 종합 72.0점 · 의료기기·헬스케어
+US-balanced,2026-11-23,매수,TM,Toyota Motor Corporation,자동차·부품,72.0,60,20,추천 · 종합 72.0점 · 자동차·부품
+US-balanced-v3,2026-11-23,매도,ATNI,ATN International Inc.,IT하드웨어·통신장비,,0,0,교체: 점수 상위 40위 밖
+US-balanced-v3,2026-11-23,매도,BFH,Bread Financial Holdings Inc.,금융,,0,0,교체: 점수 상위 40위 밖
+US-balanced-v3,2026-11-23,매도,PARR,Par Pacific Holdings Inc.,에너지·유틸리티,,0,0,교체: 점수 상위 40위 밖
+US-balanced-v3,2026-11-23,매도,CGAU,Centerra Gold Inc.,철강·금속·광업,,0,0,교체: 점수 상위 40위 밖
+US-balanced-v3,2026-11-23,매수,TEN,Tsakos Energy Navigation Ltd,운송·물류·여행,74.9,1,20,추천 · 종합 74.9점 · 운송·물류·여행
+US-balanced-v3,2026-11-23,매수,DHT,DHT Holdings Inc.,운송·물류·여행,74.6,2,20,추천 · 종합 74.6점 · 운송·물류·여행
+US-balanced-v3,2026-11-23,매수,TRMD,TORM plc,운송·물류·여행,74.4,3,20,추천 · 종합 74.4점 · 운송·물류·여행
+US-balanced-v3,2026-11-23,매수,BWLP,BW LPG Limited,운송·물류·여행,74.2,4,20,추천 · 종합 74.2점 · 운송·물류·여행
+US-balanced-v3,2026-11-23,매수,HAFN,Hafnia Limited,운송·물류·여행,73.7,5,20,추천 · 종합 73.7점 · 운송·물류·여행
+US-balanced-v3,2026-11-23,매수,ECO,Okeanis Eco Tankers Corp.,운송·물류·여행,73.7,6,20,추천 · 종합 73.7점 · 운송·물류·여행
+US-balanced-v3,2026-11-23,매수,FRO,Frontline Plc,운송·물류·여행,73.3,7,20,추천 · 종합 73.3점 · 운송·물류·여행
+US-balanced-v3,2026-11-23,매수,DAC,Danaos Corporation,운송·물류·여행,73.1,8,20,추천 · 종합 73.1점 · 운송·물류·여행
+US-balanced-v3,2026-11-23,매수,STNG,Scorpio Tankers Inc.,운송·물류·여행,72.6,9,20,추천 · 종합 72.6점 · 운송·물류·여행
+US-balanced-v3,2026-11-23,매수,ASC,Ardmore Shipping Corporation,운송·물류·여행,72.2,10,20,추천 · 종합 72.2점 · 운송·물류·여행
+US-balanced-v3,2026-11-23,매수,MATX,Matson Inc.,운송·물류·여행,71.9,11,20,추천 · 종합 71.9점 · 운송·물류·여행
+US-balanced-v3,2026-11-23,매수,SLDE,Slide Insurance Holdings Inc.,금융,71.5,12,20,추천 · 종합 71.5점 · 금융
+US-balanced-v3,2026-11-23,매수,UGP,Ultrapar Participacoes S.A. (New),에너지·유틸리티,71.5,13,20,추천 · 종합 71.5점 · 에너지·유틸리티
+US-balanced-v3,2026-11-23,매수,PBR,Petroleo Brasileiro S.A. Petrobras,에너지·유틸리티,71.4,14,20,추천 · 종합 71.4점 · 에너지·유틸리티
+US-balanced-v3,2026-11-23,매수,TNK,Teekay Tankers Ltd.,운송·물류·여행,71.2,15,20,추천 · 종합 71.2점 · 운송·물류·여행
+US-balanced-v3,2026-11-23,매수,NAT,Nordic American Tankers Limited,운송·물류·여행,70.7,16,20,추천 · 종합 70.7점 · 운송·물류·여행
+US-balanced-v3,2026-11-23,매수,DK,Delek US Holdings Inc.,에너지·유틸리티,70.5,17,20,추천 · 종합 70.5점 · 에너지·유틸리티
+US-balanced-v3,2026-11-23,매수,HSHP,Himalaya Shipping Ltd.,운송·물류·여행,70.2,18,20,추천 · 종합 70.2점 · 운송·물류·여행
+US-balanced-v3,2026-11-23,매수,APA,APA Corporation,에너지·유틸리티,70.0,19,20,추천 · 종합 70.0점 · 에너지·유틸리티
+US-defensive,2026-11-23,매도,PBF,PBF Energy Inc.,에너지·유틸리티,,0,0,"손절 (-17.5%, 기준 -15%)"
+US-defensive,2026-11-23,매도,ATNI,ATN International Inc.,IT하드웨어·통신장비,,0,0,교체: 점수 상위 40위 밖
+US-defensive,2026-11-23,매도,BFH,Bread Financial Holdings Inc.,금융,,0,0,교체: 점수 상위 40위 밖
+US-defensive,2026-11-23,매도,PARR,Par Pacific Holdings Inc.,에너지·유틸리티,,0,0,교체: 점수 상위 40위 밖
+US-defensive,2026-11-23,매도,CGAU,Centerra Gold Inc.,철강·금속·광업,,0,0,교체: 점수 상위 40위 밖
+US-defensive,2026-11-23,매도,KNTK,Kinetik Holdings Inc.,에너지·유틸리티,,0,0,하락장 방어: 지수가 200일선 아래 → 10종목으로 축소
+US-defensive,2026-11-23,매도,LTC,LTC Properties Inc.,건설·부동산,,0,0,하락장 방어: 지수가 200일선 아래 → 10종목으로 축소
+US-defensive,2026-11-23,매도,TWIN,Twin Disc Incorporated,기계·조선·방산·항공,,0,0,하락장 방어: 지수가 200일선 아래 → 10종목으로 축소
+US-defensive,2026-11-23,매도,HCI,HCI Group Inc.,금융,,0,0,하락장 방어: 지수가 200일선 아래 → 10종목으로 축소
+US-defensive,2026-11-23,매수,DINO,HF Sinclair Corporation,에너지·유틸리티,75.6,1,10,추천 · 종합 75.6점 · 에너지·유틸리티
+US-defensive,2026-11-23,매수,DHT,DHT Holdings Inc.,운송·물류·여행,74.6,2,10,추천 · 종합 74.6점 · 운송·물류·여행
+US-defensive,2026-11-23,매수,TRMD,TORM plc,운송·물류·여행,74.4,3,10,추천 · 종합 74.4점 · 운송·물류·여행
+US-defensive,2026-11-23,매수,BWLP,BW LPG Limited,운송·물류·여행,74.2,4,10,추천 · 종합 74.2점 · 운송·물류·여행
+US-defensive,2026-11-23,매수,ECO,Okeanis Eco Tankers Corp.,운송·물류·여행,73.7,5,10,추천 · 종합 73.7점 · 운송·물류·여행
+US-defensive,2026-11-23,매수,CMBT,CMB.TECH NV,운송·물류·여행,73.4,6,10,추천 · 종합 73.4점 · 운송·물류·여행
+US-defensive,2026-11-23,매수,FRO,Frontline Plc,운송·물류·여행,73.3,7,10,추천 · 종합 73.3점 · 운송·물류·여행
+US-defensive,2026-11-23,매수,DAC,Danaos Corporation,운송·물류·여행,73.1,8,10,추천 · 종합 73.1점 · 운송·물류·여행
+US-defensive,2026-11-23,매수,STNG,Scorpio Tankers Inc.,운송·물류·여행,72.6,9,10,추천 · 종합 72.6점 · 운송·물류·여행
+US-defensive,2026-11-23,매수,ASC,Ardmore Shipping Corporation,운송·물류·여행,72.2,10,10,추천 · 종합 72.2점 · 운송·물류·여행
+US-defensive,2026-11-23,매수,MATX,Matson Inc.,운송·물류·여행,71.9,11,10,추천 · 종합 71.9점 · 운송·물류·여행
+US-defensive,2026-11-23,매수,GSL,Global Ship Lease Inc New,운송·물류·여행,71.9,12,10,추천 · 종합 71.9점 · 운송·물류·여행
+US-defensive,2026-11-23,매수,SLDE,Slide Insurance Holdings Inc.,금융,71.5,13,10,추천 · 종합 71.5점 · 금융
+US-defensive,2026-11-23,매수,UGP,Ultrapar Participacoes S.A. (New),에너지·유틸리티,71.5,14,10,추천 · 종합 71.5점 · 에너지·유틸리티
+US-defensive,2026-11-23,매수,PBR,Petroleo Brasileiro S.A. Petrobras,에너지·유틸리티,71.4,15,10,추천 · 종합 71.4점 · 에너지·유틸리티
+US-defensive,2026-11-23,매수,TNK,Teekay Tankers Ltd.,운송·물류·여행,71.2,16,10,추천 · 종합 71.2점 · 운송·물류·여행
+US-defensive,2026-11-23,매수,NAT,Nordic American Tankers Limited,운송·물류·여행,70.7,17,10,추천 · 종합 70.7점 · 운송·물류·여행
+US-defensive,2026-11-23,매수,DK,Delek US Holdings Inc.,에너지·유틸리티,70.5,18,10,추천 · 종합 70.5점 · 에너지·유틸리티
+US-defensive,2026-11-23,매수,HSHP,Himalaya Shipping Ltd.,운송·물류·여행,70.2,19,10,추천 · 종합 70.2점 · 운송·물류·여행
+US-defensive,2026-11-23,매수,APA,APA Corporation,에너지·유틸리티,70.0,20,10,추천 · 종합 70.0점 · 에너지·유틸리티
+US-random,2026-11-23,매도,HG,Hamilton Insurance Group Ltd.,금융,,0,0,교체: 점수 상위 40위 밖
+US-random,2026-11-23,매도,PARR,Par Pacific Holdings Inc.,에너지·유틸리티,,0,0,교체: 점수 상위 40위 밖
+US-random,2026-11-23,매도,ATNI,ATN International Inc.,IT하드웨어·통신장비,,0,0,교체: 점수 상위 40위 밖
+US-random,2026-11-23,매도,TMP,Tompkins Financial Corporation,금융,,0,0,교체: 점수 상위 40위 밖
+US-random,2026-11-23,매도,PLGO,Pelagos Insurance Capital Limited,금융,,0,0,교체: 점수 상위 40위 밖
+US-random,2026-11-23,매수,TRMD,TORM plc,운송·물류·여행,74.4,1,20,추천 · 종합 74.4점 · 운송·물류·여행 · 무작위 선택
+US-random,2026-11-23,매수,ASC,Ardmore Shipping Corporation,운송·물류·여행,72.2,2,20,추천 · 종합 72.2점 · 운송·물류·여행 · 무작위 선택
+US-random,2026-11-23,매수,SLDE,Slide Insurance Holdings Inc.,금융,71.5,3,20,추천 · 종합 71.5점 · 금융 · 무작위 선택
+US-random,2026-11-23,매수,DHT,DHT Holdings Inc.,운송·물류·여행,74.6,4,20,추천 · 종합 74.6점 · 운송·물류·여행 · 무작위 선택
+US-random,2026-11-23,매수,NAT,Nordic American Tankers Limited,운송·물류·여행,70.7,5,20,추천 · 종합 70.7점 · 운송·물류·여행 · 무작위 선택
+US-random,2026-11-23,매수,LPG,Dorian LPG Ltd.,운송·물류·여행,76.5,6,20,추천 · 종합 76.5점 · 운송·물류·여행 · 무작위 선택
+US-random,2026-11-23,매수,TNK,Teekay Tankers Ltd.,운송·물류·여행,71.2,7,20,추천 · 종합 71.2점 · 운송·물류·여행 · 무작위 선택
+US-random,2026-11-23,매수,CARE,Carter Bankshares Inc.,금융,72.6,8,20,추천 · 종합 72.6점 · 금융 · 무작위 선택
+US-random,2026-11-23,매수,UGP,Ultrapar Participacoes S.A. (New),에너지·유틸리티,71.5,9,20,추천 · 종합 71.5점 · 에너지·유틸리티 · 무작위 선택
+US-random,2026-11-23,매수,FRO,Frontline Plc,운송·물류·여행,73.3,10,20,추천 · 종합 73.3점 · 운송·물류·여행 · 무작위 선택
+US-random,2026-11-23,매수,DK,Delek US Holdings Inc.,에너지·유틸리티,70.5,11,20,추천 · 종합 70.5점 · 에너지·유틸리티 · 무작위 선택
+US-random,2026-11-23,매수,OGN,Organon & Co.,바이오·제약,72.1,12,20,추천 · 종합 72.1점 · 바이오·제약 · 무작위 선택
+US-random,2026-11-23,매수,CIB,Grupo Cibest S.A.,금융,78.9,13,20,추천 · 종합 78.9점 · 금융 · 무작위 선택
+US-random,2026-11-23,매수,DINO,HF Sinclair Corporation,에너지·유틸리티,75.6,14,20,추천 · 종합 75.6점 · 에너지·유틸리티 · 무작위 선택
+US-random,2026-11-23,매수,PBR,Petroleo Brasileiro S.A. Petrobras,에너지·유틸리티,71.4,15,20,추천 · 종합 71.4점 · 에너지·유틸리티 · 무작위 선택
+US-random,2026-11-23,매수,HAFN,Hafnia Limited,운송·물류·여행,73.7,16,20,추천 · 종합 73.7점 · 운송·물류·여행 · 무작위 선택
+US-random,2026-11-23,매수,HSHP,Himalaya Shipping Ltd.,운송·물류·여행,70.2,17,20,추천 · 종합 70.2점 · 운송·물류·여행 · 무작위 선택
+US-random,2026-11-23,매수,STNG,Scorpio Tankers Inc.,운송·물류·여행,72.6,18,20,추천 · 종합 72.6점 · 운송·물류·여행 · 무작위 선택
+US-random,2026-11-23,매수,INSW,International Seaways Inc.,운송·물류·여행,74.2,19,20,추천 · 종합 74.2점 · 운송·물류·여행 · 무작위 선택
+US-random,2026-11-23,매수,MATX,Matson Inc.,운송·물류·여행,71.9,20,20,추천 · 종합 71.9점 · 운송·물류·여행 · 무작위 선택
+US-random,2026-11-23,매수,BWLP,BW LPG Limited,운송·물류·여행,74.2,21,20,추천 · 종합 74.2점 · 운송·물류·여행 · 무작위 선택
+US-random,2026-11-23,매수,PBF,PBF Energy Inc.,에너지·유틸리티,76.0,22,20,추천 · 종합 76.0점 · 에너지·유틸리티 · 무작위 선택
+US-random,2026-11-23,매수,TEN,Tsakos Energy Navigation Ltd,운송·물류·여행,74.9,23,20,추천 · 종합 74.9점 · 운송·물류·여행 · 무작위 선택
