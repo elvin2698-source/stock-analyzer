@@ -406,3 +406,50 @@ date,account,side,ticker,name,shares,price,amount,cost,pnl,pnl_pct,held_days,rea
 2026-11-24,KR-stable,매도,088350,한화생명,671,3371.625,2262360.38,4864.07,-241494.61,-9.66,8.0,"손절 (-10.3%, 기준 -10%)",v3
 2026-11-24,KR-stable,매도,002380,KCC,6,339160.5,2034963.0,4375.17,-194968.95,-8.76,8.0,"손절 (-10.2%, 기준 -10%)",v3
 2026-11-24,KR-stable,매도,300720,한일시멘트,150,14745.24,2211786.0,4755.34,-291840.11,-11.68,8.0,"손절 (-10.9%, 기준 -10%)",v3
+2026-11-24,US-aggressive,매도,TWIN,Twin Disc Incorporated,149,22.0979,3292.58,8.23,-51.48,-1.54,4.0,교체: 점수 상위 20위 밖,v3
+2026-11-24,US-aggressive,매수,KSPI,Joint Stock Company Kaspi.kz American Depository Shares,39,86.6766,3380.39,8.45,,,,추천 · 종합 72.5점 · 기타 서비스,v3
+2026-11-24,US-balanced,매도,RNR,RenaissanceRe Holdings Ltd.,5,340.1695,1700.85,4.25,-46.24,-2.65,18.0,교체: 점수 상위 40위 밖,v3
+2026-11-24,US-balanced,매도,PYPL,PayPal Holdings Inc.,31,55.0049,1705.15,4.26,-141.98,-7.7,18.0,교체: 점수 상위 40위 밖,v3
+2026-11-24,US-balanced,매도,STNG,Scorpio Tankers Inc.,22,79.6203,1751.65,4.38,-35.68,-2.0,18.0,교체: 점수 상위 40위 밖,v3
+2026-11-24,US-balanced,매도,FOXA,Fox Corporation,26,63.906,1661.56,4.15,-101.92,-5.79,7.0,교체: 점수 상위 40위 밖,v3
+2026-11-24,US-balanced,매도,FOX,Fox Corporation,29,57.4125,1664.96,4.16,-102.17,-5.8,7.0,교체: 점수 상위 40위 밖,v3
+2026-11-24,US-balanced,매도,KNTK,Kinetik Holdings Inc.,32,52.977,1695.26,4.24,-75.14,-4.25,7.0,교체: 점수 상위 40위 밖,v3
+2026-11-24,US-balanced,매도,NOMD,Nomad Foods Limited,149,11.6384,1734.11,4.34,-37.57,-2.13,7.0,교체: 점수 상위 40위 밖,v3
+2026-11-24,US-balanced,매도,MMS,Maximus Inc.,27,61.6783,1665.31,4.16,-92.14,-5.26,7.0,교체: 점수 상위 40위 밖,v3
+2026-11-24,US-balanced,매도,SUZ,Suzano S.A.,183,9.4405,1727.62,4.32,-48.83,-2.76,7.0,교체: 점수 상위 40위 밖,v3
+2026-11-24,US-balanced,매수,AER,AerCap Holdings N.V.,10,167.9077,1679.08,4.2,,,,추천 · 종합 80.6점 · 기타 서비스,v3
+2026-11-24,US-balanced,매수,OSPN,OneSpan Inc.,76,22.6326,1720.08,4.3,,,,추천 · 종합 78.2점 · 소프트웨어·인터넷,v3
+2026-11-24,US-balanced,매수,AII,American Integrity Insurance Group Inc.,56,30.3703,1700.74,4.25,,,,추천 · 종합 77.0점 · 금융,v3
+2026-11-24,US-balanced,매수,CET,Central Securities Corporation,32,53.1231,1699.94,4.25,,,,추천 · 종합 76.9점 · 금융,v3
+2026-11-24,US-balanced,매수,GHC,Graham Holdings Company,1,1264.8135,1264.81,3.16,,,,추천 · 종합 76.5점 · 건설·부동산,v3
+2026-11-24,US-balanced,매수,ALEC,Alector Inc.,698,2.4725,1725.78,4.31,,,,추천 · 종합 76.1점 · 바이오·제약,v3
+2026-11-24,US-balanced,매수,TASK,TaskUs Inc.,192,8.979,1723.96,4.31,,,,추천 · 종합 76.0점 · 소프트웨어·인터넷,v3
+2026-11-24,US-balanced,매수,GEHC,GE HealthCare Technologies Inc.,21,80.8007,1696.82,4.24,,,,추천 · 종합 76.0점 · 의료기기·헬스케어,v3
+2026-11-24,US-balanced,매수,RJET,Republic Airways Holdings Inc.,82,20.9109,1714.69,4.29,,,,추천 · 종합 75.9점 · 운송·물류·여행,v3
+2026-11-24,US-balanced,매수,ASO,Academy Sports and Outdoors Inc.,24,70.4103,1689.85,4.22,,,,추천 · 종합 75.8점 · 유통·도소매,v3
+2026-11-24,US-balanced-v3,매도,ATNI,ATN International Inc.,65,26.4735,1720.78,4.3,-141.21,-7.6,14.0,교체: 점수 상위 40위 밖,v3
+2026-11-24,US-balanced-v3,매도,BFH,Bread Financial Holdings Inc.,18,91.0888,1639.6,4.1,-131.43,-7.44,7.0,교체: 점수 상위 40위 밖,v3
+2026-11-24,US-balanced-v3,매도,PARR,Par Pacific Holdings Inc.,25,62.927,1573.18,3.93,-238.32,-13.18,7.0,교체: 점수 상위 40위 밖,v3
+2026-11-24,US-balanced-v3,매도,CGAU,Centerra Gold Inc.,93,17.5325,1630.52,4.08,-203.68,-11.13,7.0,교체: 점수 상위 40위 밖,v3
+2026-11-24,US-balanced-v3,매수,SLDE,Slide Insurance Holdings Inc.,69,25.3453,1748.83,4.37,,,,추천 · 종합 71.5점 · 금융,v3
+2026-11-24,US-balanced-v3,매수,UGP,Ultrapar Participacoes S.A. (New),327,5.3553,1751.2,4.38,,,,추천 · 종합 71.5점 · 에너지·유틸리티,v3
+2026-11-24,US-defensive,매도,PBF,PBF Energy Inc.,25,59.5204,1488.01,3.72,-315.74,-17.54,11.0,"손절 (-17.5%, 기준 -15%)",v3
+2026-11-24,US-defensive,매도,ATNI,ATN International Inc.,63,26.4735,1667.83,4.17,-192.5,-10.37,11.0,교체: 점수 상위 40위 밖,v3
+2026-11-24,US-defensive,매도,BFH,Bread Financial Holdings Inc.,18,91.0888,1639.6,4.1,-131.43,-7.44,7.0,교체: 점수 상위 40위 밖,v3
+2026-11-24,US-defensive,매도,PARR,Par Pacific Holdings Inc.,24,62.927,1510.25,3.78,-228.78,-13.18,7.0,교체: 점수 상위 40위 밖,v3
+2026-11-24,US-defensive,매도,CGAU,Centerra Gold Inc.,90,17.5325,1577.92,3.94,-197.11,-11.13,7.0,교체: 점수 상위 40위 밖,v3
+2026-11-24,US-defensive,매도,KNTK,Kinetik Holdings Inc.,33,52.977,1748.24,4.37,-79.14,-4.34,11.0,하락장 방어: 지수가 200일선 아래 → 10종목으로 축소,v3
+2026-11-24,US-defensive,매도,LTC,LTC Properties Inc.,42,42.3676,1779.44,4.45,-82.01,-4.42,11.0,하락장 방어: 지수가 200일선 아래 → 10종목으로 축소,v3
+2026-11-24,US-defensive,매도,TWIN,Twin Disc Incorporated,76,22.0979,1679.44,4.2,-104.81,-5.89,7.0,하락장 방어: 지수가 200일선 아래 → 10종목으로 축소,v3
+2026-11-24,US-defensive,매도,HCI,HCI Group Inc.,9,192.4174,1731.76,4.33,0.15,0.01,7.0,하락장 방어: 지수가 200일선 아래 → 10종목으로 축소,v3
+2026-11-24,US-random,매도,HG,Hamilton Insurance Group Ltd.,47,38.7712,1822.25,4.56,-22.67,-1.23,11.0,교체: 점수 상위 40위 밖,v3
+2026-11-24,US-random,매도,PARR,Par Pacific Holdings Inc.,25,62.927,1573.18,3.93,-256.88,-14.07,11.0,교체: 점수 상위 40위 밖,v3
+2026-11-24,US-random,매도,ATNI,ATN International Inc.,63,26.4735,1667.83,4.17,-192.5,-10.37,11.0,교체: 점수 상위 40위 밖,v3
+2026-11-24,US-random,매도,TMP,Tompkins Financial Corporation,18,95.904,1726.27,4.32,-87.96,-4.86,11.0,교체: 점수 상위 40위 밖,v3
+2026-11-24,US-random,매도,PLGO,Pelagos Insurance Capital Limited,63,27.992,1763.49,4.41,-33.85,-1.89,7.0,교체: 점수 상위 40위 밖,v3
+2026-11-24,US-random,매수,SLDE,Slide Insurance Holdings Inc.,68,25.3453,1723.48,4.31,,,,추천 · 종합 71.5점 · 금융 · 무작위 선택,v3
+2026-11-24,US-random,매수,CARE,Carter Bankshares Inc.,61,28.4234,1733.83,4.33,,,,추천 · 종합 72.6점 · 금융 · 무작위 선택,v3
+2026-11-24,US-random,매수,UGP,Ultrapar Participacoes S.A. (New),324,5.3553,1735.13,4.34,,,,추천 · 종합 71.5점 · 에너지·유틸리티 · 무작위 선택,v3
+2026-11-24,US-random,매수,DK,Delek US Holdings Inc.,30,57.6176,1728.53,4.32,,,,추천 · 종합 70.5점 · 에너지·유틸리티 · 무작위 선택,v3
+2026-11-24,US-random,매수,OGN,Organon & Co.,124,13.9139,1725.32,4.31,,,,추천 · 종합 72.1점 · 바이오·제약 · 무작위 선택,v3
+2026-11-24,US-random,매수,CIB,Grupo Cibest S.A.,20,84.044,1680.88,4.2,,,,추천 · 종합 78.9점 · 금융 · 무작위 선택,v3
