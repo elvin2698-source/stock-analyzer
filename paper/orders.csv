@@ -1,8 +1,4 @@
 account,signal_date,side,ticker,name,group,score,rank,target_n,reason
-KR-aggressive,2026-11-24,매도,092230,KPX홀딩스,화학·소재,,0,0,교체: 점수 상위 20위 밖
-KR-aggressive,2026-11-24,매수,025000,KPX케미칼,화학·소재,73.1,1,10,추천 · 종합 73.1점 · 화학·소재
-KR-aggressive,2026-11-24,매수,013580,계룡건설,건설·부동산,73.0,2,10,추천 · 종합 73.0점 · 건설·부동산
-KR-aggressive,2026-11-24,매수,036030,케이티알파,유통·도소매,71.3,3,10,추천 · 종합 71.3점 · 유통·도소매
 US-aggressive,2026-11-24,매도,CARE,Carter Bankshares Inc.,금융,,0,0,교체: 점수 상위 20위 밖
 US-aggressive,2026-11-24,매도,OGN,Organon & Co.,바이오·제약,,0,0,교체: 점수 상위 20위 밖
 US-aggressive,2026-11-24,매도,KSPI,Joint Stock Company Kaspi.kz American Depository Shares,기타 서비스,,0,0,교체: 점수 상위 20위 밖
@@ -29,3 +25,6 @@ US-aggressive,2026-11-24,매수,NAT,Nordic American Tankers Limited,운송·물�
 US-aggressive,2026-11-24,매수,PBR,Petroleo Brasileiro S.A. Petrobras,에너지·유틸리티,70.3,21,10,추천 · 종합 70.3점 · 에너지·유틸리티
 US-aggressive,2026-11-24,매수,HBB,Hamilton Beach Brands Holding Company,생활소비재,70.2,22,10,추천 · 종합 70.2점 · 생활소비재
 US-aggressive,2026-11-24,매수,RCBC,River City Bank Common stock,금융,70.1,23,10,추천 · 종합 70.1점 · 금융
+KR-aggressive,2026-11-25,매도,137080,나래나노텍,기계·조선·방산·항공,,0,0,교체: 점수 상위 20위 밖
+KR-aggressive,2026-11-25,매수,001540,안국약품,바이오·제약,73.4,1,10,추천 · 종합 73.4점 · 바이오·제약
+KR-aggressive,2026-11-25,매수,092230,KPX홀딩스,화학·소재,72.3,2,10,추천 · 종합 72.3점 · 화학·소재
