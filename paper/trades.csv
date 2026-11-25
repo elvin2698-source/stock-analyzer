@@ -456,3 +456,9 @@ date,account,side,ticker,name,shares,price,amount,cost,pnl,pnl_pct,held_days,rea
 2026-11-25,KR-aggressive,매도,092230,KPX홀딩스,30,79320.6,2379618.0,5116.18,-196451.76,-7.64,9.0,교체: 점수 상위 20위 밖,v3
 2026-11-25,KR-aggressive,매수,025000,KPX케미칼,90,51651.6,4648644.0,697.3,,,,추천 · 종합 73.1점 · 화학·소재 · 거래대금 한도로 일부만,v3
 2026-11-25,KR-aggressive,매수,013580,계룡건설,189,25375.35,4795941.15,719.39,,,,추천 · 종합 73.0점 · 건설·부동산,v3
+2026-11-25,US-aggressive,매도,CARE,Carter Bankshares Inc.,118,28.2018,3327.81,8.32,-96.73,-2.83,2.0,교체: 점수 상위 20위 밖,v3
+2026-11-25,US-aggressive,매도,OGN,Organon & Co.,245,13.8861,3402.09,8.51,-23.84,-0.7,2.0,교체: 점수 상위 20위 밖,v3
+2026-11-25,US-aggressive,매도,KSPI,Joint Stock Company Kaspi.kz American Depository Shares,39,86.0639,3356.49,8.39,-40.74,-1.2,1.0,교체: 점수 상위 20위 밖,v3
+2026-11-25,US-aggressive,매수,KNTK,Kinetik Holdings Inc.,63,53.1931,3351.17,8.38,,,,추천 · 종합 73.4점 · 에너지·유틸리티,v3
+2026-11-25,US-aggressive,매수,LTC,LTC Properties Inc.,77,44.014,3389.08,8.47,,,,추천 · 종합 73.3점 · 건설·부동산,v3
+2026-11-25,US-aggressive,매수,TWIN,Twin Disc Incorporated,162,20.9209,3389.19,8.47,,,,추천 · 종합 72.7점 · 기계·조선·방산·항공,v3
