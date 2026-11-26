@@ -462,3 +462,5 @@ date,account,side,ticker,name,shares,price,amount,cost,pnl,pnl_pct,held_days,rea
 2026-11-25,US-aggressive,매수,KNTK,Kinetik Holdings Inc.,63,53.1931,3351.17,8.38,,,,추천 · 종합 73.4점 · 에너지·유틸리티,v3
 2026-11-25,US-aggressive,매수,LTC,LTC Properties Inc.,77,44.014,3389.08,8.47,,,,추천 · 종합 73.3점 · 건설·부동산,v3
 2026-11-25,US-aggressive,매수,TWIN,Twin Disc Incorporated,162,20.9209,3389.19,8.47,,,,추천 · 종합 72.7점 · 기계·조선·방산·항공,v3
+2026-11-26,KR-aggressive,매도,137080,나래나노텍,253,6873.12,1738899.36,3738.63,88769.3,5.39,10.0,교체: 점수 상위 20위 밖,v3
+2026-11-26,KR-aggressive,매수,001540,안국약품,362,9909.9,3587383.8,538.11,,,,추천 · 종합 73.4점 · 바이오·제약 · 거래대금 한도로 일부만,v3

@@ -1,7 +1,4 @@
 account,signal_date,side,ticker,name,group,score,rank,target_n,reason
-KR-aggressive,2026-11-25,매도,137080,나래나노텍,기계·조선·방산·항공,,0,0,교체: 점수 상위 20위 밖
-KR-aggressive,2026-11-25,매수,001540,안국약품,바이오·제약,73.4,1,10,추천 · 종합 73.4점 · 바이오·제약
-KR-aggressive,2026-11-25,매수,092230,KPX홀딩스,화학·소재,72.3,2,10,추천 · 종합 72.3점 · 화학·소재
 US-aggressive,2026-11-25,매도,PBF,PBF Energy Inc.,에너지·유틸리티,,0,0,"손절 (-21.8%, 기준 -20%)"
 US-aggressive,2026-11-25,매수,DHT,DHT Holdings Inc.,운송·물류·여행,75.3,1,10,추천 · 종합 75.3점 · 운송·물류·여행
 US-aggressive,2026-11-25,매수,TRMD,TORM plc,운송·물류·여행,74.9,2,10,추천 · 종합 74.9점 · 운송·물류·여행
@@ -28,3 +25,7 @@ US-aggressive,2026-11-25,매수,SBLK,Star Bulk Carriers Corp.,운송·물류·�
 US-aggressive,2026-11-25,매수,NAT,Nordic American Tankers Limited,운송·물류·여행,70.5,23,10,추천 · 종합 70.5점 · 운송·물류·여행
 US-aggressive,2026-11-25,매수,CXW,CoreCivic Inc.,건설·부동산,70.0,24,10,추천 · 종합 70.0점 · 건설·부동산
 US-balanced-v3,2026-11-25,매도,PBF,PBF Energy Inc.,에너지·유틸리티,,0,0,"손절 (-15.8%, 기준 -15%)"
+KR-aggressive,2026-11-26,매도,066620,국보디자인,건설·부동산,,0,0,교체: 점수 상위 20위 밖
+KR-aggressive,2026-11-26,매도,025000,KPX케미칼,화학·소재,,0,0,교체: 점수 상위 20위 밖
+KR-aggressive,2026-11-26,매수,227840,현대코퍼레이션홀딩스,식음료·농수산,73.1,1,10,추천 · 종합 73.1점 · 식음료·농수산
+KR-aggressive,2026-11-26,매수,092230,KPX홀딩스,화학·소재,71.4,2,10,추천 · 종합 71.4점 · 화학·소재
