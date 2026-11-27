@@ -10,13 +10,13 @@
       "currency": "KRW",
       "cash": 54.42,
       "start_usdkrw": 1350.0699462890625,
-      "last_date": "2026-11-26",
+      "last_date": "2026-11-27",
       "last_rebalance": "2026-W48",
       "rules_since": {
         "v1": "2026-11-09",
         "v3": "예전 점수로 계속 운용"
       },
-      "usdkrw_now": 1343.8599853515625
+      "usdkrw_now": 1333.3800048828125
     },
     "US-balanced": {
       "market": "US",
@@ -42,14 +42,14 @@
       "start_date": "2026-11-10",
       "start_cash": 50000000,
       "currency": "KRW",
-      "cash": 28318830.29,
+      "cash": 28333043.09,
       "start_usdkrw": 1338.7099609375,
-      "last_date": "2026-11-26",
+      "last_date": "2026-11-27",
       "last_rebalance": "2026-11",
       "rules_since": {
         "v2": "2026-11-10"
       },
-      "usdkrw_now": 1343.8599853515625
+      "usdkrw_now": 1333.3800048828125
     },
     "KR-aggressive": {
       "market": "KR",
@@ -58,14 +58,14 @@
       "start_date": "2026-11-10",
       "start_cash": 50000000,
       "currency": "KRW",
-      "cash": 17955821.67,
+      "cash": 19934160.87,
       "start_usdkrw": 1338.7099609375,
-      "last_date": "2026-11-26",
-      "last_rebalance": "2026-11-26",
+      "last_date": "2026-11-27",
+      "last_rebalance": "2026-11-27",
       "rules_since": {
         "v2": "2026-11-10"
       },
-      "usdkrw_now": 1343.8599853515625
+      "usdkrw_now": 1333.3800048828125
     },
     "KR-defensive": {
       "market": "KR",
@@ -76,12 +76,12 @@
       "currency": "KRW",
       "cash": 27143292.26,
       "start_usdkrw": 1338.7099609375,
-      "last_date": "2026-11-26",
+      "last_date": "2026-11-27",
       "last_rebalance": "2026-W48",
       "rules_since": {
         "v2": "2026-11-10"
       },
-      "usdkrw_now": 1343.8599853515625
+      "usdkrw_now": 1333.3800048828125
     },
     "KR-random": {
       "market": "KR",
@@ -92,12 +92,12 @@
       "currency": "KRW",
       "cash": 20271591.77,
       "start_usdkrw": 1338.7099609375,
-      "last_date": "2026-11-26",
+      "last_date": "2026-11-27",
       "last_rebalance": "2026-W48",
       "rules_since": {
         "v2": "2026-11-10"
       },
-      "usdkrw_now": 1343.8599853515625
+      "usdkrw_now": 1333.3800048828125
     },
     "US-stable": {
       "market": "US",
@@ -172,12 +172,12 @@
       "currency": "KRW",
       "cash": 23254724.54,
       "start_usdkrw": 1338.56005859375,
-      "last_date": "2026-11-26",
+      "last_date": "2026-11-27",
       "last_rebalance": "2026-W48",
       "rules_since": {
         "v3": "2026-11-10"
       },
-      "usdkrw_now": 1343.8599853515625
+      "usdkrw_now": 1333.3800048828125
     },
     "US-balanced-v3": {
       "market": "US",
